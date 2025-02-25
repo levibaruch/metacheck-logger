@@ -227,6 +227,7 @@ hypotheses <- search_text(papers, "hypothesi",
                           return = "paragraph")
 ```
 
+
 ## Modules
 
 Papercheck is designed modularly, so you can add modules to check for anything. It comes with a set of pre-defined modules, and we hope people will share more modules.

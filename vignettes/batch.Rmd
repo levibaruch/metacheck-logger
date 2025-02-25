@@ -90,6 +90,14 @@ The `authors` list contains a list of information for each author. For now, CRed
 paper$authors |> str()
 ```
 
+You can get the authors as a table for a paper object or list of papers.
+
+```{r}
+author_table(psychsci) |> 
+  dplyr::filter(grepl("Glasgow", affiliation))
+```
+
+
 ### Info 
 
 The `info` item lists the filename, title, description (abstract), keywords, doi, and submission info. Grobid sometimes makes mistakes with the DOI, so be cautious about using this.
