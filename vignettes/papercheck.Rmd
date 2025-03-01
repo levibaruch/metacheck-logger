@@ -46,6 +46,7 @@ xml_file <- pdf2grobid(pdf_file)
 ```
 
 ```{r, include = FALSE}
+# doesn't require a call to the grobid server
 xml_file <- demoxml()
 ```
 
@@ -175,11 +176,17 @@ marginal[, c("text", "expanded")]
 
 You can query the extracted text of papers with LLMs using [groq](https://console.groq.com/docs/).
 
+<a href="https://groq.com" target="_blank" rel="noopener noreferrer">
+  <img
+    src="https://groq.com/wp-content/uploads/2024/03/PBG-mark1-color.svg"
+    alt="Powered by Groq for fast inference."
+  />
+</a>
+
 ### Setup
 
 
-You will need to get your own API key from <https://console.groq.com/keys>. To avoid having to type it out, add it to the .Renviron file in the following format (you can use `usethis::edit_r_environ()` to access the .Renviron file). 
-
+You will need to get your own API key from <https://console.groq.com/keys>. To avoid having to type it out, add it to the .Renviron file in the following format (you can use `usethis::edit_r_environ()` to access the .Renviron file).
 
 ``` bash
 GROQ_GPT_KEY="sk-proj-abcdefghijklmnopqrs0123456789ABCDEFGHIJKLMNOPQRS"
@@ -189,6 +196,30 @@ GROQ_GPT_KEY="sk-proj-abcdefghijklmnopqrs0123456789ABCDEFGHIJKLMNOPQRS"
 # useful if you aren't sure where this file is
 usethis::edit_r_environ()
 ```
+
+You can get or set the default LLM model with `llm_model()` and access a list of the current available models using `llm_model_list()`. 
+
+```{r, echo = FALSE}
+data.frame(
+  id = c("mistral-saba-24b", "qwen-2.5-coder-32b", 
+"deepseek-r1-distill-qwen-32b", "qwen-2.5-32b", "deepseek-r1-distill-llama-70b", 
+"llama-3.3-70b-specdec", "llama-3.3-70b-versatile", "llama-3.2-3b-preview", 
+"llama-3.2-1b-preview", "llama-guard-3-8b", "mixtral-8x7b-32768", 
+"llama-3.1-8b-instant", "llama3-8b-8192", "gemma2-9b-it", "llama3-70b-8192"
+), 
+  owned_by = c("Mistral AI", "Alibaba Cloud", "DeepSeek / Alibaba Cloud", 
+"Alibaba Cloud", "DeepSeek / Meta", "Meta", "Meta", "Meta", "Meta", 
+"Meta", "Mistral AI", "Meta", "Meta", "Google", "Meta"), 
+  created = c("2025-02-19", 
+"2025-02-14", "2025-02-07", "2025-02-05", "2025-01-26", "2024-12-06", 
+"2024-12-06", "2024-09-25", "2024-09-25", "2023-09-03", "2023-09-03", 
+"2023-09-03", "2023-09-03", "2023-09-03", "2023-09-03"), 
+  context_window = c(32768L, 
+131072L, 131072L, 131072L, 131072L, 8192L, 32768L, 8192L, 8192L, 
+8192L, 32768L, 131072L, 8192L, 8192L, 8192L)
+) |> knitr::kable()
+```
+
 
 ### LLM Queries
 
@@ -211,6 +242,16 @@ llm_hypo <- data.frame(
 
 knitr::kable(llm_hypo)
 ```
+
+### Rate Limiting
+
+Remember, the `llm()` function makes a separate query for each row in a data frame from `search_text()`. Free GROQ accounts are rate limited, so we set the default limits to 30 queries, but you can change this:
+
+```{r}
+llm_max_calls(30)
+```
+
+If you hit your rate limit, the `llm()` function will add a short delay between calls, so don't worry if you notice the query speed slowing down after the first 30 calls. 
 
 
 ## Batch Processing

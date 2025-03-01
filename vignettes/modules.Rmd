@@ -14,213 +14,269 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, message=FALSE}
 library(papercheck)
+library(dplyr)
 ```
 
-Modules are user-created patterns for checking a paper or set of papers. Module specifications are written in JSON format. 
+Papercheck is designed modularly, so you can add modules to check for anything. It comes with a set of pre-defined modules, and we hope people will share more modules.
 
-``` json
-{
-  "title": "List All P-Values",
-  "description": "List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table."
-}
+## Module List
+
+You can see the list of built-in modules with the function below.
+
+```{r, results='asis'}
+module_list()
 ```
 
-## Search Strategies
+## Built-in Modules
 
-Modules can use four search strategies, each of which has its own JSON specification. All four types take either a paper object or the resulting search table as input, making it easy to chain modules together. 
+Below, we will demonstrate the use of each built-in module, first on a single paper and then a list of papers, the `psychsci` list of 250 open-access papers from Psychological Science.
 
-### Text Search
-
-For checks that can be done with a simple text search, you can create a module that provides the arguments to the `search_text()` function. The "text" key takes a dictionary of the argumants to the `search_text()` function.
-
-Foe example, the following JSON specification defines the arguments needed to search for all instances of p-values in the text and return just the matched text. 
-
-``` json
-{
-  "title": "List All P-Values",
-  "description": "List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.",
-  "text": {
-    "pattern": "(?<=[^a-z])p-?(value)?\\s*[<>=≤≥]{1,2}\\s*(n\\.?s\\.?|\\d?\\.\\d+e?-?\\d*)",
-    "return": "match",
-    "perl": true
-  }
-}
-```
-
-### Code
-
-For checks that require a bit more logic, you can include R code directly or (more likely) reference an external .R file. The "code" key takes a dictionary of the "code" or a "path" to a file containing code. You can optionally list the "packages" required so users can be prompted to install any unavailable packages.
-
-
-```
-{
-  "title": "Check Status of OSF Links",
-  "description": "List all OSF links and whether they are open, closed, or do not exist.",
-  "code": {
-    "packages": ["papercheck", "httr", "dplyr"],
-    "path": "osf-check.R"
-  }
-}
-```
-
-Code must end with a list that contains values to return. The item `table` should be the table of returned values, and the optional item `traffic_light` contains the classification of the result (see below).
-
-
-### Machine Learning
-
-The machine learning aspect of papercheck is under development, but currently uses BERT models to classify text. The "ml" key takes a dictionary of the arguments to `ml()`, with an additional optional setting to filter the output table to only matching responses.
-
-
-```
-{
-  "title": "Sample Size",
-  "description": "[DEMO] Classify each sentence for whether it contains sample-size information, returning only sentences with probable sample-size info.",
-  "ml" : {
-    "model_dir": "sample-size",
-    "class_col": "has_sample_size",
-    "map": {"0": "no", "1": "yes"},
-    "return_prob": false,
-    "filter": "yes"
-  }
-}
-```
-
-### Large Language Models
-
-The "llm" key takes a dictionary of the arguments to the `llm()` function.
-
-```
-{
-  "title": "Summarise Sections",
-  "description": "Generate a 1-sentence summary for each section",
-  "llm": {
-    "query": "Summarise this section briefly, in one sentence."
-  }
-}
-
+```{r}
+paper <- psychsci$`0956797620955209`
 ```
 
 
-## Report Info
+### all-p-values
 
-If you are using your modules to build a report, you need to specify what type of output corresponds to good practice or practice that may need improvement. We do this through "traffic-light" and "report" keys.
+List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.
 
-### Traffic Lights
+```{r, results='asis'}
+all_p <- module_run(paper, "all-p-values")
 
-There are 5 kinds of traffic lights:
-
-<style>
-  h2.na::before { content: '⚪️ '; }
-  h2.fail::before { content: '⚫️ '; }
-  h2.info::before { content: '🔵 '; }
-  h2.red::before { content: '🔴 '; }
-  h2.yellow::before { content: '🟡 '; }
-  h2.green::before { content: '🟢 '; }
-</style>
-
-
-🟢 no problems detected;<br>
-🟡 something to check;<br>
-🔴 possible problems detected;<br>
-🔵 informational only;<br>
-⚪️ not applicable;<br>
-⚫️ check failed
-
-
-The simplest way to set traffic lights is to specify the meaning of "found" and "not_found". If the module produces more than 0 rows in the output table, then the traffic light takes the "found" value, otherwise the "not_found" value.
-
-```
-{
-  "title": "List All P-Values",
-  "description": "List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.",
-  "text": {
-    "pattern": "(?<=[^a-z])p-?(value)?\\s*[<>=≤≥]{1,2}\\s*(n\\.?s\\.?|\\d?\\.\\d+e?-?\\d*)",
-    "return": "match",
-    "perl": true
-  },
-  "traffic_light": {
-    "found": "info",
-    "not_found": "na"
-  }
-}
+all_p # print table
 ```
 
-If you are using the "code" type, you can also specify the traffic light in the returned list.
+
+If you run this module on all 250 papers, you will get more rows than you probably want to print, so the default just shows you the first 20 rows.
+
+```{r, results='asis'}
+all_p_ps <- module_run(psychsci, "all-p-values")
+
+all_p_ps # print table
+```
+
+You can access the full table for further processing.
+
+```{r}
+all_p_ps$table |>
+  count(text, sort = TRUE) |>
+  head()
+```
+
+
+### all-urls
+
+List all the URLs in the main text. There will, of course, be a few false positives when text in the paper is formatted as a valid URL. 
+
+```{r, results='asis'}
+all_urls <- module_run(paper, "all-urls")
+
+all_urls # print table
+```
+
+
+```{r}
+all_urls_ps <- module_run(psychsci, "all-urls")
+
+# show the most common URLs
+all_urls_ps$table |>
+  count(text, sort = TRUE) |>
+  head()
+```
+
+### imprecise-p
+
+List any p-values that may have been reported with insufficient precision (e.g., p < .05 or p = n.s.). 
+
+```{r, results='asis'}
+imprecise <- module_run(paper, "imprecise-p")
+
+imprecise # print table
+```
+
+You can use the `expand_text()` function to get the full sentence or paragraph for context. Here you can see that "p < .025" was not an imprecisely reported p-value, but a description of the preregistered alpha threshold. 
+
+```{r}
+exp <- expand_text(imprecise, paper)
+
+exp$expanded # print expanded text
+```
+
+We can investigate the most common imprecise p-values in the PsychSci set. "p < .01" and "p < .05" are probably often describing figures or tables, but what is the deal with "p > .25"?
+
+```{r, results='asis'}
+imprecise_ps <- module_run(psychsci, "imprecise-p")
+
+imprecise_ps$table |>
+  count(text, sort = TRUE) |>
+  head()
+```
+
+We can expand the text to check the context for "p > .25".
+
+```{r}
+gt.25 <- imprecise_ps$table |>
+  filter(grepl("\\.25", text)) |>
+  expand_text(paper = psychsci)
+
+gt.25$expanded[1:3] # look at the first 3
+```
+
+
+### llm-summarise
+
+Generate a 1-sentence summary for each section. This uses the `llm()` function with the query "summarise this section briefly, in one sentence" and returns a one-sentence summary of each major section (abstract, intro, method, results, discussion, acknowledgements, appendices)
+
+```{r, results='asis', eval = FALSE}
+summaries <- module_run(paper, "llm-summarise", seed = 8675309)
+
+summaries # print default table
+```
+
+
+|text |section |answer | time| tokens|
+|:----------------------------------------------------------------------------------------------------|:----------|:----------------------------------------------------------------------------------------------------|---------:|------:|
+|Across taxa, animals possess a number of behavioral adaptations that function to mitigate the cos... |abstract   |Humans have evolved behavioral adaptations to detect and avoid infectious microorganisms, includi... | 0.1327031|    373|
+|the evolutionary-biology literature, which highlights the fact that organisms neutralize pathogen... |intro      |The study aimed to replicate a previous finding that people who have recently been ill are more a... | 0.2404155|   1406|
+|Method Except where noted, all methodological details-including all stimuli and dot-probe procedu... |method     |The study replicated the methodological details of Miller and Maner (2011) to test the interactio... | 0.3714075|   2314|
+|Results On the basis of our preregistered exclusion criteria, we removed the 9 participants with ... |results    |The study found a main effect of face type, with slower responses to disfigured faces, but no mai... | 0.2508097|   1227|
+|Discussion The study replicated here has been interpreted as a key piece of evidence supporting a... |discussion |This study's null findings do not provide strong evidence that pathogen avoidance does not vary a... | 0.2339141|    904|
+|NA Funding This work was supported by Horizon 2020 European Research Council Grant No. StG-2015 6... |funding    |This study was funded by a Horizon 2020 European Research Council Grant and has made its data, an... | 0.1644160|    210|
+|Declaration of Conflicting Interests The author(s) declared that there were no conflicts of inter... |annex      |The author(s) declared that there were no conflicts of interest with respect to the authorship or... | 0.0778079|    101|
+
+Showing 7 of 7 rows
+
+The default table isn't very helpful here, so let's customise the output. The object returned from a module usually contains a table. We just want to show the section and answer columns here. 
+
+```{r, echo = FALSE}
+#saveRDS(summaries, "summaries.Rds")
+summaries <- readRDS("summaries.Rds")
+```
+
+
+
+```{r}
+summaries$table[, c("section", "answer")]
+```
+
+If you try to run this on the whole PsychSci set, you will get an error message because the number of LLM calls is much higher than the maximum number, which is set by default to 30 (the per-minute rate limit for the default model on a free groq account). You can increase the maximum allowable calls (`llm()` manages your rate limit, so this would take nearly an hour at 30 calls per minute) using `llm_max_calls()`, but we aren't going to do this here. 
+
+```{r, error = TRUE}
+summaries_ps <- module_run(psychsci, "llm-summarise", seed = 8675309)
+```
+
+### marginal
+
+List all sentences that describe an effect as 'marginally significant'.
+
+```{r, results='asis'}
+marginal <- module_run(paper, "marginal")
+
+marginal # print table
+```
+
+Let's check how many are in the full set.
+
+```{r, results='asis'}
+marginal_ps <- module_run(psychsci, "marginal")
+
+marginal_ps # print table
+```
+
+You can see that the default shows only the first 20 rows and truncates long lines. We can adjust this by explicitly calling the print function and setting `maxrows` and `trunc_cell`.
+
+```{r, results='asis'}
+marginal_ps |> print(maxrows = 5, trunc_cell = Inf)
+```
+
+### osf-check
+
+List all OSF links and whether they are open, closed, or do not exist. This requires an internet connection to check the status of the link.
+
+```{r, results='asis'}
+osf_check <- module_run(paper, "osf-check")
+
+osf_check # print table
+```
+
+This would take a while to run for the 341 unique OSF links found in the PsychSci set (usually 1-2 seconds per link), so we will skip it here (but can reveal we found 10 closed links).
 
 ```{r, eval = FALSE}
-# code for imprecise-p module
-p <- module_run(paper, "all-p-values")$table
-p$p_comp <- gsub("p-?(value)?\\s*|\\s*\\d?\\.\\d+e?-?\\d*", "", p$text)
-p$p_value <- gsub("^p-?(value)?\\s*[<>=≤≥]{1,2}\\s*", "", p$text)
-p$p_value <- suppressWarnings(as.numeric(p$p_value))
-p$imprecise <- p$p_comp == "<" & p$p_value > .001
-p$imprecise <- p$imprecise | p$p_comp == ">"
-p$imprecise <- p$imprecise | is.na(p$p_value)
-cols <- c("text", "section", "header", "div", "p", "s", "id")
-
-if (nrow(p) == 0) {
-  tl <- "na"
-} else if (any(p$imprecise)) {
-  tl <- "red"
-} else if (!all(p$imprecise)) {
-  tl <- "green"
-} else {
-  tl <- "yellow"
-}
-
-list(
-  table = p[p$imprecise, cols],
-  traffic_light = tl
-)
+osf_check_ps <- module_run(psychsci, "osf-check")
 ```
 
-### Report
+### ref-consistency
 
-Any text that you want to include in the report should be specified in the "report" key. You can set different text for each traffic light, and/or text to include in all reports.
+Check if all references are cited and all citations are referenced.
 
-```
-{
-  "title": "Reference Consistency",
-  "description": "Check if all references are cited and all citations are referenced",
-  "code": {
-    "packages": ["dplyr"],
-    "path": "ref-consistency.R"
-  },
-  "report": {
-    "all": "This module relies on Grobid correctly parsing the references. There may be some false positives.",
-    "red": "There are references that are not cited or citations that are not referenced",
-    "green": "All references were cited and citations were referenced",
-    "na": "No citations/references were detected"
-  }
-}
+```{r, results='asis'}
+ref_consistency <- module_run(paper, "ref-consistency")
+
+ref_consistency # print table
 ```
 
-### Authors
+It looks like there are some references with missing citations. The first one doesn't look like a reference, and grobid often parses tables oddly. You'd need to look at the original PDF to see if the others are actually missing or false positives. Here, they are all false positives, based on grobid not being able to match the in-text citation to the reference list. 
 
-You can also include author information in the following format:
 
+### retractionwatch
+
+Flag any cited papers in the RetractionWatch database. It takes a substantial time to make calls to crossref for each reference, so we provide a summary of the database in papercheck, which is updated regularly (last 2025-02-28). 
+
+```{r, results='asis'}
+rw <- module_run(paper, "retractionwatch")
+
+rw # print table
 ```
-{
-  "title": "List All P-Values",
-  "description": "List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.",
-  "authors": [{
-    "orcid": "0000-0002-7523-5539",
-    "name":{
-      "surname": "DeBruine",
-      "given": "Lisa"
-    },
-    "email": "debruine@gmail.com"
-  }],
-  "text": {
-    "pattern": "(?<=[^a-z])p-?(value)?\\s*[<>=≤≥]{1,2}\\s*(n\\.?s\\.?|\\d?\\.\\d+e?-?\\d*)",
-    "return": "match",
-    "perl": true
-  },
-  "traffic_light": {
-    "found": "info",
-    "not_found": "na"
-  }
-}
+
+In the full PsychSci set, we find three papers in the RetractionWatch database cited, one with a retraction and two with corrections.  
+
+```{r, results='asis'}
+rw_ps <- module_run(psychsci, "retractionwatch")
+
+print(rw_ps, trunc_cell = 30) # print table
 ```
+
+Check the context of the citations in the text column:
+
+```{r}
+rw_ps$table$text
+```
+
+### statcheck
+
+Check consistency of p-values and test statistics using functions from [statcheck](https://github.com/MicheleNuijten/statcheck).
+
+```{r, results='asis'}
+statcheck <- module_run(paper, "statcheck")
+
+statcheck # print table
+```
+
+Here we see a false positive, where the paper reported the results of an equivalence test, which are meant to be one-tailed, but statcheck did not detect that this was one-tailed.
+
+
+In the full PsychSci set, there are more than 27K sentences with numbers to check, so this takes about a minute to run. 
+
+```{r, results='asis', eval = FALSE}
+statcheck_ps <- module_run(psychsci, "statcheck")
+```
+
+```{r, echo = FALSE}
+#saveRDS(statcheck_ps, "statcheck_ps.Rds")
+statcheck_ps <- readRDS("statcheck_ps.Rds")
+```
+
+There will be, of course, some false positives in the full set of `r nrow(statcheck_ps$table)` flagged values. Let's look just at the flagged values where the computed p-value is about double the reported p-value, and this changes the significance decision (at an alpha of 0.05).
+
+```{r}
+statcheck_ps$table |>
+  filter(decision_error, 
+         round(computed_p/reported_p, 1) == 2.0) |>
+  select(reported_p, computed_p, raw) |>
+  mutate(computed_p = round(computed_p, 4))
+```
+
+
+
