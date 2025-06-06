@@ -9,7 +9,7 @@ output:
     # toc_location: left
     df_print: paged
 vignette: >
-  %\VignetteIndexEntry{report-example}
+  %\VignetteIndexEntry{Example Report}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
