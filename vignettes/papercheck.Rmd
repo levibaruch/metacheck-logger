@@ -309,7 +309,7 @@ You can create your own modules using R code. Modules can also contain instructi
 
 ## Reports
 
-You can generate a report from any set of modules. The default set is `c("imprecise_p", "marginal", "osf_check", "retractionwatch", "ref_consistency")`
+You can generate a report from any set of modules. The default set is `c("exact_p", "marginal", "effect_size", "osf_check", "retractionwatch", "ref_consistency")`
 
 ```{r, eval = FALSE}
 report(paper, output_format = "qmd")

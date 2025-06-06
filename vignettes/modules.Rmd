@@ -83,12 +83,12 @@ all_urls_ps <- module_run(psychsci, "all_urls")
 all_urls_ps$summary
 ```
 
-### imprecise_p
+### exact_p
 
 List any p-values that may have been reported with insufficient precision (e.g., p < .05 or p = n.s.). 
 
 ```{r}
-imprecise <- module_run(paper, "imprecise_p")
+imprecise <- module_run(paper, "exact_p")
 
 imprecise$table # print table
 ```
@@ -104,7 +104,7 @@ exp$expanded # print expanded text
 We can investigate the most common imprecise p-values in the PsychSci set. "p < .01" and "p < .05" are probably often describing figures or tables, but what is the deal with "p > .25"?
 
 ```{r}
-imprecise_ps <- module_run(psychsci, "imprecise_p")
+imprecise_ps <- module_run(psychsci, "exact_p")
 
 imprecise_ps$table |>
   count(text, sort = TRUE) |>
@@ -138,6 +138,8 @@ marginal_ps <- module_run(psychsci, "marginal")
 
 marginal_ps$table # print table
 ```
+
+
 
 ### osf_check
 
@@ -233,7 +235,7 @@ Modules return a `summary` table as well as the detailed results `table`, which 
 ```{r}
 ps_metascience <- psychsci[1:10] |>
   module_run("all_p_values") |>
-  module_run("imprecise_p") |>
+  module_run("exact_p") |>
   module_run("marginal")
 
 ps_metascience$summary
