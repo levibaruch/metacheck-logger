@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">papercheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9050</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9052</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,21 @@
       <small>Source: <a href="https://github.com/scienceverse/papercheck/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9052" id="papercheck-0009052">papercheck 0.0.0.9052<a class="anchor" aria-label="anchor" href="#papercheck-0009052"></a></h2>
+<ul><li>Fixed a bug in <code><a href="../reference/expand_text.html">expand_text()</a></code> where expanded sentences were duplicated if there are multiple matches from the same sentence in the data frame.</li>
+<li>Updated the <code>retractionwatch</code> table</li>
+<li>Fixed a bug in <code><a href="../reference/read.html">read()</a></code> that omitted paper DOIs from paper$info</li>
+<li>Updated <code><a href="../reference/read.html">read()</a></code> to add correctly parsed “accepted” and “received” dates to paper$info (replaces paper$submission string) (ISO 8601 is the only correct date format!)</li>
+<li>Updated <code>psychsci</code> for new info structure</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9051" id="papercheck-0009051">papercheck 0.0.0.9051<a class="anchor" aria-label="anchor" href="#papercheck-0009051"></a></h2>
+<ul><li>Small bug fixes to <code><a href="../reference/osf_file_download.html">osf_file_download()</a></code>
+</li>
+<li>
+<code><a href="../reference/osf_file_download.html">osf_file_download()</a></code> now returns a table of file info, including info for files not downloaded because of file size limits</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9050" id="papercheck-0009050">papercheck 0.0.0.9050<a class="anchor" aria-label="anchor" href="#papercheck-0009050"></a></h2>
 <ul><li>Added <code><a href="../reference/read.html">read()</a></code> function, which superceeds <code><a href="../reference/read.html">read_grobid()</a></code>, <code><a href="../reference/read.html">read_cermine()</a></code> and <code><a href="../reference/read.html">read_text()</a></code> (they are still available, but are now just aliases to <code><a href="../reference/read.html">read()</a></code>). This should work with XML files in TEI (grobid), JATS APA-DTD, NLM-DTD and cermine formats, plus full text-only parsing of .docx and plain text files.</li>
