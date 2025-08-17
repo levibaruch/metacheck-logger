@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">papercheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9053</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9054</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -189,7 +189,7 @@ info, references, and citations.</p>
 <span><span class="co">#&gt; [1] ""</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $filename</span></span>
-<span><span class="co">#&gt; [1] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/papercheck/extdata/to_err_is_human.xml"</span></span></code></pre>
+<span><span class="co">#&gt; [1] "/private/var/folders/t6/7x6md_5s2j5bfb324s784yzw0000gn/T/Rtmph31b8m/temp_libpathcff33ae99904/papercheck/extdata/to_err_is_human.xml"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
@@ -1119,7 +1119,7 @@ OSF link.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/osf_api_calls.html">osf_api_calls</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">all_contents</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_retrieve.html">osf_retrieve</a></span><span class="op">(</span><span class="va">links</span><span class="op">$</span><span class="va">text</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; Starting OSF retrieval for 1 files...</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Starting OSF retrieval for 1 file...</span></span></code></pre>
 <pre><code><span><span class="co">#&gt; * Retrieving info from e2aks...</span></span></code></pre>
 <pre><code><span><span class="co">#&gt; ...Main retrieval complete</span></span></code></pre>
 <pre><code><span><span class="co">#&gt; Starting retrieval of children...</span></span></code></pre>
@@ -1134,7 +1134,7 @@ OSF link.</p>
 <code class="sourceCode R"><span><span class="va">n_calls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_api_calls.html">osf_api_calls</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The function <code><a href="../reference/osf_api_calls.html">osf_api_calls()</a></code> lets you reset and retrieve
 the number of API calls made since the last reset. You can see that the
-project osf.io/e2aks had 3 nodes and 6 files, which required 8 API
+project osf.io/e2aks had 3 nodes and 6 files, which required 11 API
 calls.</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">all_contents</span><span class="op">$</span><span class="va">osf_type</span> <span class="op">==</span> <span class="st">"nodes"</span><span class="op">)</span></span></code></pre></div>
