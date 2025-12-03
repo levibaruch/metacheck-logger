@@ -90,15 +90,13 @@ List any p-values that may have been reported with insufficient precision (e.g.,
 ```{r}
 imprecise <- module_run(paper, "exact_p")
 
-imprecise$table # print table
+imprecise$table$text # print table
 ```
 
-You can use the `expand_text()` function to get the full sentence or paragraph for context. Here you can see that "p < .025" was not an imprecisely reported p-value, but a description of the preregistered alpha threshold. 
+The `expanded` column has the full sentence for context. Here you can see that "p < .025" was not an imprecisely reported p-value, but a description of the preregistered alpha threshold. 
 
 ```{r}
-exp <- expand_text(imprecise$table, paper)
-
-exp$expanded # print expanded text
+imprecise$table$expanded[[4]] # print expanded text
 ```
 
 We can investigate the most common imprecise p-values in the PsychSci set. "p < .01" and "p < .05" are probably often describing figures or tables, but what is the deal with "p > .25"?
@@ -115,8 +113,7 @@ We can expand the text to check the context for "p > .25".
 
 ```{r}
 gt.25 <- imprecise_ps$table |>
-  filter(grepl("\\.25", text)) |>
-  expand_text(paper = psychsci)
+  filter(grepl("\\.25", text))
 
 gt.25$expanded[1:3] # look at the first 3
 ```
@@ -146,6 +143,7 @@ marginal_ps$table # print table
 List all OSF links and whether they are open, closed, or do not exist. This requires an internet connection to check the status of the link.
 
 ```{r}
+#| eval: false
 osf_check <- module_run(paper, "osf_check")
 
 osf_check$summary
@@ -154,6 +152,7 @@ osf_check$summary
 The returned table contains additional information about the links if they are found and open.
 
 ```{r}
+#| eval: false
 osf_check$table[1,] |> t()
 ```
 

@@ -268,24 +268,9 @@ usethis::edit_r_environ()
 You can get or set the default LLM model with `llm_model()` and access a list of the current available models using `llm_model_list()`. 
 
 ```{r, echo = FALSE}
-data.frame(
-  id = c("mistral-saba-24b", "qwen-2.5-coder-32b", 
-"deepseek-r1-distill-qwen-32b", "qwen-2.5-32b", "deepseek-r1-distill-llama-70b", 
-"llama-3.3-70b-specdec", "llama-3.3-70b-versatile", "llama-3.2-3b-preview", 
-"llama-3.2-1b-preview", "llama-guard-3-8b", "mixtral-8x7b-32768", 
-"llama-3.1-8b-instant", "llama3-8b-8192", "gemma2-9b-it", "llama3-70b-8192"
-), 
-  owned_by = c("Mistral AI", "Alibaba Cloud", "DeepSeek / Alibaba Cloud", 
-"Alibaba Cloud", "DeepSeek / Meta", "Meta", "Meta", "Meta", "Meta", 
-"Meta", "Mistral AI", "Meta", "Meta", "Google", "Meta"), 
-  created = c("2025-02-19", 
-"2025-02-14", "2025-02-07", "2025-02-05", "2025-01-26", "2024-12-06", 
-"2024-12-06", "2024-09-25", "2024-09-25", "2023-09-03", "2023-09-03", 
-"2023-09-03", "2023-09-03", "2023-09-03", "2023-09-03"), 
-  context_window = c(32768L, 
-131072L, 131072L, 131072L, 131072L, 8192L, 32768L, 8192L, 8192L, 
-8192L, 32768L, 131072L, 8192L, 8192L, 8192L)
-) |> knitr::kable()
+modlist <- llm_model_list()
+
+knitr::kable(modlist)
 ```
 
 
