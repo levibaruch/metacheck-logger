@@ -54,7 +54,7 @@ If you run this module on all 250 papers, you will get more rows than you probab
 ```{r}
 all_p_ps <- module_run(psychsci, "all_p_values")
 
-all_p_ps$summary
+all_p_ps$summary_table
 ```
 
 You can still access the full table for further processing.
@@ -80,7 +80,7 @@ all_urls$table
 ```{r}
 all_urls_ps <- module_run(psychsci, "all_urls")
 
-all_urls_ps$summary
+all_urls_ps$summary_table
 ```
 
 ### exact_p
@@ -146,7 +146,7 @@ List all OSF links and whether they are open, closed, or do not exist. This requ
 #| eval: false
 osf_check <- module_run(paper, "osf_check")
 
-osf_check$summary
+osf_check$summary_table
 ```
 
 The returned table contains additional information about the links if they are found and open.
@@ -252,7 +252,7 @@ ps_metascience <- psychsci[1:10] |>
   module_run("exact_p") |>
   module_run("marginal")
 
-ps_metascience$summary
+ps_metascience$summary_table
 ```
 
 

@@ -12,8 +12,7 @@ articles:
   modules: modules.html
   articles/osf: osf.html
   report-example: report-example.html
-  validate: validate.html
-last_built: 2025-11-03T13:58Z
+last_built: 2025-12-05T14:28Z
 urls:
   reference: https://scienceverse.github.io/metacheck/reference
   article: https://scienceverse.github.io/metacheck/articles

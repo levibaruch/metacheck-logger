@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9059</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9060</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,28 +74,72 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="fu">github_files</span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                name             path  size          ext   type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     .Rbuildignore    .Rbuildignore   247 rbuildignore   file</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           .github          .github     0       github    dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        .gitignore       .gitignore   387    gitignore config</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       DESCRIPTION      DESCRIPTION  1898                file</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        LICENSE.md       LICENSE.md 34303           md   text</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         NAMESPACE        NAMESPACE  2123                file</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           NEWS.md          NEWS.md 13491           md   text</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                 R                R     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         README.md        README.md   896           md   text</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           _stuff           _stuff     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      codecov.yml      codecov.yml   134          yml config</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12             data             data     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13         data-raw         data-raw     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14             docs             docs     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             inst             inst     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16              man              man     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 papercheck.Rproj papercheck.Rproj   462        rproj config</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18          pkgdown          pkgdown     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19          profile          profile     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20            tests            tests     0                 dir</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21        vignettes        vignettes     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                name             path</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     .Rbuildignore    .Rbuildignore</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           .github          .github</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        .gitignore       .gitignore</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       DESCRIPTION      DESCRIPTION</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        LICENSE.md       LICENSE.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         NAMESPACE        NAMESPACE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7           NEWS.md          NEWS.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                 R                R</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         README.md        README.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 _metacheck.Rproj _metacheck.Rproj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11           _stuff           _stuff</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      codecov.yml      codecov.yml</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13             data             data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14         data-raw         data-raw</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15             docs             docs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16             inst             inst</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17              man              man</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18          pkgdown          pkgdown</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19          profile          profile</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20            tests            tests</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21        vignettes        vignettes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                      download_url</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     https://raw.githubusercontent.com/scienceverse/metacheck/main/.Rbuildignore</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                            &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        https://raw.githubusercontent.com/scienceverse/metacheck/main/.gitignore</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       https://raw.githubusercontent.com/scienceverse/metacheck/main/DESCRIPTION</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        https://raw.githubusercontent.com/scienceverse/metacheck/main/LICENSE.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         https://raw.githubusercontent.com/scienceverse/metacheck/main/NAMESPACE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7           https://raw.githubusercontent.com/scienceverse/metacheck/main/NEWS.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                                                            &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         https://raw.githubusercontent.com/scienceverse/metacheck/main/README.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 https://raw.githubusercontent.com/scienceverse/metacheck/main/_metacheck.Rproj</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      https://raw.githubusercontent.com/scienceverse/metacheck/main/codecov.yml</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                                           &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     size          ext   type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    247 rbuildignore   file</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      0       github    dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    387    gitignore config</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   1934                file</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  34303           md   text</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   2278                file</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  13761           md   text</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    887           md   text</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   462        rproj config</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   134          yml config</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20     0                 dir</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21     0                 dir</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9059</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9060</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,13 +82,32 @@
 <span class="r-in"><span><span class="fu">module_report</span><span class="op">(</span><span class="va">op</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ## Exact P-Values {.red}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> You may have reported some imprecise p-values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> We found 1 imprecise *p* value. Reporting *p* values imprecisely (e.g., *p* &lt; .05) reduces transparency, reproducibility, and re-use (e.g., in *p* value meta-analyses). Best practice is to report exact p-values with three decimal places (e.g., *p* = .032) unless *p* values are smaller than 0.001, in which case you can use *p* &lt; .001.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |text    |p_comp | p_value|section | div|  p|  s|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:-------|:------|-------:|:-------|---:|--:|--:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |p &gt; .05 |&gt;      |    0.05|results |   3|  2|  2|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Showing 1 of 1 rows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ```{r}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #| echo: false</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # table data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> table &lt;- structure(list("P-Value" = "p &gt; .05", Sentence = "There was no effect of experience on the reduction in errors when using the tool (p &gt; .05), as the correlation was non-significant."), row.names = c(NA, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -1L), class = c("tbl_df", "tbl", "data.frame"))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # table options</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cd &lt;- list(list(targets = 0, width = "10%"), list(targets = 1, width = "90%"))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> options &lt;- list(dom = "t", ordering = FALSE, columnDefs = cd )</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # display table</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DT::datatable(table, options, selection = "none", rownames = FALSE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ```</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ::: {.callout-tip title="Learn More" collapse="true"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The APA manual states: Report exact *p* values (e.g., *p* = .031) to two or three decimal places. However, report *p* values less than .001 as *p* &lt; .001. However, 2 decimals is too imprecise for many use-cases (e.g., a *p* value meta-analysis), so report *p* values with three digits.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> American Psychological Association. (2020). Publication manual of the American Psychological Association 2020: the official guide to APA style (7th ed.). American Psychological Association.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> :::</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

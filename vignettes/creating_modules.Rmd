@@ -21,7 +21,7 @@ library(metacheck)
 Modules are user-created patterns for checking a paper or set of papers. Module specifications are written in the same format as functions in R packages, using roxygen2 for documentation. 
 
 ```{r, echo = FALSE, comment = ""}
-code_lines <- system.file("module_example.R", package = "metacheck") |>
+code_lines <- system.file("templates/_module.R", package = "metacheck") |>
   readLines()
 cat(paste0(code_lines, collapse = "\n"))
 ```
@@ -109,12 +109,12 @@ Each argument should be defined for a function. All metacheck modules require th
 It is good practice to explain what your function returns. This is usually the default list with table, summary, traffic light, and report text, but you can edit this. It's just a human-readable string.
 
 ```{r}
-#' @returns a list with table, summary, traffic light, and report text
+#' @returns a list
 ```
 
 ### Examples
 
-You can add an example of how to use this module with the `module_run()` function. Give a paper or list of papers in the example so you can demonstrate the purpose of this module and it doesn't take too much tme to run the example. 
+You can add an example of how to use this module with the `module_run()` function. Give a paper or list of papers in the example so you can demonstrate the purpose of this module and it doesn't take too much time to run the example. 
 
 ```{r}
 #' @examples
@@ -127,15 +127,18 @@ The module function is written like any R package function, with the requirement
 
 ```{r}
 module_name <- function(paper, ...) {
-  # detailed table of results ----
-  # summary output for paperlists ----
-  # determine the traffic light ----
-  # report text for each possible traffic light ----
+  # module code ----
+  # create return items ----
+  ## table ----
+  ## summary_table ----
+  ## traffic light ----
+  ## summary_text ----
+  ## report ----
   # return a list ----
 }
 ```
 
-You can define helper functions below your main module functions, but the first functions defined in the script is what will be run on the paper object. 
+You can define helper functions below your main module functions, but the first function defined in the script is what will be run on the paper object. 
 
 A module can technically do anything you want with the paper input, but you will need to follow the template below for your module to work automatically with reports and the metascience workflow. 
 
@@ -146,21 +149,22 @@ If you are using your modules to build a report, you need to specify what type o
 Most modules will need to structure their output in a table that can be shown in a report. The `search_text()` function below creates a table with a row for each sentence that contains to word "significant". 
 
 ```{r, eval = FALSE}
-  # detailed table of results ----
-  pattern <- "significant"
+  ## table ----
+  # detail your results in a format like the result of search_text()
+  # this is stored to use in later modules in a report or pipeline
   table <- search_text(paper, pattern)
 ```
 
 You will need to make sure that your module works with both single paper object sand lists of paper objects. The metacheck functions `search_text()` and `llm()` are already vectorised for paper lists. 
 
-### Summary
+### Summary Table
 
 For the metascience workflow, it is useful to create a table with a row for each paper in a list, and some columns that summarise the results. You can use nested tables if you want some of your cells to contain multiple values.
 
 ```{r, eval = FALSE}
-  # summary output for paperlists ----
+  ## summary_table ----
   # must have id column as the id of each paper, one row per paper
-  # further columns to be added to a master summary table
+  # and further columns to be added to a master summary table
   summary_table <- dplyr::count(table, id, name = "n_significant")
 ```
 
@@ -190,28 +194,36 @@ The traffic lights are used in single-paper reports to give a quick visual overv
 </style>
 
 
-🟢 no problems detected;<br>
-🟡 something to check;<br>
-🔴 possible problems detected;<br>
-🔵 informational only;<br>
-⚪️ not applicable;<br>
+🟢 no problems detected;  
+🟡 something to check;  
+🔴 possible problems detected;  
+🔵 informational only;  
+⚪️ not applicable;  
 ⚫️ check failed
 
 You will need to write some code to determine which traffic lights apply to your case. If you don't include a traffic light, but do include a `table` in the returned list, the following rule will be applied for the traffic light.
 
 ```{r, eval = FALSE}
-  # determine the traffic light ----
-  # possible values: na, info, red, yellow, green, fail
+  ## traffic light ----
+  # displayed in reports, possible values: 
+  #   green: no problems detected
+  #   yellow: something to check
+  #   red: possible problems detected
+  #   info: informational only
+  #   na: not applicable
+  #   fail: check failed
   tl <- if (nrow(table)) "info" else "na"
 ```
 
-### Report Text
+### Summary Text
 
-Reports need to explain concepts or give resources for further learning. This is often specific to the outcome of a check, so you can use the pattern below to customise the report text for each traffic light. 
+The reports begin with a summary of each module, showing the traffic light, the module name, and a short summary of the results. The returned item `summary_text` provides this text. You will usually want to customise the summary text for the traffic light or other aspects of the results, such as the number of instances of a practice found and the number that might be problematic.
 
 ```{r, eval = FALSE}
-  # report text for each possible traffic light ----
-  report <- c(
+  ## summary_text ----
+  # short text to be displayed at the top of reports
+  # may be unique for each possible traffic light
+  summary_text_options <- c(
     na = "Not applicable",
     info = "This table is provided for your information",
     red = "This is a potential problem",
@@ -219,20 +231,85 @@ Reports need to explain concepts or give resources for further learning. This is
     green = "No problems found",
     fail = "The check failed, sorry"
   )
+  summary_text <- summary_text_options[[tl]]
 ```
+
+
+### Report
+
+Reports need to explain concepts or give resources for further learning. This is often specific to the outcome of a check. 
+
+The `report` should be a charaacter vector, with one or more item. Use [quarto / markdown](https://quarto.org/docs/authoring/markdown-basics.html) for styling text, such as adding links or lists.
+
+```{r, eval = FALSE}
+  ## report ----
+  # longer text to be displayed in the module section
+  # use quarto / markdown for styling
+  # https://quarto.org/docs/authoring/markdown-basics.html
+  report_text <- "This table shows all of the sentences where the paper used the word *significant*. "
+  report_table <- table[, c("section", "text")]
+  further_info <- c(
+    "For more opinions on the use of the word *significant*:",
+    "* Motulsky, H. (2014). Opinion: Never use the word ‘significant’ in a scientific paper. Advances in regenerative biology, 1(1), 25155. doi: [10.3402/arb.v1.25155](https://doi.org/10.3402/arb.v1.25155)"
+    )
+
+  report <- c(
+    report_text,
+    scroll_table(report_table, colwidths = c(.2, .8)),
+    collapse_section(further_info, title = "Further Info")
+  )
+```
+
+You can use the helper functions `scroll_table()` to display tables and `collapse_section()` to hide longer sections of text or supplemental tables. 
+
+#### Scroll Tables
+
+The function `scroll_table()` generates the R code chunk needed to display a scrollable table in a quarto document, which is how the reports are created. It will include the contents of the table.
+
+```{r}
+table <- data.frame(id = 1:10, letter = LETTERS[1:10])
+
+scroll_table(
+  table, 
+  colwidths = c(.1, .9), # use NA for auto, numbers <=1 are %, > 1 are px, 
+                         # or use characters, e.g., c("3em", NA)
+  scroll_above = 2,      # if table length <= this, show all rows, no scrolling
+  height = 200,          # height of scroll windown in pixels
+  column = "body"        # page: spans full page, margin: just right margin
+) |> cat()
+```
+
+#### Collapsible Sections
+
+The function `collapse_section()` generates the R code chunk needed to hide a section in a collapsible box. 
+
+```{r}
+text <- c("This is my first *paragraph*:",
+          "* list item 1",
+          "* list item 2")
+
+collapse_section(
+  text, # a vector of markdown text
+  title = "See the full list", # defaults to "Learn More"
+  callout = "note", # "tip", " note", "warning", "important", "caution"
+  collapse = TRUE # defaults TRUE to start collapsed
+) |> cat()
+```
+
 
 ### Return
 
-Structure the returned values in a list, with the names `table`, `summary`, `na_replace`, `traffic_light` and `report`.
+Structure the returned values in a list. The names below are reserved for specific uses in the report and piped workflow, but you can also return other objects for your own purposes.
 
 ```{r, eval = FALSE}
   # return a list ----
   list(
     table = table,
-    summary = summary_table,
+    summary_table = summary_table,
     na_replace = 0,
     traffic_light = tl,
-    report = report[[tl]]
+    summary_text = summary_text,
+    report = report
   )
 ```
 

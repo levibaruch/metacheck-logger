@@ -16,6 +16,9 @@
 <url><loc>https://scienceverse.github.io/metacheck/authors.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/index.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/news/index.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/FReD.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/FReD_date.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/FReD_update.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/accuracy.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/add_author.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/apa_authors.html</loc></url>
@@ -29,7 +32,10 @@
 <url><loc>https://scienceverse.github.io/metacheck/reference/bib_add_dois.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/bibsearch.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/bibtex_add_dois.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/causal_relations.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/check_orcid.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/collapse_section.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/compare_tables.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/concat_tables.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/credit_roles.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/crossref.html</loc></url>
@@ -44,6 +50,7 @@
 <url><loc>https://scienceverse.github.io/metacheck/reference/expand_text.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/file_types.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/filetype.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/get_doi.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/get_idx.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/get_orcid.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/github_config.html</loc></url>
@@ -76,6 +83,7 @@
 <url><loc>https://scienceverse.github.io/metacheck/reference/nlm_authors.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/nlm_full_text.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/nlm_info.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/online.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/op-null-default.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/openalex.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/orcid_person.html</loc></url>
@@ -111,6 +119,7 @@
 <url><loc>https://scienceverse.github.io/metacheck/reference/print.scivrs_paperlist.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/process_full_text.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/psychsci.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/rbox_file_download.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/rbox_info.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/rbox_links.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/rbox_retrieve.html</loc></url>
@@ -120,6 +129,7 @@
 <url><loc>https://scienceverse.github.io/metacheck/reference/retractionwatch.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/rw_date.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/rw_update.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/scroll_table.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/search_text.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/site_down.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/stats.html</loc></url>

@@ -303,6 +303,6 @@ module_report(module_results, header = 4) |> cat()
 
 We have demonstrated a rather basic workflow that can automatically check files stored on the Open Science Framework, and all the checks demonstrated here can be made more accurate or complete. At the same time, even the current simple automatic checks might already facilitate re-use by including information (e.g., a README) and improving how files are named. There are many obvious ways to expand these automated checks. First, the example can be expanded to other commonly used data repositories, such as GitHub, Dataverse, etc. Second, the checks can be expanded beyond the properties that are automatically checked now. If you are an expert on code reproducibility or data re-use and would like to add checks, do reach out to us. Third, we can check for other types of files. For example, we are collaborating with Attila Simko who is interested in identifying the files required to [reproduce deep learning models in the medical imaging literature](https://arxiv.org/abs/2210.11146). We believe there will be many such field-dependent checks that can be automated, as the ability to automatically examine and/or retrieve files that are linked to in a paper should be useful for a large range of use-cases.
 
-**These examples were created using papercheck version 0.0.0.9045.**
+**These examples were created using papercheck version `r utils::packageVersion("metacheck")`.**
 
 ## References

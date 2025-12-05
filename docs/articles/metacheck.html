@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9059</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9060</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -180,7 +180,7 @@ info, references, and citations.</p>
 <span><span class="co">#&gt; [1] "To Err is Human: An Empirical Investigation"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $description</span></span>
-<span><span class="co">#&gt; [1] "This paper demonstrates some good and poor practices for use with the {metacheck} R package and Shiny app. All data are simulated. The paper shows examples of (1) open and closed OSF links; (2) citation of retracted papers; (3) missing/mismatched citations and references; (4) imprecise reporting of p-values; and (5) use of \"marginally significant\" to describe non-significant findings."</span></span>
+<span><span class="co">#&gt; [1] "This paper demonstrates some good and poor practices for use with the {metacheck} R package and Shiny app. All data are simulated. The paper shows examples of (1) open and closed OSF links; (2a) citation of retracted papers, (2b) citations without a doi, (2c) citations with Pubpeer comments, (2d) citations in the FORTT replication database, and (2e) missing/mismatched/incorrect citations and references; (3a) R files with code on GitHub that do not load libraries in one location, (3b) load files that are not shared in the repository, (3c) lack comments, and (3d) have hard-coded files, (4) imprecise reporting of non-significant p-values; (5) tests with and without effect sizes, (6) use of \"marginally significant\" to describe non-significant findings, and (7) retrieving information from preregistrations."</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $keywords</span></span>
 <span><span class="co">#&gt; [1] ""</span></span>
@@ -192,7 +192,7 @@ info, references, and citations.</p>
 <span><span class="co">#&gt; [1] ""</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $filename</span></span>
-<span><span class="co">#&gt; [1] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library/metacheck/extdata/to_err_is_human.xml"</span></span></code></pre>
+<span><span class="co">#&gt; [1] "/private/var/folders/t6/7x6md_5s2j5bfb324s784yzw0000gn/T/RtmpxPcakf/temp_libpath99ee434b23a7/metacheck/extdata/to_err_is_human.xml"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
@@ -200,17 +200,17 @@ info, references, and citations.</p>
 <p>The bibliography is provided in a tabular format.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paper</span><span class="op">$</span><span class="va">bib</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="2%">
-<col width="55%">
-<col width="6%">
-<col width="2%">
-<col width="17%">
+<col width="1%">
+<col width="50%">
 <col width="5%">
 <col width="1%">
+<col width="17%">
+<col width="12%">
+<col width="1%">
 <col width="5%">
-<col width="4%">
+<col width="3%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">xref_id</th>
@@ -226,20 +226,34 @@ info, references, and citations.</p>
 <tbody>
 <tr class="odd">
 <td align="left">b0</td>
-<td align="left">Gino F, Wiltermuth SS (2014). “Retracted: Evil Genius?
-How Dishonesty Can Lead to Greater Creativity.” <em>Psychological
+<td align="left">Gangestad SW, Thornhill R (1998). “Menstrual cycle
+variation in women’s preferences for the scent of symmetrical men.”
+<em>Proceedings Biological Sciences</em>, <em>22</em>, 927-933. <a href="doi:10.1098/rspb.1998.0380" class="uri">doi:10.1098/rspb.1998.0380</a> <a href="https://doi.org/10.1098/rspb.1998.0380" class="external-link uri">https://doi.org/10.1098/rspb.1998.0380</a>.</td>
+<td align="left">10.1098/rspb.1998.0380</td>
+<td align="left">Article</td>
+<td align="left">Menstrual cycle variation in women’s preferences for
+the scent of symmetrical men</td>
+<td align="left">Proceedings Biological Sciences</td>
+<td align="left">1998</td>
+<td align="left">S W Gangestad, R Thornhill</td>
+<td align="left">to_err_is_human</td>
+</tr>
+<tr class="even">
+<td align="left">b1</td>
+<td align="left">Gino F, Wiltermuth SS (2014). “Evil Genius? How
+Dishonesty Can Lead to Greater Creativity.” <em>Psychological
 Science</em>, <em>25</em>(4), 973-981. <a href="doi:10.1177/0956797614520714" class="uri">doi:10.1177/0956797614520714</a> <a href="https://doi.org/10.1177/0956797614520714" class="external-link uri">https://doi.org/10.1177/0956797614520714</a>.</td>
 <td align="left">10.1177/0956797614520714</td>
 <td align="left">Article</td>
-<td align="left">Retracted: Evil Genius? How Dishonesty Can Lead to
-Greater Creativity</td>
+<td align="left">Evil Genius? How Dishonesty Can Lead to Greater
+Creativity</td>
 <td align="left">Psychological Science</td>
 <td align="left">2014</td>
 <td align="left">F Gino, S S Wiltermuth</td>
 <td align="left">to_err_is_human</td>
 </tr>
-<tr class="even">
-<td align="left">b1</td>
+<tr class="odd">
+<td align="left">b2</td>
 <td align="left">Smith F (2021). “Human error is a symptom of a poor
 design.” <em>Journal of Journals</em>, <em>0</em>(0), 0. <a href="doi:10.0000/0123456789" class="uri">doi:10.0000/0123456789</a> <a href="https://doi.org/10.0000/0123456789" class="external-link uri">https://doi.org/10.0000/0123456789</a>.</td>
 <td align="left">10.0000/0123456789</td>
@@ -248,6 +262,20 @@ design.” <em>Journal of Journals</em>, <em>0</em>(0), 0. <a href="doi:10.0000/
 <td align="left">Journal of Journals</td>
 <td align="left">2021</td>
 <td align="left">F Smith</td>
+<td align="left">to_err_is_human</td>
+</tr>
+<tr class="even">
+<td align="left">b3</td>
+<td align="left">Lakens D (2018). “Equivalence testing for psychological
+research.” <em>Advances in Methods and Practices in Psychological
+Science</em>, <em>1</em>, 259-270.</td>
+<td align="left">NA</td>
+<td align="left">Article</td>
+<td align="left">Equivalence testing for psychological research</td>
+<td align="left">Advances in Methods and Practices in Psychological
+Science</td>
+<td align="left">2018</td>
+<td align="left">D Lakens</td>
 <td align="left">to_err_is_human</td>
 </tr>
 </tbody>
@@ -285,7 +313,7 @@ design.” <em>Journal of Journals</em>, <em>0</em>(0), 0. <a href="doi:10.0000/
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">b0</td>
+<td align="left">b1</td>
 <td align="left">bibr</td>
 <td align="left">(Gino &amp; Wiltermuth, 2014)</td>
 <td align="left">Although intentional dishonestly might be a successful
@@ -406,13 +434,13 @@ from the headers, so may not always be accurate.)</p>
 <code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="74%">
-<col width="4%">
-<col width="10%">
+<col width="77%">
+<col width="3%">
+<col width="8%">
 <col width="1%">
 <col width="1%">
 <col width="1%">
-<col width="6%">
+<col width="5%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">text</th>
@@ -457,8 +485,10 @@ manuscripts.</td>
 <td align="left">to_err_is_human</td>
 </tr>
 <tr class="even">
-<td align="left">All data needed to reproduce these analyses is
-available from <a href="https://osf.io/5tbm9" class="external-link uri">https://osf.io/5tbm9</a> and code is available from <a href="https://osf.io/629bx" class="external-link uri">https://osf.io/629bx</a>.</td>
+<td align="left">On average researchers in the experimental condition
+found the app marginally significantly more useful (M = 5.06) than
+researchers in the control condition found the checklist (M = 4.5),
+t(97.2) = -1.96, p = 0.152.</td>
 <td align="left">results</td>
 <td align="left">Results</td>
 <td align="right">3</td>
@@ -579,7 +609,7 @@ or “match” to control what gets returned.</p>
 <code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"metacheck"</span>, </span>
 <span>                    section <span class="op">=</span> <span class="st">"intro"</span>, </span>
 <span>                    return <span class="op">=</span> <span class="st">"paragraph"</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
 <col width="90%">
 <col width="1%">
@@ -603,9 +633,9 @@ or “match” to control what gets returned.</p>
 way to boost creativity (Gino &amp; Wiltermuth, 2014), it is safe to say
 most mistakes researchers make are unintentional. From a human factors
 perspective, human error is a symptom of a poor design (Smithy, 2020).
-Automation can be use to check for errors in scientific manuscripts, and
-inform authors about possible corrections. In this study we examine the
-usefulness of metacheck to improve best practices.</td>
+Automation can be used to check for errors in scientific manuscripts,
+and inform authors about possible corrections. In this study we examine
+the usefulness of metacheck to improve best practices.</td>
 <td align="left">intro</td>
 <td align="left">Introduction</td>
 <td align="right">1</td>
@@ -627,6 +657,15 @@ complex regex, like below.</p>
 <code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"[a-zA-Z]\\S*\\s*(=|&lt;)\\s*[0-9\\.,-]*\\d"</span></span>
 <span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, <span class="va">pattern</span>, return <span class="op">=</span> <span class="st">"match"</span>, perl <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="21%">
+<col width="10%">
+<col width="32%">
+<col width="5%">
+<col width="4%">
+<col width="4%">
+<col width="21%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">text</th>
 <th align="left">section</th>
@@ -639,73 +678,82 @@ complex regex, like below.</p>
 <tbody>
 <tr class="odd">
 <td align="left">M = 9.12</td>
-<td align="left">results</td>
-<td align="left">Results</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<td align="left">method</td>
+<td align="left">Method and Participants</td>
 <td align="right">2</td>
+<td align="right">1</td>
+<td align="right">10</td>
 <td align="left">to_err_is_human</td>
 </tr>
 <tr class="even">
 <td align="left">M = 10.9</td>
-<td align="left">results</td>
-<td align="left">Results</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<td align="left">method</td>
+<td align="left">Method and Participants</td>
 <td align="right">2</td>
+<td align="right">1</td>
+<td align="right">10</td>
 <td align="left">to_err_is_human</td>
 </tr>
 <tr class="odd">
 <td align="left">t(97.7) = 2.9</td>
-<td align="left">results</td>
-<td align="left">Results</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<td align="left">method</td>
+<td align="left">Method and Participants</td>
 <td align="right">2</td>
+<td align="right">1</td>
+<td align="right">10</td>
 <td align="left">to_err_is_human</td>
 </tr>
 <tr class="even">
 <td align="left">p = 0.005</td>
-<td align="left">results</td>
-<td align="left">Results</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<td align="left">method</td>
+<td align="left">Method and Participants</td>
 <td align="right">2</td>
+<td align="right">1</td>
+<td align="right">10</td>
 <td align="left">to_err_is_human</td>
 </tr>
 <tr class="odd">
+<td align="left">d = 0.59</td>
+<td align="left">method</td>
+<td align="left">Method and Participants</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">10</td>
+<td align="left">to_err_is_human</td>
+</tr>
+<tr class="even">
 <td align="left">M = 5.06</td>
 <td align="left">results</td>
 <td align="left">Results</td>
 <td align="right">3</td>
-<td align="right">2</td>
 <td align="right">1</td>
-<td align="left">to_err_is_human</td>
-</tr>
-<tr class="even">
-<td align="left">M = 4.5</td>
-<td align="left">results</td>
-<td align="left">Results</td>
-<td align="right">3</td>
-<td align="right">2</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
 </tr>
 <tr class="odd">
-<td align="left">t(97.2) = -1.96</td>
+<td align="left">M = 4.5</td>
 <td align="left">results</td>
 <td align="left">Results</td>
 <td align="right">3</td>
-<td align="right">2</td>
+<td align="right">1</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
 </tr>
 <tr class="even">
+<td align="left">t(97.2) = -1.96</td>
+<td align="left">results</td>
+<td align="left">Results</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">to_err_is_human</td>
+</tr>
+<tr class="odd">
 <td align="left">p = 0.152</td>
 <td align="left">results</td>
 <td align="left">Results</td>
 <td align="right">3</td>
-<td align="right">2</td>
+<td align="right">1</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
 </tr>
@@ -725,7 +773,7 @@ module with <code><a href="../reference/expand_text.html">expand_text()</a></cod
 <pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
 <span><span class="co">#&gt;   text                                                                  expanded</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">"</span>The paper shows examples of (1) open and closed OSF links; (2) cita… <span style="color: #949494;">"</span>All da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">"</span>The paper shows examples of (1) open and closed OSF links; (2a) cit… <span style="color: #949494;">"</span>All da…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">"</span>On average researchers in the experimental condition found the app … <span style="color: #949494;">"</span>On ave…</span></span></code></pre>
 </div>
 </div>
@@ -751,12 +799,14 @@ file).</p>
 models using <code><a href="../reference/llm_model_list.html">llm_model_list()</a></code>.</p>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="37%">
-<col width="30%">
-<col width="13%">
-<col width="18%">
+<col width="3%">
+<col width="51%">
+<col width="15%">
+<col width="12%">
+<col width="16%">
 </colgroup>
 <thead><tr class="header">
+<th align="left"></th>
 <th align="left">id</th>
 <th align="left">owned_by</th>
 <th align="left">created</th>
@@ -764,94 +814,130 @@ models using <code><a href="../reference/llm_model_list.html">llm_model_list()</
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">mistral-saba-24b</td>
-<td align="left">Mistral AI</td>
-<td align="left">2025-02-19</td>
-<td align="right">32768</td>
+<td align="left">1</td>
+<td align="left">moonshotai/kimi-k2-instruct-0905</td>
+<td align="left">Moonshot AI</td>
+<td align="left">2025-09-05</td>
+<td align="right">262144</td>
 </tr>
 <tr class="even">
-<td align="left">qwen-2.5-coder-32b</td>
+<td align="left">2</td>
+<td align="left">qwen/qwen3-32b</td>
 <td align="left">Alibaba Cloud</td>
-<td align="left">2025-02-14</td>
+<td align="left">2025-05-28</td>
 <td align="right">131072</td>
 </tr>
 <tr class="odd">
-<td align="left">deepseek-r1-distill-qwen-32b</td>
-<td align="left">DeepSeek / Alibaba Cloud</td>
-<td align="left">2025-02-07</td>
+<td align="left">3</td>
+<td align="left">meta-llama/llama-4-scout-17b-16e-instruct</td>
+<td align="left">Meta</td>
+<td align="left">2025-04-05</td>
 <td align="right">131072</td>
 </tr>
 <tr class="even">
-<td align="left">qwen-2.5-32b</td>
-<td align="left">Alibaba Cloud</td>
-<td align="left">2025-02-05</td>
-<td align="right">131072</td>
-</tr>
-<tr class="odd">
-<td align="left">deepseek-r1-distill-llama-70b</td>
-<td align="left">DeepSeek / Meta</td>
-<td align="left">2025-01-26</td>
-<td align="right">131072</td>
-</tr>
-<tr class="even">
-<td align="left">llama-3.3-70b-specdec</td>
-<td align="left">Meta</td>
-<td align="left">2024-12-06</td>
-<td align="right">8192</td>
-</tr>
-<tr class="odd">
-<td align="left">llama-3.3-70b-versatile</td>
-<td align="left">Meta</td>
-<td align="left">2024-12-06</td>
-<td align="right">32768</td>
-</tr>
-<tr class="even">
-<td align="left">llama-3.2-3b-preview</td>
-<td align="left">Meta</td>
-<td align="left">2024-09-25</td>
-<td align="right">8192</td>
-</tr>
-<tr class="odd">
-<td align="left">llama-3.2-1b-preview</td>
-<td align="left">Meta</td>
-<td align="left">2024-09-25</td>
-<td align="right">8192</td>
-</tr>
-<tr class="even">
-<td align="left">llama-guard-3-8b</td>
-<td align="left">Meta</td>
-<td align="left">2023-09-03</td>
-<td align="right">8192</td>
-</tr>
-<tr class="odd">
-<td align="left">mixtral-8x7b-32768</td>
-<td align="left">Mistral AI</td>
-<td align="left">2023-09-03</td>
-<td align="right">32768</td>
-</tr>
-<tr class="even">
+<td align="left">5</td>
 <td align="left">llama-3.1-8b-instant</td>
 <td align="left">Meta</td>
 <td align="left">2023-09-03</td>
 <td align="right">131072</td>
 </tr>
 <tr class="odd">
-<td align="left">llama3-8b-8192</td>
+<td align="left">6</td>
+<td align="left">openai/gpt-oss-20b</td>
+<td align="left">OpenAI</td>
+<td align="left">2025-08-05</td>
+<td align="right">131072</td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="left">meta-llama/llama-prompt-guard-2-86m</td>
 <td align="left">Meta</td>
-<td align="left">2023-09-03</td>
+<td align="left">2025-05-30</td>
+<td align="right">512</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="left">playai-tts</td>
+<td align="left">PlayAI</td>
+<td align="left">2025-02-27</td>
 <td align="right">8192</td>
 </tr>
 <tr class="even">
-<td align="left">gemma2-9b-it</td>
-<td align="left">Google</td>
-<td align="left">2023-09-03</td>
-<td align="right">8192</td>
+<td align="left">9</td>
+<td align="left">llama-3.3-70b-versatile</td>
+<td align="left">Meta</td>
+<td align="left">2024-12-06</td>
+<td align="right">131072</td>
 </tr>
 <tr class="odd">
-<td align="left">llama3-70b-8192</td>
+<td align="left">10</td>
+<td align="left">moonshotai/kimi-k2-instruct</td>
+<td align="left">Moonshot AI</td>
+<td align="left">2025-07-13</td>
+<td align="right">131072</td>
+</tr>
+<tr class="even">
+<td align="left">11</td>
+<td align="left">meta-llama/llama-guard-4-12b</td>
 <td align="left">Meta</td>
-<td align="left">2023-09-03</td>
+<td align="left">2025-05-08</td>
+<td align="right">131072</td>
+</tr>
+<tr class="odd">
+<td align="left">12</td>
+<td align="left">groq/compound-mini</td>
+<td align="left">Groq</td>
+<td align="left">2025-09-04</td>
+<td align="right">131072</td>
+</tr>
+<tr class="even">
+<td align="left">13</td>
+<td align="left">openai/gpt-oss-safeguard-20b</td>
+<td align="left">OpenAI</td>
+<td align="left">2025-10-29</td>
+<td align="right">131072</td>
+</tr>
+<tr class="odd">
+<td align="left">14</td>
+<td align="left">groq/compound</td>
+<td align="left">Groq</td>
+<td align="left">2025-09-04</td>
+<td align="right">131072</td>
+</tr>
+<tr class="even">
+<td align="left">15</td>
+<td align="left">meta-llama/llama-prompt-guard-2-22m</td>
+<td align="left">Meta</td>
+<td align="left">2025-05-30</td>
+<td align="right">512</td>
+</tr>
+<tr class="odd">
+<td align="left">17</td>
+<td align="left">playai-tts-arabic</td>
+<td align="left">PlayAI</td>
+<td align="left">2025-02-27</td>
 <td align="right">8192</td>
+</tr>
+<tr class="even">
+<td align="left">18</td>
+<td align="left">openai/gpt-oss-120b</td>
+<td align="left">OpenAI</td>
+<td align="left">2025-08-05</td>
+<td align="right">131072</td>
+</tr>
+<tr class="odd">
+<td align="left">19</td>
+<td align="left">meta-llama/llama-4-maverick-17b-128e-instruct</td>
+<td align="left">Meta</td>
+<td align="left">2025-04-05</td>
+<td align="right">131072</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="left">allam-2-7b</td>
+<td align="left">SDAIA</td>
+<td align="left">2025-01-23</td>
+<td align="right">4096</td>
 </tr>
 </tbody>
 </table>
@@ -1212,14 +1298,18 @@ will share more modules.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_list.html">module_list</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt;  * all_p_values: List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.</span></span>
 <span><span class="co">#&gt;  * all_urls: List all the URLs in the main text.</span></span>
-<span><span class="co">#&gt;  * aspredicted: Get data from AdPredicted pre-regosterations in a structured way</span></span>
+<span><span class="co">#&gt;  * aspredicted: Get data from AsPredicted pre-registrations in a structured way</span></span>
+<span><span class="co">#&gt;  * causal_claims: List all sentences that make causal claims.</span></span>
+<span><span class="co">#&gt;  * code_check: Retrieve information r files.</span></span>
 <span><span class="co">#&gt;  * effect_size: Detect t-tests and F-tests with missing effect sizes</span></span>
 <span><span class="co">#&gt;  * exact_p: List any p-values reported with insufficient precision (e.g., p &lt; .05 or p = n.s.)</span></span>
 <span><span class="co">#&gt;  * marginal: List all sentences that describe an effect as 'marginally significant'.</span></span>
 <span><span class="co">#&gt;  * miscitation: Check for frequently miscited papers. This module is just a proof of concept -- the miscite database is not yet populated with real examples.</span></span>
-<span><span class="co">#&gt;  * osf_check: List all OSF links and whether they are open, closed, or do not exist.</span></span>
+<span><span class="co">#&gt;  * nonsignificant_pvalue: This module checks for imprecisely reported p values. If p &gt; .05 is detected, it warns for misinterpretations.</span></span>
 <span><span class="co">#&gt;  * power: Find power analyses and return their components.</span></span>
+<span><span class="co">#&gt;  * prereg_check: Retrieve information from preregistrations, make then easier to check.</span></span>
 <span><span class="co">#&gt;  * ref_consistency: Check if all references are cited and all citations are referenced</span></span>
+<span><span class="co">#&gt;  * reference_check: This module checks references. It warns for missing DOI's, citations in the RetractionWatch database, citations that have comments on pubpeer (excluding Statcheck comments), and citations of original studies for which replication studies exist in the Replication Database.</span></span>
 <span><span class="co">#&gt;  * retractionwatch: Flag any cited papers in the RetractionWatch database</span></span>
 <span><span class="co">#&gt;  * statcheck: Check consistency of p-values and test statistics</span></span>
 <span><span class="co">#&gt;  </span></span>
@@ -1232,17 +1322,17 @@ will share more modules.</p>
 name.</p>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"all_p_values"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="14%">
-<col width="11%">
-<col width="11%">
-<col width="5%">
+<col width="12%">
+<col width="9%">
+<col width="28%">
 <col width="4%">
-<col width="4%">
-<col width="23%">
-<col width="10%">
-<col width="11%">
+<col width="3%">
+<col width="3%">
+<col width="19%">
+<col width="8%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">text</th>
@@ -1258,11 +1348,11 @@ name.</p>
 <tbody>
 <tr class="odd">
 <td align="left">p = 0.005</td>
-<td align="left">results</td>
-<td align="left">Results</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<td align="left">method</td>
+<td align="left">Method and Participants</td>
 <td align="right">2</td>
+<td align="right">1</td>
+<td align="right">10</td>
 <td align="left">to_err_is_human</td>
 <td align="left">=</td>
 <td align="right">0.005</td>
@@ -1272,7 +1362,7 @@ name.</p>
 <td align="left">results</td>
 <td align="left">Results</td>
 <td align="right">3</td>
-<td align="right">2</td>
+<td align="right">1</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
 <td align="left">=</td>
@@ -1283,7 +1373,7 @@ name.</p>
 <td align="left">results</td>
 <td align="left">Results</td>
 <td align="right">3</td>
-<td align="right">2</td>
+<td align="right">1</td>
 <td align="right">2</td>
 <td align="left">to_err_is_human</td>
 <td align="left">&gt;</td>

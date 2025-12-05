@@ -94,7 +94,7 @@ results <- results %>%
   distinct(url, .keep_all = TRUE)
 
 psych_sci_ttest_effect <- module_run(xml, "effect_size")
-tests_summary <- psych_sci_ttest_effect$summary
+tests_summary <- psych_sci_ttest_effect$summary_table
 tests_summary$doi_correct <- paste("10.1177/", sub("\\.xml$", "", tests_summary$id), sep = "")
 tests_summary$url <- paste0("https://doi.org/",tests_summary$doi_correct)
 

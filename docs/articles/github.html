@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9059</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9060</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,27 +127,27 @@ of. repo name, and an error if the repository in inaccessible.</p>
 <code class="sourceCode R"><span><span class="va">readme</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/github_readme.html">github_readme</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">readme</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; # papercheck</span></span>
+<pre><code><span><span class="co">#&gt; # metacheck</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; &lt;!-- badges: start --&gt;</span></span>
 <span><span class="co">#&gt; [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [![Codecov test coverage](https://codecov.io/gh/scienceverse/papercheck/graph/badge.svg)](https://app.codecov.io/gh/scienceverse/papercheck)</span></span>
+<span><span class="co">#&gt; [![Codecov test coverage](https://codecov.io/gh/scienceverse/metacheck/graph/badge.svg)](https://app.codecov.io/gh/scienceverse/metacheck)</span></span>
 <span><span class="co">#&gt; &lt;!-- badges: end --&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; The goal of papercheck is to automatically check scientific papers for best practices. You can find out more at &lt;https://scienceverse.github.io/papercheck/&gt;.</span></span>
+<span><span class="co">#&gt; The goal of metacheck is to automatically check resaerch outputs for best practices. You can find out more at &lt;https://scienceverse.github.io/metacheck/&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ## Installation</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; You can install the development version of papercheck from [GitHub](https://github.com/) with:</span></span>
+<span><span class="co">#&gt; You can install the development version of metacheck from [GitHub](https://github.com/) with:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ``` r</span></span>
 <span><span class="co">#&gt; # install.packages("devtools")</span></span>
-<span><span class="co">#&gt; devtools::install_github("scienceverse/papercheck")</span></span>
+<span><span class="co">#&gt; devtools::install_github("scienceverse/metacheck")</span></span>
 <span><span class="co">#&gt; ```</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ## API (optional)</span></span>
-<span><span class="co">#&gt; To run papercheck as a REST API either using plumber or Docker, see [`inst/plumber/README.md`](inst/plumber/README.md) for instructions and documentation.</span></span></code></pre>
+<span><span class="co">#&gt; To run metacheck as a REST API either using plumber or Docker, see [`inst/plumber/README.md`](inst/plumber/README.md) for instructions and documentation.</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="github_languages">github_languages<a class="anchor" aria-label="anchor" href="#github_languages"></a>
@@ -157,14 +157,14 @@ languages, as detected and classified by GitHub.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/github_languages.html">github_languages</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      language   bytes</span></span>
-<span><span class="co">#&gt; 1           R 6132209</span></span>
-<span><span class="co">#&gt; 2        HTML 5782555</span></span>
-<span><span class="co">#&gt; 3         TeX   58985</span></span>
-<span><span class="co">#&gt; 4        AMPL    7578</span></span>
+<span><span class="co">#&gt; 1           R 6203709</span></span>
+<span><span class="co">#&gt; 2        HTML 5800260</span></span>
+<span><span class="co">#&gt; 3         TeX   36405</span></span>
+<span><span class="co">#&gt; 4        AMPL    7571</span></span>
 <span><span class="co">#&gt; 5      Python    6986</span></span>
 <span><span class="co">#&gt; 6         CSS    3358</span></span>
 <span><span class="co">#&gt; 7  JavaScript    1018</span></span>
-<span><span class="co">#&gt; 8  Dockerfile     933</span></span>
+<span><span class="co">#&gt; 8  Dockerfile     929</span></span>
 <span><span class="co">#&gt; 9        SCSS      19</span></span>
 <span><span class="co">#&gt; 10      Shell      17</span></span></code></pre></div>
 </div>
@@ -177,53 +177,110 @@ and a guess at their type.</p>
 directory, non-recursively.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/github_files.html">github_files</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                name             path  size          ext   type</span></span>
-<span><span class="co">#&gt; 1            _stuff           _stuff     0                 dir</span></span>
-<span><span class="co">#&gt; 2           .github          .github     0       github    dir</span></span>
-<span><span class="co">#&gt; 3        .gitignore       .gitignore   387    gitignore config</span></span>
-<span><span class="co">#&gt; 4     .Rbuildignore    .Rbuildignore   247 rbuildignore   file</span></span>
-<span><span class="co">#&gt; 5       codecov.yml      codecov.yml   134          yml config</span></span>
-<span><span class="co">#&gt; 6              data             data     0                 dir</span></span>
-<span><span class="co">#&gt; 7          data-raw         data-raw     0                 dir</span></span>
-<span><span class="co">#&gt; 8       DESCRIPTION      DESCRIPTION  1898                file</span></span>
-<span><span class="co">#&gt; 9              docs             docs     0                 dir</span></span>
-<span><span class="co">#&gt; 10             inst             inst     0                 dir</span></span>
-<span><span class="co">#&gt; 11       LICENSE.md       LICENSE.md 34303           md   text</span></span>
-<span><span class="co">#&gt; 12              man              man     0                 dir</span></span>
-<span><span class="co">#&gt; 13        NAMESPACE        NAMESPACE  2123                file</span></span>
-<span><span class="co">#&gt; 14          NEWS.md          NEWS.md 13491           md   text</span></span>
-<span><span class="co">#&gt; 15 papercheck.Rproj papercheck.Rproj   462        rproj config</span></span>
-<span><span class="co">#&gt; 16          pkgdown          pkgdown     0                 dir</span></span>
-<span><span class="co">#&gt; 17          profile          profile     0                 dir</span></span>
-<span><span class="co">#&gt; 18                R                R     0                 dir</span></span>
-<span><span class="co">#&gt; 19        README.md        README.md   896           md   text</span></span>
-<span><span class="co">#&gt; 20            tests            tests     0                 dir</span></span>
-<span><span class="co">#&gt; 21        vignettes        vignettes     0                 dir</span></span></code></pre></div>
+<span><span class="co">#&gt;                name             path</span></span>
+<span><span class="co">#&gt; 1  _metacheck.Rproj _metacheck.Rproj</span></span>
+<span><span class="co">#&gt; 2            _stuff           _stuff</span></span>
+<span><span class="co">#&gt; 3           .github          .github</span></span>
+<span><span class="co">#&gt; 4        .gitignore       .gitignore</span></span>
+<span><span class="co">#&gt; 5     .Rbuildignore    .Rbuildignore</span></span>
+<span><span class="co">#&gt; 6       codecov.yml      codecov.yml</span></span>
+<span><span class="co">#&gt; 7              data             data</span></span>
+<span><span class="co">#&gt; 8          data-raw         data-raw</span></span>
+<span><span class="co">#&gt; 9       DESCRIPTION      DESCRIPTION</span></span>
+<span><span class="co">#&gt; 10             docs             docs</span></span>
+<span><span class="co">#&gt; 11             inst             inst</span></span>
+<span><span class="co">#&gt; 12       LICENSE.md       LICENSE.md</span></span>
+<span><span class="co">#&gt; 13              man              man</span></span>
+<span><span class="co">#&gt; 14        NAMESPACE        NAMESPACE</span></span>
+<span><span class="co">#&gt; 15          NEWS.md          NEWS.md</span></span>
+<span><span class="co">#&gt; 16          pkgdown          pkgdown</span></span>
+<span><span class="co">#&gt; 17          profile          profile</span></span>
+<span><span class="co">#&gt; 18                R                R</span></span>
+<span><span class="co">#&gt; 19        README.md        README.md</span></span>
+<span><span class="co">#&gt; 20            tests            tests</span></span>
+<span><span class="co">#&gt; 21        vignettes        vignettes</span></span>
+<span><span class="co">#&gt;                                                                      download_url</span></span>
+<span><span class="co">#&gt; 1  https://raw.githubusercontent.com/scienceverse/metacheck/main/_metacheck.Rproj</span></span>
+<span><span class="co">#&gt; 2                                                                            &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3                                                                            &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 4        https://raw.githubusercontent.com/scienceverse/metacheck/main/.gitignore</span></span>
+<span><span class="co">#&gt; 5     https://raw.githubusercontent.com/scienceverse/metacheck/main/.Rbuildignore</span></span>
+<span><span class="co">#&gt; 6       https://raw.githubusercontent.com/scienceverse/metacheck/main/codecov.yml</span></span>
+<span><span class="co">#&gt; 7                                                                            &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8                                                                            &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 9       https://raw.githubusercontent.com/scienceverse/metacheck/main/DESCRIPTION</span></span>
+<span><span class="co">#&gt; 10                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 11                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12       https://raw.githubusercontent.com/scienceverse/metacheck/main/LICENSE.md</span></span>
+<span><span class="co">#&gt; 13                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 14        https://raw.githubusercontent.com/scienceverse/metacheck/main/NAMESPACE</span></span>
+<span><span class="co">#&gt; 15          https://raw.githubusercontent.com/scienceverse/metacheck/main/NEWS.md</span></span>
+<span><span class="co">#&gt; 16                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 17                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 18                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 19        https://raw.githubusercontent.com/scienceverse/metacheck/main/README.md</span></span>
+<span><span class="co">#&gt; 20                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 21                                                                           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;     size          ext   type</span></span>
+<span><span class="co">#&gt; 1    462        rproj config</span></span>
+<span><span class="co">#&gt; 2      0                 dir</span></span>
+<span><span class="co">#&gt; 3      0       github    dir</span></span>
+<span><span class="co">#&gt; 4    387    gitignore config</span></span>
+<span><span class="co">#&gt; 5    247 rbuildignore   file</span></span>
+<span><span class="co">#&gt; 6    134          yml config</span></span>
+<span><span class="co">#&gt; 7      0                 dir</span></span>
+<span><span class="co">#&gt; 8      0                 dir</span></span>
+<span><span class="co">#&gt; 9   1934                file</span></span>
+<span><span class="co">#&gt; 10     0                 dir</span></span>
+<span><span class="co">#&gt; 11     0                 dir</span></span>
+<span><span class="co">#&gt; 12 34303           md   text</span></span>
+<span><span class="co">#&gt; 13     0                 dir</span></span>
+<span><span class="co">#&gt; 14  2278                file</span></span>
+<span><span class="co">#&gt; 15 13761           md   text</span></span>
+<span><span class="co">#&gt; 16     0                 dir</span></span>
+<span><span class="co">#&gt; 17     0                 dir</span></span>
+<span><span class="co">#&gt; 18     0                 dir</span></span>
+<span><span class="co">#&gt; 19   887           md   text</span></span>
+<span><span class="co">#&gt; 20     0                 dir</span></span>
+<span><span class="co">#&gt; 21     0                 dir</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/github_files.html">github_files</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span>, dir <span class="op">=</span> <span class="st">".github"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;         name               path size       ext   type</span></span>
-<span><span class="co">#&gt; 1 .gitignore .github/.gitignore    7 gitignore config</span></span>
-<span><span class="co">#&gt; 2  workflows  .github/workflows    0              dir</span></span></code></pre></div>
+<span><span class="co">#&gt;         name               path</span></span>
+<span><span class="co">#&gt; 1 .gitignore .github/.gitignore</span></span>
+<span><span class="co">#&gt; 2  workflows  .github/workflows</span></span>
+<span><span class="co">#&gt;                                                                       download_url</span></span>
+<span><span class="co">#&gt; 1 https://raw.githubusercontent.com/scienceverse/metacheck/main/.github/.gitignore</span></span>
+<span><span class="co">#&gt; 2                                                                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   size       ext   type</span></span>
+<span><span class="co">#&gt; 1    7 gitignore config</span></span>
+<span><span class="co">#&gt; 2    0              dir</span></span></code></pre></div>
 <p>You can also retrieve files recursively. Searching a large repository
 recursively can take a while.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/github_files.html">github_files</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span>,</span>
 <span>             dir <span class="op">=</span> <span class="st">".github"</span>,</span>
 <span>             recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                  name                                  path size       ext</span></span>
-<span><span class="co">#&gt; 1          .gitignore                    .github/.gitignore    7 gitignore</span></span>
-<span><span class="co">#&gt; 2           workflows                     .github/workflows    0          </span></span>
-<span><span class="co">#&gt; 3        pkgdown.yaml        .github/workflows/pkgdown.yaml 1380      yaml</span></span>
-<span><span class="co">#&gt; 4    teams-notify.yml    .github/workflows/teams-notify.yml  521       yml</span></span>
-<span><span class="co">#&gt; 5  test-coverage.yaml  .github/workflows/test-coverage.yaml 1877      yaml</span></span>
-<span><span class="co">#&gt; 6 upload_packages.yml .github/workflows/upload_packages.yml 3240       yml</span></span>
-<span><span class="co">#&gt;     type</span></span>
-<span><span class="co">#&gt; 1 config</span></span>
-<span><span class="co">#&gt; 2    dir</span></span>
-<span><span class="co">#&gt; 3 config</span></span>
-<span><span class="co">#&gt; 4 config</span></span>
-<span><span class="co">#&gt; 5 config</span></span>
-<span><span class="co">#&gt; 6 config</span></span></code></pre></div>
+<span><span class="co">#&gt;                  name                                  path</span></span>
+<span><span class="co">#&gt; 1          .gitignore                    .github/.gitignore</span></span>
+<span><span class="co">#&gt; 2           workflows                     .github/workflows</span></span>
+<span><span class="co">#&gt; 3        pkgdown.yaml        .github/workflows/pkgdown.yaml</span></span>
+<span><span class="co">#&gt; 4    teams-notify.yml    .github/workflows/teams-notify.yml</span></span>
+<span><span class="co">#&gt; 5  test-coverage.yaml  .github/workflows/test-coverage.yaml</span></span>
+<span><span class="co">#&gt; 6 upload_packages.yml .github/workflows/upload_packages.yml</span></span>
+<span><span class="co">#&gt;                                                                                          download_url</span></span>
+<span><span class="co">#&gt; 1                    https://raw.githubusercontent.com/scienceverse/metacheck/main/.github/.gitignore</span></span>
+<span><span class="co">#&gt; 2                                                                                                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3        https://raw.githubusercontent.com/scienceverse/metacheck/main/.github/workflows/pkgdown.yaml</span></span>
+<span><span class="co">#&gt; 4    https://raw.githubusercontent.com/scienceverse/metacheck/main/.github/workflows/teams-notify.yml</span></span>
+<span><span class="co">#&gt; 5  https://raw.githubusercontent.com/scienceverse/metacheck/main/.github/workflows/test-coverage.yaml</span></span>
+<span><span class="co">#&gt; 6 https://raw.githubusercontent.com/scienceverse/metacheck/main/.github/workflows/upload_packages.yml</span></span>
+<span><span class="co">#&gt;   size       ext   type</span></span>
+<span><span class="co">#&gt; 1    7 gitignore config</span></span>
+<span><span class="co">#&gt; 2    0              dir</span></span>
+<span><span class="co">#&gt; 3 1380      yaml config</span></span>
+<span><span class="co">#&gt; 4  521       yml config</span></span>
+<span><span class="co">#&gt; 5 1877      yaml config</span></span>
+<span><span class="co">#&gt; 6 3231       yml config</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="github_info">github_info<a class="anchor" aria-label="anchor" href="#github_info"></a>
@@ -239,9 +296,15 @@ with items named “repo”, “readme”, “languages”, and “files”.</p>
 <span><span class="co">#&gt; [1] "# demo\nFor use in testing functions\n"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $files</span></span>
-<span><span class="co">#&gt;        name      path size ext type</span></span>
-<span><span class="co">#&gt; 1    folder    folder    0      dir</span></span>
-<span><span class="co">#&gt; 2 README.md README.md   36  md text</span></span>
+<span><span class="co">#&gt;        name      path</span></span>
+<span><span class="co">#&gt; 1    folder    folder</span></span>
+<span><span class="co">#&gt; 2 README.md README.md</span></span>
+<span><span class="co">#&gt;                                                         download_url size ext</span></span>
+<span><span class="co">#&gt; 1                                                               &lt;NA&gt;    0    </span></span>
+<span><span class="co">#&gt; 2 https://raw.githubusercontent.com/scienceverse/demo/main/README.md   36  md</span></span>
+<span><span class="co">#&gt;   type</span></span>
+<span><span class="co">#&gt; 1  dir</span></span>
+<span><span class="co">#&gt; 2 text</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $languages</span></span>
 <span><span class="co">#&gt; [1] language</span></span>

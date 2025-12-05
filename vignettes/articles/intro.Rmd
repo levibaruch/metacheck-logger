@@ -64,7 +64,7 @@ These examples are intended to demonstrate the breadth of practices that can be 
 # run the module on 250 open access papers from Psychological Science
 rw <- module_run(psychsci, "retractionwatch")
 
-dplyr::filter(rw$summary, rw_Retraction > 0 | rw_Correction > 0)
+dplyr::filter(rw$summary_table, rw_Retraction > 0 | rw_Correction > 0)
 ```
 
 ## Future Plans

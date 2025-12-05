@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
 
 library(metacheck)
 library(dplyr)
+llm_use(TRUE)
 ```
 
 
@@ -147,7 +148,7 @@ query <- sprintf(query_template, prereg_sample_size)
 text <- paste(methres$text, collapse = "\n\n")
 
 # run query
-llm_response <- llm(text, query, model = "llama-3.3-70b-versatile")
+llm_response <- llm(text, query)
 
 llm_response$answer |> cat("> ", x = _)
 ```
