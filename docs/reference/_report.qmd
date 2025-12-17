@@ -2,8 +2,8 @@
 title: MetaCheck Report
 subtitle: "To Err is Human: An Empirical Investigation"
 metacheck:
-  version: "0.0.0.9060"
-  report-created: "2025-12-05"
+  version: "0.0.0.9061"
+  report-created: "2025-12-17"
 format:
   html:
     theme: flatly
@@ -19,6 +19,7 @@ format:
 ---
 
 <style>
+  h3 { font-size: 110%; }
   .na::before     { content: '⚪️ '; }
   .fail::before   { content: '⚫️ '; }
   .info::before   { content: '🔵 '; }
@@ -28,12 +29,14 @@ format:
   section::before { content: '' !important; }
   .quarto-title-banner { background-color: #327118; }
   th { color: #327118; }
+  table.dataTable, .dataTables_scrollBody { margin: 0.5em 0; }
 </style>
 
 :::: {.content-visible when-format="html"}
 ::: {.column-margin}
 [MetaCheck](http://www.scienceverse.org/metacheck) version {{< meta metacheck.version >}}<br>
-Report Created: {{< meta metacheck.report-created >}}
+Report Created: {{< meta metacheck.report-created >}}  
+
 
 -------
 
@@ -49,7 +52,7 @@ Report Created: {{< meta metacheck.report-created >}}
 
 ## Summary
 
-- [Exact P-Values](#exact-p-values){.red}: We found 1 imprecise *p* value.  
+- [Exact P-Values](#exact-p-values){.red}: We found 1 imprecise *p* value out of 3 detected.  
 - [Marginal Significance](#marginal-significance){.red}: You described 2 effects with terms related to 'marginally significant'.  
 - [Effect Sizes in t-tests and F-tests](#effect-sizes-in-t-tests-and-f-tests){.red}: We found 1 t-test and/or F-test where effect sizes are not reported.  
 - [StatCheck](#statcheck){.red}: 1 possible error in t-tests or F-tests  
@@ -60,7 +63,7 @@ Report Created: {{< meta metacheck.report-created >}}
 
 ## Exact P-Values {.red}
 
-We found 1 imprecise *p* value. Reporting *p* values imprecisely (e.g., *p* < .05) reduces transparency, reproducibility, and re-use (e.g., in *p* value meta-analyses). Best practice is to report exact p-values with three decimal places (e.g., *p* = .032) unless *p* values are smaller than 0.001, in which case you can use *p* < .001.
+We found 1 imprecise *p* value out of 3 detected. Reporting *p* values imprecisely (e.g., *p* < .05) reduces transparency, reproducibility, and re-use (e.g., in *p* value meta-analyses). Best practice is to report exact p-values with three decimal places (e.g., *p* = .032) unless *p* values are smaller than 0.001, in which case you can use *p* < .001.
 
 ```{r}
 #| echo: false
@@ -74,7 +77,7 @@ cd <- list(list(targets = 0, width = "10%"), list(targets = 1, width = "90%"))
 options <- list(dom = "t", ordering = FALSE, columnDefs = cd )
 
 # display table
-DT::datatable(table, options, selection = "none", rownames = FALSE)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
 ::: {.callout-tip title="Learn More" collapse="true"}
@@ -93,7 +96,7 @@ You described effects with terms related to 'marginally significant'. If *p* val
 #| echo: false
 
 # table data
-table <- structure(list(section = c("abstract", "results"), text = c("The paper shows examples of (1) open and closed OSF links; (2a) citation of retracted papers, (2b) citations without a doi, (2c) citations with Pubpeer comments, (2d) citations in the FORTT replication database, and (2e) missing/mismatched/incorrect citations and references; (3a) R files with code on GitHub that do not load libraries in one location, (3b) load files that are not shared in the repository, (3c) lack comments, and (3d) have hard-coded files, (4) imprecise reporting of non-significant p-values; (5) tests with and without effect sizes, (6) use of \"marginally significant\" to describe non-significant findings, and (7) retrieving information from preregistrations.", 
+table <- structure(list(section = c("abstract", "results"), text = c("The paper shows examples of (1) open and closed OSF links; (2a) citation of retracted papers, (2b) citations without a doi, (2c) citations with Pubpeer comments, (2d) citations in the FORTT replication database, and (2e) missing/mismatched/incorrect citations and references; (3a) R files with code on GitHub that do not load libraries in one location, (3b) load files that are not shared in the repository, (3c) lack comments, and (3d) have hard-coded files, (4) imprecise reporting of non-significant pvalues; (5) tests with and without effect sizes, (6) use of \"marginally significant\" to describe non-significant findings, and (7) retrieving information from preregistrations.", 
 "On average researchers in the experimental condition found the app marginally significantly more useful (M = 5.06) than researchers in the control condition found the checklist (M = 4.5), t(97.2) = -1.96, p = 0.152."
 )), row.names = c(NA, -2L), class = c("tbl_df", "tbl", "data.frame"
 ))
@@ -103,7 +106,7 @@ cd <- list()
 options <- list(dom = "t", ordering = FALSE, columnDefs = cd )
 
 # display table
-DT::datatable(table, options, selection = "none", rownames = FALSE)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
 ::: {.callout-tip title="Learn More" collapse="true"}
@@ -138,7 +141,7 @@ cd <- list()
 options <- list(dom = "t", ordering = FALSE, columnDefs = cd )
 
 # display table
-DT::datatable(table, options, selection = "none", rownames = FALSE)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
 ::: {.callout-tip title="Learn More" collapse="true"}
@@ -171,7 +174,7 @@ cd <- list()
 options <- list(dom = "t", ordering = FALSE, columnDefs = cd )
 
 # display table
-DT::datatable(table, options, selection = "none", rownames = FALSE)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
 :::
@@ -193,7 +196,7 @@ cd <- list(list(targets = 0, width = "10em"))
 options <- list(dom = "t", ordering = FALSE, columnDefs = cd )
 
 # display table
-DT::datatable(table, options, selection = "none", rownames = FALSE)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
 ::: {.callout-tip title="Learn More" collapse="true"}
@@ -223,7 +226,7 @@ cd <- list()
 options <- list(dom = "t", ordering = FALSE, columnDefs = cd )
 
 # display table
-DT::datatable(table, options, selection = "none", rownames = FALSE)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
 ## Reference Consistency {.red}
@@ -248,6 +251,6 @@ cd <- list()
 options <- list(dom = "t", ordering = FALSE, columnDefs = cd , scrollY = 200)
 
 # display table
-DT::datatable(table, options, selection = "none", rownames = FALSE)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 

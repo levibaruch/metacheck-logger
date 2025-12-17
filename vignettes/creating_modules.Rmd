@@ -239,7 +239,7 @@ The reports begin with a summary of each module, showing the traffic light, the 
 
 Reports need to explain concepts or give resources for further learning. This is often specific to the outcome of a check. 
 
-The `report` should be a charaacter vector, with one or more item. Use [quarto / markdown](https://quarto.org/docs/authoring/markdown-basics.html) for styling text, such as adding links or lists.
+The `report` should be a character vector, with one or more item. Use [quarto / markdown](https://quarto.org/docs/authoring/markdown-basics.html) for styling text, such as adding links or lists.
 
 ```{r, eval = FALSE}
   ## report ----
