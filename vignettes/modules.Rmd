@@ -101,6 +101,20 @@ The `paper` is just the paper argument to `module_run()`. This is mainly used wh
 mo$paper
 ```
 
+### Previous Outputs
+
+If you run modules in a chain or via the `report()` function, the output accumulates the outputs of previous modules in this item. This is so some modules can share resource-intensive parts of checks rather than repeating them.
+
+```{r}
+mo <- paper |>
+  module_run("exact_p") |>
+  module_run("marginal") |>
+  module_run("effect_size")
+
+mo$prev_outputs
+```
+
+
 ## Built-in Modules
 
 Below, we will demonstrate the use of each built-in module, first on a single paper and then a list of papers, the `psychsci` list of 250 open-access papers from Psychological Science.
@@ -254,31 +268,6 @@ ref_consistency$table
 ```
 
 It looks like there are some references with missing citations. The first one doesn't look like a reference, and grobid often parses tables oddly. You'd need to look at the original PDF to see if the others are actually missing or false positives. Here, they are all false positives, based on grobid not being able to match the in-text citation to the reference list. 
-
-
-### retractionwatch
-
-Flag any cited papers in the RetractionWatch database. It takes a substantial time to make calls to crossref for each reference, so we provide a summary of the database in metacheck, which is updated regularly (last 2025-02-28). 
-
-```{r}
-rw <- module_run(paper, "retractionwatch")
-
-rw$table
-```
-
-In the full PsychSci set, we find three papers in the RetractionWatch database cited, one with a retraction and two with corrections.  
-
-```{r}
-rw_ps <- module_run(psychsci, "retractionwatch")
-
-rw_ps$table
-```
-
-Check the context of the citations in the text column:
-
-```{r}
-rw_ps$table$text
-```
 
 ### statcheck
 

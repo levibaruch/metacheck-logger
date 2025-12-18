@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9061</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9062</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,20 @@
       <small>Source: <a href="https://github.com/scienceverse/metacheck/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9062" id="metacheck-0009062">metacheck 0.0.0.9062<a class="anchor" aria-label="anchor" href="#metacheck-0009062"></a></h2>
+<ul><li>
+<code><a href="../reference/json_expand.html">json_expand()</a></code> updated to handle LLM JSON errors more gracefully.</li>
+<li>You can pass arguments to modules via <code><a href="../reference/report.html">report()</a></code> now with the new <code>args</code> argument.</li>
+<li>New <code><a href="../reference/get_prev_outputs.html">get_prev_outputs()</a></code> module helper function</li>
+<li>Updated the vignettes.</li>
+<li>Modules <code>aspredicted</code> and <code>retractionwatch</code> are removed, as they are superseded by <code>prereg_check</code> and <code>reference_check</code>.</li>
+<li>The module <code>nonsignificant_pvalue</code> has changed to <code>nonsig_p</code>
+</li>
+<li>The default modules in a report have changed.</li>
+<li>A new module report helper, <code><a href="../reference/format_ref.html">format_ref()</a></code> for displaying references in bibentry or bibtex formats</li>
+<li>The ref column of the bib table in paper objects is now the bibentry for a reference, not just the formatted text. This will allow for more formatting options.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9061" id="metacheck-0009061">metacheck 0.0.0.9061<a class="anchor" aria-label="anchor" href="#metacheck-0009061"></a></h2>
 <ul><li>Efficiency improvements to the OSF functions</li>

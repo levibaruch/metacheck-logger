@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9061</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9062</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -356,17 +356,22 @@ preregistration.</p>
 <span></span>
 <span><span class="va">llm_response</span><span class="op">$</span><span class="va">answer</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"&gt; "</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
-<p>The sentence that corresponds to the plan is: “We assessed four
-taxonomic groups: ruffed lemurs (Varecia species, n = 10), Coquerel’s
-sifakas (Propithecus coquereli, n = 10), ringtailed lemurs (Lemur catta,
-n = 10), and mongoose lemurs (Eulemur mongoz, n = 9).”</p>
+<p>The authors planned to test a minimum of 10 and a maximum of 15
+individuals for each species. The sentence that corresponds to this plan
+is: “We will test a minimum of 10 and a maximum of 15 individuals for
+each species based on availability and individual’s willingness to
+participate at the time of testing.”</p>
 </blockquote>
-<p>The authors deviated from their preregistration in the sense that
-they planned to test a minimum of 10 and a maximum of 15 individuals for
-each species, but they actually tested 10 ruffed lemurs, 10 Coquerel’s
-sifakas, 10 ring-tailed lemurs, and 9 mongoose lemurs. The deviation is
-minor, as the number of mongoose lemurs is just one less than the
-planned minimum.</p>
+<p>According to the manuscript, the actual sample size was: - Ruffed
+lemurs (Varecia species, n = 10) - Coquerel’s sifakas (Propithecus
+coquereli, n = 10) - Ring-tailed lemurs (Lemur catta, n = 10) - Mongoose
+lemurs (Eulemur mongoz, n = 9)</p>
+<p>The authors did not deviate from their plan for three species (ruffed
+lemurs, Coquerel’s sifakas, and ring-tailed lemurs), but they did
+deviate slightly for the mongoose lemurs, testing 9 individuals instead
+of the planned minimum of 10. Therefore, the answer is:</p>
+<p>The authors deviated from their preregistration for the mongoose
+lemurs, testing 9 individuals instead of the planned minimum of 10.</p>
 <p>As we see, the LLM does a very good job evaluating whether the
 authors adhered to their preregistration in terms of the sample size.
 The long-run performance of this automated evaluation needs to be
@@ -426,16 +431,15 @@ and must be fluent in English (to ensure instruction comprehension).</p>
 <span></span>
 <span><span class="va">llm_response</span><span class="op">$</span><span class="va">answer</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"&gt; "</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
-<p>The sentence that corresponds to the plan is: “Here, we sought to
-collect data from 60 participants in each cohort.”</p>
+<p>The authors deviated from their preregistration with respect to the
+sample size for cohort B. They had planned to collect data from 60
+participants in each cohort, but due to the COVID-19 pandemic, data
+collection was interrupted, and they were only able to collect data from
+56 participants in cohort B. However, for cohort A, they were able to
+collect data from 60 participants as planned, but after excluding some
+participants, the final sample size was 56 (and 54 for some analyses
+after further exclusions).</p>
 </blockquote>
-<p>The authors did follow their plan with respect to the sample size for
-cohort A, as they collected data from 60 participants (n = 60). However,
-they did not follow their plan for cohort B, as they initially intended
-to collect data from 60 participants but were only able to collect data
-from 56 participants (n = 56) due to the COVID-19 pandemic.</p>
-<p>Therefore, the answer is: The authors deviated from their
-preregistration with respect to the sample size for cohort B.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># manual check - no LLM</span></span>
 <span><span class="va">regex_sample</span> <span class="op">&lt;-</span> <span class="st">"\\bsample\\b|\\d+\\s+particip\\w+"</span></span>
@@ -634,15 +638,12 @@ B was originally intended to be another 60 participants, but data
 collection was interrupted because of the COVID-19 pandemic; we shut
 down all laboratory testing on March 13, 2020.</p>
 <p>LLM Assessment:</p>
-<p>The sentence that corresponds to the plan is: “Here, we sought to
-collect data from 60 participants in each cohort.”</p>
-<p>The authors deviated from their preregistration with respect to the
-sample size in cohort B, where they initially intended to collect data
-from 60 participants but were only able to collect data from 56
-participants due to the COVID-19 pandemic. However, in cohort A, they
-were able to collect data from 60 participants as planned, although 3
-participants were excluded from the reported results due to poor
-performance.</p>
+<p>The authors deviated from their preregistration in terms of the
+sample size for cohort B. They had planned to collect data from 60
+participants in each cohort, but due to the COVID-19 pandemic, data
+collection was interrupted, and they were only able to collect data from
+56 participants in cohort B. However, for cohort A, they were able to
+collect data from 60 participants as planned.</p>
 <p>It fails gracefully if there are no links.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="va">psychsci</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>

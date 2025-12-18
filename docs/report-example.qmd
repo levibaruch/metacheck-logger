@@ -3,7 +3,7 @@ title: MetaCheck Report
 subtitle: "To Err is Human: An Empirical Investigation"
 metacheck:
   version: "0.0.0.9061"
-  report-created: "2025-12-17"
+  report-created: "2025-12-18"
 format:
   html:
     theme: flatly
@@ -57,7 +57,6 @@ Report Created: {{< meta metacheck.report-created >}}
 
 ## Summary
 
-- [Causal Claims](#causal-claims){.green}: No causal claims were observed in the title. No causal claims were observed in the abstract.  
 - [Preregistration Check](#preregistration-check){.info}: We found 1 preregistration.  
 - [Power](#power){.red}: You included power analysis, but some essential reporting aspects appear missing.  
 - [Exact P-Values](#exact-p-values){.red}: We found 1 imprecise *p* value out of 3 detected.  
@@ -69,24 +68,6 @@ Report Created: {{< meta metacheck.report-created >}}
 - [Reference Check](#reference-check){.info}: We retrieved 1 of 1 missing DOI from crossref. We found 1 reference with comments on Pubpeer. You have cited 1 article for which replication studies exist. You have cited 1 article for which entries in the Retraction Watch database  exist.  
 
 
-
-## Intro Modules
-
-### Causal Claims {.green}
-
-Medical journals often have the following instruction in the author guidelines about the use of causal language: <br><br> *Causal language (including use of terms such as effect and efficacy) should be used only for randomized clinical trials. For all other study designs (including meta-analyses of randomized clinical trials), methods and results should be described in terms of association or correlation and should avoid cause-and-effect wording.*
-
-No causal claims were observed in the abstract,
-
-::: {.callout-tip title="Learn More" collapse="true"}
-
-For advice on how to make causal claims, and when not to, see:
-
-Antonakis, J., Bendahan, S., Jacquart, P., & Lalive, R. (2010). On making causal claims: A review and recommendations. The Leadership Quarterly, 21(6), 1086–1120. <a href='https://doi.org/10.1016/j.leaqua.2010.10.010' target='_blank'>https://doi.org/10.1016/j.leaqua.2010.10.010</a>
-
-Grosz, M. P., Rohrer, J. M., & Thoemmes, F. (2020). The Taboo Against Explicit Causal Inference in Nonexperimental Psychology. Perspectives on Psychological Science, 15(5), 1243–1255. <a href='https://doi.org/10.1177/1745691620921521' target='_blank'>https://doi.org/10.1177/1745691620921521</a>
-
-:::
 
 ## Method Modules
 
@@ -203,8 +184,9 @@ DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FAL
 
 The APA manual states: Report exact *p* values (e.g., *p* = .031) to two or three decimal places. However, report *p* values less than .001 as *p* < .001. However, 2 decimals is too imprecise for many use-cases (e.g., a *p* value meta-analysis), so report *p* values with three digits.
 
-American Psychological Association (2020). _Publication manual of the American
-Psychological Association_, 7 edition. American Psychological Association.
+American Psychological Association (2020). _Publication manual of the
+American Psychological Association_, 7 edition. American Psychological
+Association.
 
 :::
 
@@ -239,11 +221,18 @@ DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FAL
 
 For metascientific articles demonstrating the rate of misinterpretations of non-significant results is high, see:
 
-* Aczel, B., Palfi, B., Szollosi, A., Kovacs, M., Szaszi, B., Szecsi, P., Zrubka, M., Gronau, Q. F., van den Bergh, D., & Wagenmakers, E.-J. (2018). Quantifying Support for the Null Hypothesis in Psychology: An Empirical Investigation. *Advances in Methods and Practices in Psychological Science*, 1(3), 357–366. doi: [10.1177/2515245918773742](https://doi.org/10.1177/2515245918773742)
+Aczel B, Palfi B, Szollosi A, Kovacs M, Szaszi B, Szecsi P, Zrubka M,
+Gronau Q, van den Bergh D, Wagenmakers E (2018). “Quantifying Support for
+the Null Hypothesis in Psychology: An Empirical Investigation.” _Advances
+in Methods and Practices in Psychological Science_, **1**(3), 357-366.
+[doi:10.1177/2515245918773742](https://doi.org/10.1177/2515245918773742).
 
-* Murphy, S. L., Merz, R., Reimann, L.-E., &amp; Fernández, A. (2025). Nonsignificance misinterpreted as an effect’s absence in psychology: Prevalence and temporal analyses. *Royal Society Open Science*, 12(3), 242167. doi: [10.1098/rsos.242167](https://doi.org/10.1098/rsos.242167)
+Murphy S, Merz R, Reimann L, Fernández A (2025). “Nonsignificance
+misinterpreted as an effect’s absence in psychology: Prevalence and
+temporal analyses.” _Royal Society Open Science_, **12**(3), 242167.
+[doi:10.1098/rsos.242167](https://doi.org/10.1098/rsos.242167).
 
-For educational material on preventing the misinterpretation of p values, see: [lakens.github.io/statistical_inferences](https://lakens.github.io/statistical_inferences/01-pvalue.html#sec-misconception1).
+For educational material on preventing the misinterpretation of p values, see [Improving Your Statistical Inferences](https://lakens.github.io/statistical_inferences/01-pvalue.html#sec-misconception1).
 
 :::
 
@@ -272,10 +261,10 @@ DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FAL
 
 For metascientific articles demonstrating the rate at which non-significant p-values are interpreted as marginally significant, see:
 
-Olsson-Collentine, A., van Assen, M. MAL, Hartgerink &, J. CH (2019). “The
-Prevalence of Marginally Significant Results in Psychology Over Time.”
-_Psychological Science_, *30*, 576-586. doi:10.1177/0956797619830326
-<https://doi.org/10.1177/0956797619830326>.
+Olsson-Collentine, A., van Assen, M. MAL, Hartgerink &, J. CH (2019).
+“The Prevalence of Marginally Significant Results in Psychology Over
+Time.” _Psychological Science_, *30*, 576-586.
+doi:10.1177/0956797619830326 <https://doi.org/10.1177/0956797619830326>.
 
 For the list of terms used to identifify marginally significant results, see this [blog post by Matthew Hankins](https://web.archive.org/web/20251001114321/https://mchankins.wordpress.com/2013/04/21/still-not-significant-2/).
 

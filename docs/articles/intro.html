@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9061</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9062</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -167,13 +167,13 @@ fields. It can also offer an overarching platform to integrate existing
 tools (e.g., checks for retracted articles, Statcheck, etc).</p>
 </div>
 <div class="section level2 callout-note">
-<h2 id="an-example-of-the-retractionwatch-module">An example of the “retractionwatch” module<a class="anchor" aria-label="anchor" href="#an-example-of-the-retractionwatch-module"></a>
+<h2 id="an-example-of-the-exact_p-module">An example of the “exact_p” module<a class="anchor" aria-label="anchor" href="#an-example-of-the-exact_p-module"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span><span class="fu"><a href="../reference/demoxml.html">demoxml</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"retractionwatch"</span><span class="op">)</span></span></code></pre></div>
-<p>RetractionWatch: You cited 1 paper in the Retraction Watch
-database</p>
+<span><span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"exact_p"</span><span class="op">)</span></span></code></pre></div>
+<p>Exact P-Values: We found 1 imprecise <em>p</em> value out of 3
+detected.</p>
 </div>
 <p>In addition to the initial modules already introduced on the <a href="https://scienceverse.github.io/metacheck/">metacheck website</a>,
 we will demonstrate metacheck’s capabilities through four practical
@@ -208,14 +208,23 @@ metascientific workflow, the module needs to be shown to have low error
 rates when run on manually coded ground truth files.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># run the module on 250 open access papers from Psychological Science</span></span>
-<span><span class="va">rw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span>, <span class="st">"retractionwatch"</span><span class="op">)</span></span>
+<span><span class="va">mo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span>, <span class="st">"effect_size"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">rw</span><span class="op">$</span><span class="va">summary_table</span>, <span class="va">rw_Retraction</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">|</span> <span class="va">rw_Correction</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##                  id rw_Correction rw_Retraction</span></span>
-<span><span class="co">## 1 09567976221150616             1             0</span></span>
-<span><span class="co">## 2 09567976231194221             1             0</span></span>
-<span><span class="co">## 3 09567976241249183             0             1</span></span>
-<span><span class="co">## 4 09567976241260247             3             0</span></span></code></pre>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mo</span><span class="op">$</span><span class="va">summary_table</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                 id ttests_with_es ttests_without_es Ftests_with_es</span></span>
+<span><span class="co">## 1 0956797613520608              0                 0              5</span></span>
+<span><span class="co">## 2 0956797614522816              0                 5             20</span></span>
+<span><span class="co">## 3 0956797614527830              0                 0              0</span></span>
+<span><span class="co">## 4 0956797614557697              0                 1              5</span></span>
+<span><span class="co">## 5 0956797614560771              2                 0              0</span></span>
+<span><span class="co">## 6 0956797614566469              0                 0              0</span></span>
+<span><span class="co">##   Ftests_without_es</span></span>
+<span><span class="co">## 1                 0</span></span>
+<span><span class="co">## 2                 0</span></span>
+<span><span class="co">## 3                 0</span></span>
+<span><span class="co">## 4                 0</span></span>
+<span><span class="co">## 5                 0</span></span>
+<span><span class="co">## 6                 0</span></span></code></pre>
 <div class="section level2">
 <h2 id="future-plans">Future Plans<a class="anchor" aria-label="anchor" href="#future-plans"></a>
 </h2>
@@ -253,7 +262,7 @@ Mesquida</a> (postdoctoral researcher), and Max Littel and Jakub Werner
 Transparency Check, led by René Bekkers, and funded by a <a href="https://tdcc.nl/tdcc-ssh-challenge-projects/research-transparency-check/" class="external-link">TDCC-SSH
 grant</a> from the Dutch Research Council (NWO). Our funded project
 priorities are described in more detail in our grant proposal, available
-here: <a href="https://osf.io/cpv4d/" class="external-link uri">https://osf.io/cpv4d/</a>.</p>
+here: <a href="https://osf.io/cpv4d/" class="external-link uri">https://osf.io/cpv4d/</a>.</p>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-aczel2018quantifying" class="csl-entry">
 Aczel, Balazs, Bence Palfi, Aba Szollosi, Marton Kovacs, Barnabas

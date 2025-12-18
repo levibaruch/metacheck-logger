@@ -40,11 +40,11 @@ Inspired by practices in software development, where automated checks (e.g., CRA
 metacheck is modular, with each module focused on a specific practice that the scientific community wants to improve, and for which automation is viable. This modularity allows the tool to be extended and customized by the community, enabling the development of specialized modules tailored to the standards and best practices of different scientific fields. It can also offer an overarching platform to integrate existing tools (e.g., checks for retracted articles, Statcheck, etc).
 
 ::: callout-note
-## An example of the "retractionwatch" module
+## An example of the "exact_p" module
 
 ```{r, results='asis'}
 paper <- read(demoxml())
-module_run(paper, "retractionwatch")
+module_run(paper, "exact_p")
 ```
 :::
 
@@ -62,9 +62,9 @@ These examples are intended to demonstrate the breadth of practices that can be 
 
 ```{r}
 # run the module on 250 open access papers from Psychological Science
-rw <- module_run(psychsci, "retractionwatch")
+mo <- module_run(psychsci, "effect_size")
 
-dplyr::filter(rw$summary_table, rw_Retraction > 0 | rw_Correction > 0)
+head(mo$summary_table)
 ```
 
 ## Future Plans
@@ -79,4 +79,4 @@ Metacheck is developed by a collaborative team of researchers, consisting of (fr
 
 ![](team.png){fig-alt="The faces of the metacheck team"}
 
-metacheck is a component of a broader research project, Research Transparency Check, led by René Bekkers, and funded by a [TDCC-SSH grant](https://tdcc.nl/tdcc-ssh-challenge-projects/research-transparency-check/) from the Dutch Research Council (NWO). Our funded project priorities are described in more detail in our grant proposal, available here: <https://osf.io/cpv4d/>.
+metacheck is a component of a broader research project, Research Transparency Check, led by René Bekkers, and funded by a [TDCC-SSH grant](https://tdcc.nl/tdcc-ssh-challenge-projects/research-transparency-check/) from the Dutch Research Council (NWO). Our funded project priorities are described in more detail in our grant proposal, available here: <https://osf.io/cpv4d/>.
