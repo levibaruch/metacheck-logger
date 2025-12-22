@@ -40,7 +40,7 @@ So most modules output a list with the following named items: module, title, tab
 
 ```{r}
 paper <- read(demoxml())
-mo <- module_run(paper, "exact_p")
+mo <- module_run(paper, "stat_p_exact")
 ```
 
 
@@ -107,9 +107,9 @@ If you run modules in a chain or via the `report()` function, the output accumul
 
 ```{r}
 mo <- paper |>
-  module_run("exact_p") |>
+  module_run("stat_p_exact") |>
   module_run("marginal") |>
-  module_run("effect_size")
+  module_run("stat_effect_size")
 
 mo$prev_outputs
 ```
@@ -117,7 +117,7 @@ mo$prev_outputs
 
 ## Built-in Modules
 
-Below, we will demonstrate the use of each built-in module, first on a single paper and then a list of papers, the `psychsci` list of 250 open-access papers from Psychological Science.
+Below, we will demonstrate the use of a few built-in modules, first on a single paper and then a list of papers, the `psychsci` list of 250 open-access papers from Psychological Science.
 
 ```{r}
 paper <- psychsci$`0956797620955209`
@@ -169,12 +169,12 @@ all_urls_ps <- module_run(psychsci, "all_urls")
 all_urls_ps$summary_table
 ```
 
-### exact_p
+### stat_p_exact
 
 List any p-values that may have been reported with insufficient precision (e.g., p < .05 or p = n.s.). 
 
 ```{r}
-imprecise <- module_run(paper, "exact_p")
+imprecise <- module_run(paper, "stat_p_exact")
 
 imprecise$table$text # print table
 ```
@@ -188,7 +188,7 @@ imprecise$table$expanded[[4]] # print expanded text
 We can investigate the most common imprecise p-values in the PsychSci set. "p < .01" and "p < .05" are probably often describing figures or tables, but what is the deal with "p > .25"?
 
 ```{r}
-imprecise_ps <- module_run(psychsci, "exact_p")
+imprecise_ps <- module_run(psychsci, "stat_p_exact")
 
 imprecise_ps$table |>
   count(text, sort = TRUE) |>
@@ -223,40 +223,6 @@ marginal_ps$table # print table
 ```
 
 
-
-### osf_check
-
-List all OSF links and whether they are open, closed, or do not exist. This requires an internet connection to check the status of the link.
-
-```{r}
-#| eval: false
-osf_check <- module_run(paper, "osf_check")
-
-osf_check$summary_table
-```
-
-The returned table contains additional information about the links if they are found and open.
-
-```{r}
-#| eval: false
-osf_check$table[1,] |> t()
-```
-
-
-You can also run this module on a batch of papers. You can only make 100 API requests per hour, unless you authorise your requests, when you can make 10K requests per day. The OSF functions in metacheck often make several requests per URL to get all of the info, so it's worthwhile setting your PAT. You can authorise them by creating an OSF token at <https://osf.io/settings/tokens> and including the following line in your .Renviron file (which you can open using `usethis::edit_r_environ()`):
-
-```
-OSF_PAT="replace-with-your-token-string"
-```
-
-This would take a while to run for the 333 unique OSF links found in the PsychSci set (usually a few links per second), so we will skip it here (but can reveal we found 10 closed links).
-
-```{r, eval = FALSE}
-osf_check_ps <- module_run(psychsci, "osf_check")
-```
-
-
-
 ### ref_consistency
 
 Check if all references are cited and all citations are referenced.
@@ -269,12 +235,12 @@ ref_consistency$table
 
 It looks like there are some references with missing citations. The first one doesn't look like a reference, and grobid often parses tables oddly. You'd need to look at the original PDF to see if the others are actually missing or false positives. Here, they are all false positives, based on grobid not being able to match the in-text citation to the reference list. 
 
-### statcheck
+### stat_check
 
 Check consistency of p-values and test statistics using functions from [statcheck](https://github.com/MicheleNuijten/statcheck).
 
 ```{r}
-statcheck <- module_run(paper, "statcheck")
+statcheck <- module_run(paper, "stat_check")
 
 statcheck$table
 ```
@@ -310,7 +276,7 @@ Modules return a `summary` table as well as the detailed results `table`, which 
 ```{r}
 ps_metascience <- psychsci[1:10] |>
   module_run("all_p_values") |>
-  module_run("exact_p") |>
+  module_run("stat_p_exact") |>
   module_run("marginal")
 
 ps_metascience$summary_table

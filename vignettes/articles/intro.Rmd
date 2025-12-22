@@ -40,11 +40,11 @@ Inspired by practices in software development, where automated checks (e.g., CRA
 metacheck is modular, with each module focused on a specific practice that the scientific community wants to improve, and for which automation is viable. This modularity allows the tool to be extended and customized by the community, enabling the development of specialized modules tailored to the standards and best practices of different scientific fields. It can also offer an overarching platform to integrate existing tools (e.g., checks for retracted articles, Statcheck, etc).
 
 ::: callout-note
-## An example of the "exact_p" module
+## An example of the "stat_p_exact" module
 
 ```{r, results='asis'}
 paper <- read(demoxml())
-module_run(paper, "exact_p")
+module_run(paper, "stat_p_exact")
 ```
 :::
 
@@ -62,7 +62,7 @@ These examples are intended to demonstrate the breadth of practices that can be 
 
 ```{r}
 # run the module on 250 open access papers from Psychological Science
-mo <- module_run(psychsci, "effect_size")
+mo <- module_run(psychsci, "stat_effect_size")
 
 head(mo$summary_table)
 ```
@@ -71,7 +71,7 @@ head(mo$summary_table)
 
 There are more possible modules than our team can create, and we welcome anyone who wants to collaborate with us on building and validating new modules. In addition to the modules demonstrated in the four blog posts, future modules could be developed to check if open data and materials are Findable, Accessible, Interoperable, and Reusable (FAIR) [@wilkinson_fair], to perform checks on specific types of articles (e.g., meta-analyses), check journal-specific reporting guidelines, or perform checks on the references. We see great potential for new modules; the only limitation is your own creativity and your engineering skills.
 
-We are excited to continue developing metacheck in close collaboration with the broader scientific community and welcome feedback, suggestions, and contributions. You can explore metacheck on GitHub: <https://scienceverse.github.io/metacheck/>. If you want to contribute to new metacheck modules, validate existing modules in your own scientific discipline, or explore the use of metacheck for metascientific projects, reach out to [Lisa DeBruine](mailto:lisa.debruine@glasgow.ac.uk?subject=metacheck) or [Daniel Lakens](mailto:d.lakens@tue.nl?subject=metacheck).
+We are excited to continue developing metacheck in close collaboration with the broader scientific community and welcome feedback, suggestions, and contributions. You can explore metacheck on GitHub: <https://scienceverse.github.io/metacheck/>. If you want to contribute to new metacheck modules, validate existing modules in your own scientific discipline, or explore the use of metacheck for metascientific projects, reach out to [Lisa DeBruine](mailto:lisa.debruine@glasgow.ac.uk?subject=metacheck) or [Daniel Lakens](mailto:d.lakens@tue.nl?subject=metacheck).
 
 ## Metacheck Team
 

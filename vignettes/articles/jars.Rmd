@@ -28,7 +28,7 @@ The first reporting guideline we will illustrate is to report exact p-values. Th
 Reporting *p* values precisely allows readers to include the test results in *p* value meta-analytic tests, such as p-curve, or z-curve [@simonsohn_p-curve_2014; @bartos_zcurve_2020], and makes it possible the check the internal coherence of the reported result with tools such as Statcheck [@nuijten_prevalencestatisticalreporting_2015]. metacheck has a dedicated module, "exact-p", to identify the presence of imprecise p-values. We can run it on a single paper:
 
 ```{r}
-res_imprecise <- module_run(psychsci$`0956797617744542`, "exact_p")
+res_imprecise <- module_run(psychsci$`0956797617744542`, "stat_p_exact")
 
 res_imprecise
 ```
@@ -42,7 +42,7 @@ res_imprecise$table[, c("text", "expanded")]
 Luckily, there are also many papers that follow the JARS guideline and report all *p* values correctly, for example:
 
 ```{r}
-module_run(psychsci$`0956797616665351`, "exact_p")
+module_run(psychsci$`0956797616665351`, "stat_p_exact")
 ```
 
 ## Reporting standardized effect sizes
@@ -52,7 +52,7 @@ A second JARS guideline that can be automatically checked is whether people repo
 ```{r}
 module_run(
   paper = psychsci$`0956797616657319`,
-  module = "effect_size"
+  module = "stat_effect_size"
 )
 ```
 
@@ -61,7 +61,7 @@ module_run(
 You can also run modules for multiple papers at once and get a summary table.
 
 ```{r}
-mo <- module_run(psychsci[1:10], "effect_size")
+mo <- module_run(psychsci[1:10], "stat_effect_size")
 
 mo$summary_table
 ```
@@ -80,7 +80,7 @@ load("psych_science_crossref_2014_2025_original.RData")
 results <- results %>%
   distinct(url, .keep_all = TRUE)
 
-psych_sci_ttest_effect <- module_run(xml, "effect_size")
+psych_sci_ttest_effect <- module_run(xml, "stat_effect_size")
 tests_summary <- psych_sci_ttest_effect$summary_table
 tests_summary$doi_correct <- paste("10.1177/", sub("\\.xml$", "", tests_summary$id), sep = "")
 tests_summary$url <- paste0("https://doi.org/",tests_summary$doi_correct)

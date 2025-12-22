@@ -357,16 +357,14 @@ preregistration.</p>
 <span><span class="va">llm_response</span><span class="op">$</span><span class="va">answer</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"&gt; "</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
 <p>The authors stated they would test a minimum of 10 and a maximum of
-15 individuals for each species. The sentence in the article that
-corresponds to this plan is: “We assessed four taxonomic groups: ruffed
-lemurs (Varecia species, n = 10), Coquerel’s sifakas (Propithecus
-coquereli, n = 10), ringtailed lemurs (Lemur catta, n = 10), and
-mongoose lemurs (Eulemur mongoz, n = 9).”</p>
+15 individuals for each species. The text indicates that they tested 10
+ruffed lemurs, 10 Coquerel’s sifakas, 10 ring-tailed lemurs, and 9
+mongoose lemurs.</p>
 </blockquote>
-<p>The authors deviated from their preregistration, as they tested 9
-individuals of the mongoose lemur species, which is below the minimum of
-10 individuals stated in the plan. However, for the other three species,
-the number of individuals tested (n = 10) is within the planned
+<p>The authors deviated from their preregistration for the mongoose
+lemur species, as they tested 9 individuals, which is below the minimum
+of 10 stated in the preregistration. However, for the other three
+species, they met the stated minimum and were within the planned
 range.</p>
 <p>As we see, the LLM does a very good job evaluating whether the
 authors adhered to their preregistration in terms of the sample size.
@@ -427,17 +425,13 @@ and must be fluent in English (to ensure instruction comprehension).</p>
 <span></span>
 <span><span class="va">llm_response</span><span class="op">$</span><span class="va">answer</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"&gt; "</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span></code></pre></div>
 <blockquote>
-<p>The sentence that corresponds to the plan is: “Here, we sought to
-collect data from 60 participants in each cohort.”</p>
-</blockquote>
 <p>The authors deviated from their preregistration with respect to the
-sample size in cohort B. They initially planned to collect data from 60
-participants, but due to the COVID-19 pandemic, they were only able to
-collect data from 56 participants. In cohort A, they were able to
-collect data from 60 participants as planned, but after excluding some
-participants, the final sample size was 56 (not 60, but close) for some
-analyses, and 57 for others (since one more participant was excluded in
-one of the analyses).</p>
+sample size for cohort B. They had planned to collect data from 60
+participants in each cohort, but due to the COVID-19 pandemic, data
+collection was interrupted, and they were only able to collect data from
+56 participants in cohort B. However, for cohort A, they were able to
+collect data from 60 participants as planned.</p>
+</blockquote>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># manual check - no LLM</span></span>
 <span><span class="va">regex_sample</span> <span class="op">&lt;-</span> <span class="st">"\\bsample\\b|\\d+\\s+particip\\w+"</span></span>
@@ -639,11 +633,9 @@ down all laboratory testing on March 13, 2020.</p>
 <p>The authors deviated from their preregistration with respect to the
 sample size for cohort B. They initially planned to collect data from 60
 participants in each cohort, but due to the COVID-19 pandemic, data
-collection for cohort B was interrupted, and they were only able to
-collect data from 56 participants. However, for cohort A, they were able
-to collect data from 60 participants as planned, but after excluding
-some participants, the final sample size for analysis was 56 (not 60,
-due to exclusions).</p>
+collection was interrupted, and they were only able to collect data from
+56 participants in cohort B. However, for cohort A, they were able to
+collect data from 60 participants as planned.</p>
 <p>It fails gracefully if there are no links.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="va">psychsci</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>

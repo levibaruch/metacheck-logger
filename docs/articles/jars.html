@@ -113,7 +113,7 @@ internal coherence of the reported result with tools such as Statcheck
 dedicated module, “exact-p”, to identify the presence of imprecise
 p-values. We can run it on a single paper:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res_imprecise</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">$</span><span class="va">`0956797617744542`</span>, <span class="st">"exact_p"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">res_imprecise</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">$</span><span class="va">`0956797617744542`</span>, <span class="st">"stat_p_exact"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">res_imprecise</span></span></code></pre></div>
 <pre><code><span><span class="co">## Exact P-Values: We found 9 imprecise *p* values out of 19 detected.</span></span></code></pre>
@@ -147,7 +147,7 @@ should have been precise:</p>
 <p>Luckily, there are also many papers that follow the JARS guideline
 and report all <em>p</em> values correctly, for example:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">$</span><span class="va">`0956797616665351`</span>, <span class="st">"exact_p"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">$</span><span class="va">`0956797616665351`</span>, <span class="st">"stat_p_exact"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Exact P-Values: We found no imprecise *p* values out of 8 detected.</span></span></code></pre>
 </div>
 <div class="section level2">
@@ -163,7 +163,7 @@ an effect size, and warn researchers accordingly.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span></span>
 <span>  paper <span class="op">=</span> <span class="va">psychsci</span><span class="op">$</span><span class="va">`0956797616657319`</span>,</span>
-<span>  module <span class="op">=</span> <span class="st">"effect_size"</span></span>
+<span>  module <span class="op">=</span> <span class="st">"stat_effect_size"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Effect Sizes in t-tests and F-tests: We found 7 t-tests and/or F-tests where effect sizes are not reported.</span></span></code></pre>
 </div>
@@ -173,7 +173,7 @@ an effect size, and warn researchers accordingly.</p>
 <p>You can also run modules for multiple papers at once and get a
 summary table.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="st">"effect_size"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="st">"stat_effect_size"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mo</span><span class="op">$</span><span class="va">summary_table</span></span></code></pre></div>
 <pre><code><span><span class="co">##                  id ttests_with_es ttests_without_es Ftests_with_es</span></span>

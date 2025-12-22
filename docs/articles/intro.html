@@ -167,11 +167,11 @@ fields. It can also offer an overarching platform to integrate existing
 tools (e.g., checks for retracted articles, Statcheck, etc).</p>
 </div>
 <div class="section level2 callout-note">
-<h2 id="an-example-of-the-exact_p-module">An example of the “exact_p” module<a class="anchor" aria-label="anchor" href="#an-example-of-the-exact_p-module"></a>
+<h2 id="an-example-of-the-stat_p_exact-module">An example of the “stat_p_exact” module<a class="anchor" aria-label="anchor" href="#an-example-of-the-stat_p_exact-module"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span><span class="fu"><a href="../reference/demoxml.html">demoxml</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"exact_p"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"stat_p_exact"</span><span class="op">)</span></span></code></pre></div>
 <p>Exact P-Values: We found 1 imprecise <em>p</em> value out of 3
 detected.</p>
 </div>
@@ -208,7 +208,7 @@ metascientific workflow, the module needs to be shown to have low error
 rates when run on manually coded ground truth files.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># run the module on 250 open access papers from Psychological Science</span></span>
-<span><span class="va">mo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span>, <span class="st">"effect_size"</span><span class="op">)</span></span>
+<span><span class="va">mo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">psychsci</span>, <span class="st">"stat_effect_size"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mo</span><span class="op">$</span><span class="va">summary_table</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                 id ttests_with_es ttests_without_es Ftests_with_es</span></span>
@@ -241,7 +241,7 @@ is your own creativity and your engineering skills.</p>
 <p>We are excited to continue developing metacheck in close
 collaboration with the broader scientific community and welcome
 feedback, suggestions, and contributions. You can explore metacheck on
-GitHub: <a href="https://scienceverse.github.io/metacheck/" class="uri">https://scienceverse.github.io/metacheck/</a>. If you want
+GitHub: <a href="https://scienceverse.github.io/metacheck/" class="uri">https://scienceverse.github.io/metacheck/</a>. If you want
 to contribute to new metacheck modules, validate existing modules in
 your own scientific discipline, or explore the use of metacheck for
 metascientific projects, reach out to <a href="mailto:lisa.debruine@glasgow.ac.uk?subject=metacheck">Lisa

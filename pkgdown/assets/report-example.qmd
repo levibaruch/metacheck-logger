@@ -62,23 +62,76 @@ Report Created: {{< meta metacheck.report-created >}}
  <!-- doi, if exists -->
 :::
 
+[Metacheck](https://www.scienceverse.org/metacheck/) is a tool that screens scientific manuscripts and aims to identify potential issues for improvement, thereby guiding researchers towards best practices. Metacheck is developed to help researchers correctly and completely report statistical results, automatically retrieve possible relevant information about citations, and improve how researchers share data, code, and preregistrations.
+
+::: {.callout-tip title="Learn More" collapse="true"}
+
+Metacheck combines existing and new checks in a module-based tool. It mainly relies on text search, retrieving information from external sources through API’s or web-scraping, but it also incorporates tool that use machine learning classifiers or large language models. The use of LLM’s is always optional. The development of Metacheck is guided by our [values statement](https://docs.google.com/document/d/1bbIkgUaiz3fpTXAeTF3h-gsfhqWEBN_n6OBcbFLfXjw/edit?tab=t.0). 
+
+Metacheck often needs to balance false positives against false negatives, and prioritizes preventing false negatives. Like a spelling checker, which often highlights words that are not spelled incorrectly, Metacheck modules will contain false positives. We hope their rate is acceptable, given opportunities for improvement that Metacheck identifies. Modules are currently primarily validated on the psychological literature.
+
+Metacheck is under continuous development. Issues can be submitted [on Github](https://github.com/scienceverse/metacheck/issues), and suggestions for improvement or feedback can be sent to D.Lakens@tue.nl.
+
+:::
+
 
 ## Summary
 
+- [Open Practices Check](#open-practices-check){.green}: Data and code are shared.  
 - [Preregistration Check](#preregistration-check){.info}: We found 2 preregistrations.  
-- [Power](#power){.yellow}: You included power analysis, but did not use an LLM to assess completeness, so should check manually.  
+- [Randomization and Causal Claims](#randomization-and-causal-claims){.green}: 
+    -  We identified 1 sentence describing randomization.
+    -  No causal claims were observed in the title.
+    -  No causal claims were observed in the abstract.  
+- [Power](#power){.red}: You included power analysis, but some essential reporting aspects appear missing.  
 - [Exact P-Values](#exact-p-values){.red}: We found 1 imprecise *p* value out of 3 detected.  
 - [Non-Significant P Value Check](#non-significant-p-value-check){.yellow}: We found 2 non-significant p values that should be checked for appropriate interpretation.  
 - [Marginal Significance](#marginal-significance){.red}: You described 2 effects with terms related to 'marginally significant'.  
 - [Effect Sizes in t-tests and F-tests](#effect-sizes-in-t-tests-and-f-tests){.red}: We found 1 t-test and/or F-test where effect sizes are not reported.  
-- [Code Check](#code-check){.info}: Some files loaded in the R scripts were missing in the repository. Hardcoded file paths were found. Libraries were loaded in multiple places. Some code files had no comments. No README file was found.   
 - [StatCheck](#statcheck){.red}: 1 possible error in t-tests or F-tests  
-- [Reference Check](#reference-check){.yellow}: We checked 4 references in CrossRef, 3 of which had a DOI. We found 1 missing DOI and 0 DOIs that did not match the original. We could not find matches for 0 references.  
+- [Code Check](#code-check){.info}: 
+    -  Some files loaded in the R scripts were missing in the repository.
+    -  Hardcoded file paths were found.
+    -  Libraries were loaded in multiple places.
+    -  Some code files had no comments.
+    -  No README file was found.  
+- [DOI Check](#doi-check){.yellow}: We checked 1 reference in CrossRef and found 1 missing DOI  
+- [Reference Accuracy](#reference-accuracy){.yellow}: We checked 3 references with DOIs in CrossRef and found  matches for 2.  
 - [Replication Check](#replication-check){.info}: You cited 1 article in the FReD replication database.  
 - [RetractionWatch](#retractionwatch){.info}: You cited 1 article in the RetractionWatch database.  
 - [Check PubPeer Comments](#check-pubpeer-comments){.info}: You cited 1 reference with comments in PubPeer.  
 
 
+
+## General Modules
+
+### Open Practices Check {.green}
+
+Data was openly shared for this article, based on the sentence "Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>.".
+
+Code was openly shared for this article, based on the sentence "Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>.".
+
+::: {.callout-tip title="Learn More" collapse="true"}
+
+Data and code sharing was determined using ODDPub, a text mining algorithm.
+
+Riedel N, Kip M, Bobrov E (2020). &ldquo;ODDPub – a Text-Mining Algorithm to Detect Data Sharing in Biomedical Publications.&rdquo; <em>Data Science Journal</em>, <b>19</b>(1), 42. <a href="https://doi.org/10.5334/dsj-2020-042">doi:10.5334/dsj-2020-042</a>.
+
+:::
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module incorporates ODDPub into metacheck. ODDPub is a text mining algorithm that detects which publications disseminated Open Data or Open Code together with the publication.
+
+The Open Practices Check runs Open Data Detection in Publications (ODDPub). ODDPub searches for regular expressions that match a predefined pattern, and identifies sentences describing open practices such as code and data sharing. More information on the package can be found at <https://github.com/quest-bih/oddpub>. The module only returns whether open data and code is found (the original package offers more fine-grained results). The tool was validated in the biomedical literature, see <https://osf.io/yv5rx/>.
+
+ODDPub was developed by Nico Riedel, Vladislav Nachev, Miriam Kip, and Evgeny Bobrov at the QUEST Center for Transforming Biomedical Research, Berlin Institute of Health.
+
+It might miss open data and code declarations when the words used in the manuscript are not in the pattern that ODDPub searches for.
+
+This module was developed by Daniel Lakens
+
+:::
 
 ## Method Modules
 
@@ -186,9 +239,85 @@ Lakens, Daniël (2024). &ldquo;When and How to Deviate From a Preregistration.&r
 
 :::
 
-### Power {.yellow}
+::: {.callout-note title="How It Works" collapse="true"}
 
-You included power analysis, but did not use an LLM to assess completeness, so should check manually.
+Retrieve information from preregistrations in a standardised way,
+and make them easier to check.
+
+The Preregistration Check module identifies preregistrations on the OSF and AsPredicted based on links in the manuscript, retrieves the preregistration text, and organizes the information into a template. The module then uses regular expressions to identify text from AsPredicted, and the API to retrieve text from the OSF. The information in the preregistration is returned.
+
+The module can’t extract information from non-structured preregistration templates (i.e., where the preregistration is uploaded in a single text field) and it can’t retrieve information in preregistrations that are stored as text documents on the OSF.
+
+If you want to extend the package to be able to download information from other preregistration sites, reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
+
+### Randomization and Causal Claims {.green}
+
+Journal Article Reporting Standards require details about randomization procedures, or how possible bias due to non-randomization is mitigated. This information is often not reported. Furthermore, researchers sometimes make causal claims that are not warranted, for example because there was no random assignment to conditions. This module checks how (non)randomization is reported, and checks for causal claims in the title and abstract. Researchers are asked to double check whether this information is reported completely and correctly.
+
+#### Randomization
+
+We identified 1 sentence describing randomization.
+
+```{r}
+#| echo: false
+
+# table data ------------------------------------
+table <- structure(list("We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist."), names = "", class = "data.frame", row.names = c(NA, 
+-1L))
+
+# table setup -----------------------------------
+cd <- list()
+options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
+```
+
+If this was a study that contained random assignment to conditions, the journal article reporting standards (JARS) ask that you describe the following:
+
+1. Random assignment method: Procedure used to generate the random assignment sequence, including details of any restriction (e.g., blocking, stratification)
+
+2. Random assignment concealment: Whether sequence was concealed until interventions were assigned
+
+3. Random assignment implementation: Who generated the assignment sequence, who enrolled participants, who assigned participants to groups
+
+#### Causal Claims
+
+No causal claims were observed in the title.
+
+No causal claims were observed in the abstract.
+
+::: {.callout-tip title="Learn More" collapse="true"}
+
+For advice on how to make causal claims, and when not to, see:
+
+Antonakis J, Bendahan S, Jacquart P, Lalive R (2010). &ldquo;On making causal claims: A review and recommendations.&rdquo; <em>The Leadership Quarterly</em>, <b>21</b>(6), 1086&ndash;1120. <a href="https://doi.org/10.1016/j.leaqua.2010.10.010">doi:10.1016/j.leaqua.2010.10.010</a>.
+
+Grosz M, Rohrer J, Thoemmes F (2020). &ldquo;The Taboo Against Explicit Causal Inference in Nonexperimental Psychology.&rdquo; <em>Perspectives on Psychological Science</em>, <b>15</b>(5), 1243&ndash;1255. <a href="https://doi.org/10.1177/1745691620921521">doi:10.1177/1745691620921521</a>.
+
+For the APA journal articles reporting standards, see <https://apastyle.apa.org/jars>
+
+:::
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+Aims to identify the presence of random assignment, and lists sentences that make causal claims in title or abstract.
+
+The Randomization and Causal Claims Check first uses regular expressions to check whether the manuscript contains a statement about randomization to conditions. Subsequently, it sends the title and abstract to a [machine learning classifier developed by Rasoul Norouzi](https://github.com/rasoulnorouzi/causal_relation_miner) that runs on [HuggingFace](https://huggingface.co/spaces/lakens/causal_sentences). Causal statements are identified. Researchers are recommended to double check if causal statements are warranted, especially if no sentences describing randomization were detected.
+
+The regular expressions can miss statements about randomization, or incorrectly assume there is a sentence describing randomization. The module can’t evaluate if the causal statements that are identified are warranted or not, and it only reminds users to double-check.
+
+If you want to improve the detection of sentences describing randomization, or otherwise improve the module, reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens
+
+:::
+
+### Power {.red}
+
+You included power analysis, but some essential reporting aspects appear missing.
 
 ```{r}
 #| echo: false
@@ -206,6 +335,14 @@ DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FAL
 Power analyses need to contain the following information to be interpretable: the statistical test, sample size, critical alpha criterion, power level, effect size, and an effect size metric. For example:
 
 > An a priori power analysis for an independent samples t-test, conducted using the pwr.t.test function from pwr (Champely, 2020) with Cohen's d = 0.5 and a critical alpha of p = 0.05, determined that 64 participants are required in each group for 80% power.
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+Find power analyses and return their components.
+
+This module was developed by Daniel Lakens, Cristian Mesquida and Lisa DeBruine
+
+:::
 
 ## Results Modules
 
@@ -231,6 +368,14 @@ DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FAL
 The APA manual states: Report exact *p* values (e.g., *p* = .031) to two or three decimal places. However, report *p* values less than .001 as *p* < .001. However, 2 decimals is too imprecise for many use-cases (e.g., a *p* value meta-analysis), so report *p* values with three digits.
 
 American Psychological Association (2020). <em>Publication manual of the American Psychological Association</em>, 7 edition. American Psychological Association.
+
+:::
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+List any p-values reported with insufficient precision (e.g., p < .05 or p = n.s.)
+
+This module was developed by Lisa DeBruine
 
 :::
 
@@ -271,6 +416,18 @@ For educational material on preventing the misinterpretation of p values, see [I
 
 :::
 
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module checks for imprecisely reported p values. If p > .05 is detected, it warns for misinterpretations.
+
+The nonsignificant p-value check searches for regular expressions that match a predefined pattern. The module identifies all p-values in a manuscript and selects those that are not reported to be smaller than or equal to 0.05. It returns all sentences containing non-significant p-values.
+
+In the future, the Metacheck team aims to incorporate a machine learning classifier to only return sentences likely to contain misinterpretations. If you want to help to improve the module, reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens
+
+:::
+
 ### Marginal Significance {.red}
 
 You described effects with terms related to 'marginally significant'. If *p* values above 0.05 are interpreted as an effect, you inflate the alpha level, and increase the Type 1 error rate. If a *p* value is higher than the prespecified alpha level, it should be interpreted as a non-significant result.
@@ -297,6 +454,18 @@ For metascientific articles demonstrating the rate at which non-significant p-va
 Olsson-Collentine, A., van Assen, M. MAL, Hartgerink &amp;, J. CH (2019). &ldquo;The Prevalence of Marginally Significant Results in Psychology Over Time.&rdquo; <em>Psychological Science</em>, <b>30</b>, 576&ndash;586. <a href="https://doi.org/10.1177/0956797619830326">doi:10.1177/0956797619830326</a>.
 
 For the list of terms used to identifify marginally significant results, see this [blog post by Matthew Hankins](https://web.archive.org/web/20251001114321/https://mchankins.wordpress.com/2013/04/21/still-not-significant-2/).
+
+:::
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+List all sentences that describe an effect as 'marginally significant'.
+
+The marginal module searches for regular expressions that match a predefined pattern. The list of terms is a subset of those listed in a [blog post by Matthew Hankins](https://web.archive.org/web/20251001114321/https://mchankins.wordpress.com/2013/04/21/still-not-significant-2/). The module returns all sentences that match terms describing ‘marginally significant’ results.
+
+Some of the terms identified might not be problematic in some contexts, and there are ways to describe ‘marginal significance’ that are not detected by the module.
+
+This module was developed by Daniel Lakens
 
 :::
 
@@ -349,6 +518,60 @@ cd <- list()
 options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
 DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
+
+:::
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+The Effect Size module checks for effect sizes in t-tests and F-tests.
+
+The Effect Size check searches for regular expressions that match a predefined pattern. The module was validated on APA reported statistical tests, and might miss effect sizes that were reported in other reporting styles. It was validated by the Metacheck team on papers published in Psychological Science.
+
+If you want to extend the package to detect effect sizes for additional tests, reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
+
+### StatCheck {.red}
+
+We detected possible errors in test statistics. Note that as the accuracy of statcheck has only been validated for *t*-tests and *F*-tests. As Metacheck only uses validated modules, we only provide statcheck results for *t* tests and *F*-tests.
+
+```{r}
+#| echo: false
+
+# table data ------------------------------------
+table <- structure(list(Text = "t(97.2) = -1.96, p = 0.152", "Recomputed p" = 0.05286, 
+    Section = "results", Sentence = "On average researchers in the experimental condition found the app marginally significantly more useful (M = 5.06) than researchers in the control condition found the checklist (M = 4.5), t(97.2) = -1.96, p = 0.152."), row.names = 2L, class = c("statcheck", 
+"data.frame"))
+
+# table setup -----------------------------------
+cd <- list(list(targets = 0, width = "10em"))
+options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
+```
+
+::: {.callout-tip title="Learn More" collapse="true"}
+
+For metascientific research on the validity of statcheck, and it's usefulness to prevent statistical reporting errors, see:
+
+Nuijten M, van Assen M, Hartgerink C, Epskamp S, Wicherts J (2017). &ldquo;The validity of the tool &quot;statcheck&quot; in discovering statistical reporting inconsistencies.&rdquo; <a href="https://doi.org/10.31234/osf.io/tcxaja">doi:10.31234/osf.io/tcxaja</a>, Preprint.
+
+Nuijten M, Wicherts J (2023). &ldquo;The effectiveness of implementing statcheck in the peer review process to avoid statistical reporting errors.&rdquo; <a href="https://doi.org/10.31234/osf.io/bxau9">doi:10.31234/osf.io/bxau9</a>, Preprint.
+
+:::
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+Check consistency of p-values and test statistics
+
+The Statcheck module runs Statcheck. Statcheck searches for regular expressions that match a predefined pattern, and identifies APA reported statistical tests. More information on the package can be found at <https://github.com/cran/statcheck>. The module only returns Statcheck results for t-tests and F-tests, as these are the only tests which have been validated, see <https://osf.io/preprints/psyarxiv/tcxaj_v1/>.
+
+Statcheck was developed by Michèle Nuijten and Sascha Epskamp.
+
+Statcheck considers p = 0.000 an error, as you should report p < 0.001. Furthermore, p < 0.03 is an error if the p-value was 0.031, and one should simply report exact p-values (p = 0.031). Statcheck might miss one-sided tests, and falsely assume the p-value is incorrect. For more information, see [StatCheck](https://statcheck.io/).
+
+This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
@@ -453,48 +676,34 @@ DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FAL
 
 No README file was found. README files are a way to document the contents and structure of a folder, helping users locate the information they need. You can use a README to document changes to a repository, and explain how files are named. Please consider adding a README.
 
-### StatCheck {.red}
+::: {.callout-note title="How It Works" collapse="true"}
 
-We detected possible errors in test statistics. Note that as the accuracy of statcheck has only been validated for *t*-tests and *F*-tests. As Metacheck only uses validated modules, we only provide statcheck results for *t* tests and *F*-tests.
+Retrieve information from repositories about r files, zip files, and readme.
 
-```{r}
-#| echo: false
+The Code Check module lists files on the OSF and GitHub based on links in the manuscript, and retrieves R, Rmd, and Qmd files. The module then uses regular expressions to check the code. The regular expression search will detect the number of comments, the lines at which libraries are loaded, attempts to detect absolute paths to files, and lists files that are loaded, and checks if these files are in the repository. It will also check for a readme file in the repository, and will warn it can’t examine the contents of zip files. The module will return suggestions to improve the code if there are no comments, if libraries are loaded in lines further than 4 lines apart, if files that are loaded are not in the repository, and if hardcoded file paths are found.
 
-# table data ------------------------------------
-table <- structure(list(Text = "t(97.2) = -1.96, p = 0.152", "Recomputed p" = 0.05286, 
-    Section = "results", Sentence = "On average researchers in the experimental condition found the app marginally significantly more useful (M = 5.06) than researchers in the control condition found the checklist (M = 4.5), t(97.2) = -1.96, p = 0.152."), row.names = 2L, class = c("statcheck", 
-"data.frame"))
+The regular expressions can miss information in code files, or falsely detect parts of the code as a fixed file path. Libraries might be loaded in one block, even if there are more than 4 intermittent lines. The package was validated internally on papers published in Psychological Science. There might be valid reasons why some loaded files can’t be shared, but the module can’t evaluate these reasons, and always gives a warning.
 
-# table setup -----------------------------------
-cd <- list(list(targets = 0, width = "10em"))
-options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
-DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
-```
+If you want to extend the package to be able to download files from additional data repositories, or perform additional checks on code files, or make the checks work on other types of code files, reach out to the Metacheck development team.
 
-::: {.callout-tip title="Learn More" collapse="true"}
-
-For metascientific research on the validity of statcheck, and it's usefulness to prevent statistical reporting errors, see:
-
-Nuijten M, van Assen M, Hartgerink C, Epskamp S, Wicherts J (2017). &ldquo;The validity of the tool &quot;statcheck&quot; in discovering statistical reporting inconsistencies.&rdquo; <a href="https://doi.org/10.31234/osf.io/tcxaja">doi:10.31234/osf.io/tcxaja</a>, Preprint.
-
-Nuijten M, Wicherts J (2023). &ldquo;The effectiveness of implementing statcheck in the peer review process to avoid statistical reporting errors.&rdquo; <a href="https://doi.org/10.31234/osf.io/bxau9">doi:10.31234/osf.io/bxau9</a>, Preprint.
+This module was developed by Daniel Lakens
 
 :::
 
 ## Reference Modules
 
-### Reference Check {.yellow}
+### DOI Check {.yellow}
 
-We checked 4 references in CrossRef, 3 of which had a DOI. We found 1 missing DOI and 0 DOIs that did not match the original. We could not find matches for 0 references.
+We checked 1 reference in CrossRef and found 1 missing DOI
 
-Double check any references listed in the tables below. Many books do not have a DOI or are not listed in CrossRef. Garbled references are usually a result of poor parsing of the paper by grobid; we are working on more accurate alternatives.
+Double check any references listed in the tables below. The match score gives an indication of how good the match was. Many books do not have a DOI or are not listed in CrossRef. Garbled references are usually a result of poor parsing of the paper by grobid; we are working on more accurate alternatives.
 
 ```{r}
 #| echo: false
 
 # table data ------------------------------------
 table <- structure(list("Found DOI" = "<a href='https://doi.org/10.1177/2515245918770963' target='_blank'>doi.org/10.1177/2515245918770963</a>", 
-    "Original Reference" = "Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."), row.names = 4L, class = "data.frame")
+    "Match Score" = 79, "Original Reference" = "Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."), row.names = 1L, class = "data.frame")
 
 # table setup -----------------------------------
 cd <- list()
@@ -502,9 +711,52 @@ options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
 DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
-::: {.callout-tip title="Experimental Checks" collapse="true"}
+::: {.callout-note title="How It Works" collapse="true"}
 
-Title and author mismatches are commonly false positives or minor differences in punctuation.
+This module checks references for missing DOIs.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
+
+### Reference Accuracy {.yellow}
+
+We checked 3 references with DOIs in CrossRef and found  matches for 2.
+
+Double check any references listed in the tables below. This tool has a high false positive rate. Mismatches may be because of problems with our parsing of references from your PDF (we're working on improving this), incorrect formatting in CrossRef, or minor differences in punctuation.
+
+```{r}
+#| echo: false
+
+# table data ------------------------------------
+table <- structure(list("Unfound Reference" = "Smith F (2021). &ldquo;Human error is a symptom of a poor design.&rdquo; <em>Journal of Journals</em>, <b>0</b>(0), 0. <a href=\"https://doi.org/10.0000/0123456789\">doi:10.0000/0123456789</a>."), row.names = 3L, class = "data.frame")
+
+# table setup -----------------------------------
+cd <- list(list(targets = 0, width = "5px"))
+options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
+```
+
+```{r}
+#| echo: false
+
+# table data ------------------------------------
+table <- structure(list("Original Title" = "Evil Genius? How Dishonesty Can Lead to Greater Creativity", 
+    "CrossRef Title" = "Retracted: Evil Genius? How Dishonesty Can Lead to Greater Creativity", 
+    Reference = "Gino F, Wiltermuth SS (2014). &ldquo;Evil Genius? How Dishonesty Can Lead to Greater Creativity.&rdquo; <em>Psychological Science</em>, <b>25</b>(4), 973-981. <a href=\"https://doi.org/10.1177/0956797614520714\">doi:10.1177/0956797614520714</a>."), class = "data.frame", row.names = 2L)
+
+# table setup -----------------------------------
+cd <- list(list(targets = 0, width = "5px"), list(targets = 1, width = "5px"), 
+    list(targets = 2, width = "5px"))
+options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
+DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
+```
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module checks references for mismatches with CrossRef.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
@@ -528,6 +780,22 @@ options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
 DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module checks references and warns for citations of original studies for which replication studies exist in the Replication Database.
+
+The Replication Check module compares the reference list against studies in the FORRT replication database based on the DOI. If a study in the database is found, a reminder is provided that a replication of the original study exists, and should be cited (currently, a warning is provided regardless of whether the replication study is already cited).
+
+The module requires that the reference has a DOI. If you run the ref_doi_check module in a pipeline before this, it will use the enhanced DOI list from that module, otherwise it will only run on references with existing DOIs.
+
+It is possible the original study was cited for other reasons than the empirical claim tested, or that the replication in the FORRT replication database is for only one of the studies in the paper, and not the study the authors discuss.
+
+The database can be manually updated with the `FReD_update()`` function. For more information, see <https://forrt.org/FReD/>.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
+
 ### RetractionWatch {.info}
 
 We checked 4 references with DOIs. You cited 1 article in the RetractionWatch database.
@@ -547,6 +815,22 @@ options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
 DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
 
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module checks references and warns for citations in the RetractionWatch Database.
+
+The RetractionWatch Check module compares the reference list against studies in the RetractionWatch database based on the DOI. If a study in the database is found, a reminder is provided that the study was retracted, has an expression of concern, or a correction.
+
+The module requires that the reference has a DOI. If you run the ref_doi_check module in a pipeline before this, it will use the enhanced DOI list from that module, otherwise it will only run on references with existing DOIs.
+
+It is possible the authors are already aware that a study was retracted, but the module can't evaluate this.
+
+The database can be manually updated with the rw_update function. For more information, see https://gitlab.com/crossref/retraction-watch-data.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
+
 ### Check PubPeer Comments {.info}
 
 We checked 4 references with DOIs. You cited 1 reference with comments in PubPeer.
@@ -565,4 +849,18 @@ cd <- list()
 options <- list(dom = "t", ordering = FALSE, pageLength = 2, columnDefs = cd)
 DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)
 ```
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module checks references and warns for citations that have comments on pubpeer (excluding Statcheck comments).
+
+The PubPeer module uses the PubPeer API to check for each reference that has a DOI whether there are comments on the post-publication peer review platform. If comments are found, a link to the comments is provided. Comments by ‘Statcheck’ on PubPeer are ignored, see https://retractionwatch.com/2016/09/02/heres-why-more-than-50000-psychology-studies-are-about-to-have-pubpeer-entries/.
+
+The module requires that the reference has a DOI. If you run the doi_check module in a pipeline before this, it will use the enhanced DOI list from that module, otherwise it will only run on references with existing DOIs.
+
+For more information, see [PubPeer](https://www.pubpeer.com/static/about).
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
 
