@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9062</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9063</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,15 @@
       <small>Source: <a href="https://github.com/scienceverse/metacheck/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9063" id="metacheck-0009063">metacheck 0.0.0.9063<a class="anchor" aria-label="anchor" href="#metacheck-0009063"></a></h2>
+<ul><li>
+<code>get_doi()</code> has been removed in favour of <code><a href="../reference/crossref_query.html">crossref_query()</a></code>, to look up crossref info by bibliographic query, and <code><a href="../reference/crossref_doi.html">crossref_doi()</a></code>, to look up crossref info by DOI.</li>
+<li>
+<code><a href="../reference/scroll_table.html">scroll_table()</a></code> changed arguments. <code>height</code> is removed and <code>scroll_above</code> changed to <code>maxrows</code>. It not paginates above maxrows (default = 2), rather than scrolling within a fixed height. This is a more accessible solution, since scrolling is hard with touchscreens and it’s often hard to copy text in a scroll window. We will continually improve this with further user feedback.</li>
+<li>Fixed a bunch of small problems with modules and let the report render even with errors</li>
+<li>Updated the report template with light and dark themes (set to user preference)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9062" id="metacheck-0009062">metacheck 0.0.0.9062<a class="anchor" aria-label="anchor" href="#metacheck-0009062"></a></h2>
 <ul><li>

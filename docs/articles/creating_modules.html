@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9062</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9063</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -517,24 +517,22 @@ the reports are created. It will include the contents of the table.</p>
 <span>  <span class="va">table</span>, </span>
 <span>  colwidths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.1</span>, <span class="fl">.9</span><span class="op">)</span>, <span class="co"># use NA for auto, numbers &lt;=1 are %, &gt; 1 are px, </span></span>
 <span>                         <span class="co"># or use characters, e.g., c("3em", NA)</span></span>
-<span>  scroll_above <span class="op">=</span> <span class="fl">2</span>,      <span class="co"># if table length &lt;= this, show all rows, no scrolling</span></span>
-<span>  height <span class="op">=</span> <span class="fl">200</span>,          <span class="co"># height of scroll windown in pixels</span></span>
+<span>  maxrows <span class="op">=</span> <span class="fl">2</span>,           <span class="co"># if table length &lt;= this, show all rows, no paginations</span></span>
 <span>  column <span class="op">=</span> <span class="st">"body"</span>        <span class="co"># page: spans full page, margin: just right margin</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ```{r}</span></span>
 <span><span class="co">#&gt; #| echo: false</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # table data</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; # table data ------------------------------------</span></span>
 <span><span class="co">#&gt; table &lt;- structure(list(id = 1:10, letter = c("A", "B", "C", "D", "E", </span></span>
 <span><span class="co">#&gt; "F", "G", "H", "I", "J")), class = "data.frame", row.names = c(NA, </span></span>
 <span><span class="co">#&gt; -10L))</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # table options</span></span>
+<span><span class="co">#&gt; # table setup -----------------------------------</span></span>
 <span><span class="co">#&gt; cd &lt;- list(list(targets = 0, width = "10%"), list(targets = 1, width = "90%"))</span></span>
-<span><span class="co">#&gt; options &lt;- list(dom = "t", ordering = FALSE, columnDefs = cd , scrollY = 200)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # display table</span></span>
+<span><span class="co">#&gt; options &lt;- list(dom = "&lt;'top' p&gt;", ordering = FALSE, pageLength = 2, columnDefs = cd)</span></span>
 <span><span class="co">#&gt; DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FALSE)</span></span>
 <span><span class="co">#&gt; ```</span></span></code></pre>
 </div>
@@ -615,9 +613,10 @@ table), bibtex text, or plain text.</p>
 <code class="sourceCode R"><span><span class="co"># get refs from a paper</span></span>
 <span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span><span class="fu"><a href="../reference/demoxml.html">demoxml</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/format_ref.html">format_ref</a></span><span class="op">(</span><span class="va">paper</span><span class="op">$</span><span class="va">bib</span><span class="op">$</span><span class="va">ref</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<p>[1] “Gino F, Wiltermuth SS (2014). "Evil Genius? How Dishonesty Can
-Lead to Greater Creativity." <em>Psychological Science</em>,
-<strong>25</strong>(4), 973-981. <a href="https://doi.org/10.1177/0956797614520714" class="external-link">doi:10.1177/0956797614520714</a>.”</p>
+<p>[1] “Gino F, Wiltermuth SS (2014). “Evil Genius? How Dishonesty Can
+Lead to Greater Creativity.” <em>Psychological Science</em>,
+<b>25</b>(4), 973-981.
+<a href="%5C%22https://doi.org/10.1177/0956797614520714%5C%22" class="external-link">doi:10.1177/0956797614520714</a>.”</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bibentry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/bibentry.html" class="external-link">bibentry</a></span><span class="op">(</span></span>
 <span>    bibtype <span class="op">=</span> <span class="st">"Article"</span>,</span>
@@ -634,16 +633,18 @@ Lead to Greater Creativity." <em>Psychological Science</em>,
 <span>    doi <span class="op">=</span> <span class="st">"10.1177/2515245920970949"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/format_ref.html">format_ref</a></span><span class="op">(</span><span class="va">bibentry</span><span class="op">)</span></span></code></pre></div>
-<p>[1] “Lakens D, DeBruine LM (2021). "Improving transparency,
-falsifiability, and rigor by making hypothesis tests machine-readable."
+<p>[1] “Lakens D, DeBruine LM (2021). “Improving transparency,
+falsifiability, and rigor by making hypothesis tests machine-readable.”
 <em>Advances in Methods and Practices in Psychological Science</em>,
-<strong>4</strong>(2), 2515245920970949. <a href="https://doi.org/10.1177/2515245920970949" class="external-link">doi:10.1177/2515245920970949</a>.”</p>
+<b>4</b>(2), 2515245920970949.
+<a href="%5C%22https://doi.org/10.1177/2515245920970949%5C%22" class="external-link">doi:10.1177/2515245920970949</a>.”</p>
 <p>You can get a bibentry citation for any package with code.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"metacheck"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/format_ref.html">format_ref</a></span><span class="op">(</span><span class="va">bib</span><span class="op">)</span></span></code></pre></div>
 <p>[1] “DeBruine L, Lakens D (2025). <em>metacheck: Check Research
-Outputs for Best Practices</em>. R package version 0.0.0.9062, <a href="https://github.com/scienceverse/metacheck" class="external-link uri">https://github.com/scienceverse/metacheck</a>.”</p>
+Outputs for Best Practices</em>. R package version 0.0.0.9063,
+<a href="%5C%22https://github.com/scienceverse/metacheck%5C%22" class="external-link">https://github.com/scienceverse/metacheck</a>.”</p>
 <p>The function can also handle references in bibtex format.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bibtex</span> <span class="op">&lt;-</span> <span class="st">"@Article{,</span></span>
@@ -657,10 +658,11 @@ Outputs for Best Practices</em>. R package version 0.0.0.9062, <a href="https://
 <span><span class="st">  doi = {10.1177/2515245920970949},</span></span>
 <span><span class="st">}"</span></span>
 <span><span class="fu"><a href="../reference/format_ref.html">format_ref</a></span><span class="op">(</span><span class="va">bibtex</span><span class="op">)</span></span></code></pre></div>
-<p>[1] “Lakens D, DeBruine LM (2021). "Improving transparency,
-falsifiability, and rigor by making hypothesis tests machine-readable."
+<p>[1] “Lakens D, DeBruine LM (2021). “Improving transparency,
+falsifiability, and rigor by making hypothesis tests machine-readable.”
 <em>Advances in Methods and Practices in Psychological Science</em>,
-<strong>4</strong>(2), 2515245920970949. <a href="https://doi.org/10.1177/2515245920970949" class="external-link">doi:10.1177/2515245920970949</a>.”</p>
+<b>4</b>(2), 2515245920970949.
+<a href="%5C%22https://doi.org/10.1177/2515245920970949%5C%22" class="external-link">doi:10.1177/2515245920970949</a>.”</p>
 <p>If you just add plain text that isn’t a bibentry or in bibtex format,
 you will usually just get the text back.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">

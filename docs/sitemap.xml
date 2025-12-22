@@ -38,6 +38,8 @@
 <url><loc>https://scienceverse.github.io/metacheck/reference/concat_tables.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/credit_roles.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/crossref.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/crossref_doi.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/crossref_query.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/demodir.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/demopdf.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/demoxml.html</loc></url>
@@ -109,6 +111,7 @@
 <url><loc>https://scienceverse.github.io/metacheck/reference/osf_preprint_list.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/osf_reg_data.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/osf_retrieve.html</loc></url>
+<url><loc>https://scienceverse.github.io/metacheck/reference/osf_type.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/osf_user_data.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/paper.html</loc></url>
 <url><loc>https://scienceverse.github.io/metacheck/reference/paper_validate.html</loc></url>

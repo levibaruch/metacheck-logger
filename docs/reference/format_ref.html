@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9062</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9063</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,17 +71,17 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"metacheck"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">format_ref</span><span class="op">(</span><span class="va">mc</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "DeBruine L, Lakens D (2025). _metacheck: Check Research Outputs for Best Practices_. R package version 0.0.0.9062, &lt;https://github.com/scienceverse/metacheck&gt;."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "DeBruine L, Lakens D (2025). &lt;em&gt;metacheck: Check Research Outputs for Best Practices&lt;/em&gt;. R package version 0.0.0.9063, &lt;a href=\"https://github.com/scienceverse/metacheck\"&gt;https://github.com/scienceverse/metacheck&lt;/a&gt;."</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># handles bibtext</span></span></span>
 <span class="r-in"><span><span class="va">bib_mc</span> <span class="op">&lt;-</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/toLatex.html" class="external-link">toBibtex</a></span><span class="op">(</span><span class="va">mc</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">format_ref</span><span class="op">(</span><span class="va">bib_mc</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "DeBruine L, Lakens D (2025). _metacheck: Check Research Outputs for Best Practices_. R package version 0.0.0.9062, &lt;https://github.com/scienceverse/metacheck&gt;."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "DeBruine L, Lakens D (2025). &lt;em&gt;metacheck: Check Research Outputs for Best Practices&lt;/em&gt;. R package version 0.0.0.9063, &lt;a href=\"https://github.com/scienceverse/metacheck\"&gt;https://github.com/scienceverse/metacheck&lt;/a&gt;."</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.html">read</a></span><span class="op">(</span><span class="fu"><a href="demoxml.html">demoxml</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">format_ref</span><span class="op">(</span><span class="va">paper</span><span class="op">$</span><span class="va">bib</span><span class="op">$</span><span class="va">ref</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gangestad SW, Thornhill R (1998). “Menstrual cycle variation in women's preferences for the scent of symmetrical men.” _Proceedings Biological Sciences_, **22**, 927-933. [doi:10.1098/rspb.1998.0380](https://doi.org/10.1098/rspb.1998.0380)."</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "Gino F, Wiltermuth SS (2014). “Evil Genius? How Dishonesty Can Lead to Greater Creativity.” _Psychological Science_, **25**(4), 973-981. [doi:10.1177/0956797614520714](https://doi.org/10.1177/0956797614520714)."                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gangestad SW, Thornhill R (1998). &amp;ldquo;Menstrual cycle variation in women's preferences for the scent of symmetrical men.&amp;rdquo; &lt;em&gt;Proceedings Biological Sciences&lt;/em&gt;, &lt;b&gt;22&lt;/b&gt;, 927-933. &lt;a href=\"https://doi.org/10.1098/rspb.1998.0380\"&gt;doi:10.1098/rspb.1998.0380&lt;/a&gt;."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "Gino F, Wiltermuth SS (2014). &amp;ldquo;Evil Genius? How Dishonesty Can Lead to Greater Creativity.&amp;rdquo; &lt;em&gt;Psychological Science&lt;/em&gt;, &lt;b&gt;25&lt;/b&gt;(4), 973-981. &lt;a href=\"https://doi.org/10.1177/0956797614520714\"&gt;doi:10.1177/0956797614520714&lt;/a&gt;."                              </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

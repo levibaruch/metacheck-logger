@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9062</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9063</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,30 +88,37 @@ will share more modules.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_list.html">module_list</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>*** GENERAL **<em> </em> all_urls: List all the URLs in the main
-text.</p>
+text. * open_practices_check: This module incorporated ODDPub into
+metacheck. ODDPub is a text mining algorithm that detects which
+publications disseminated Open Data or Open Code together with the
+publication.</p>
 <p>*** INTRO **<em> </em> causal_claims: List all sentences that make
 causal claims.</p>
 <p>*** METHOD **<em> </em> power: Find power analyses and return their
-components. * prereg_check: Retrieve information from preregistrations,
-make then easier to check.</p>
+components. * prereg_check: Retrieve information from preregistrations
+in a standardised way, and make them easier to check.</p>
 <p>*** RESULTS **<em> </em> all_p_values: List all p-values in the text,
 returning the matched text (e.g., ‘p = 0.04’) and document location in a
-table. * code_check: Retrieve information r files. * effect_size: Detect
-t-tests and F-tests with missing effect sizes * exact_p: List any
-p-values reported with insufficient precision (e.g., p &lt; .05 or p =
-n.s.) * marginal: List all sentences that describe an effect as
-‘marginally significant’. * nonsig_p: This module checks for imprecisely
-reported p values. If p &gt; .05 is detected, it warns for
-misinterpretations. * statcheck: Check consistency of p-values and test
-statistics</p>
+table. * code_check: Retrieve information from repositories about r
+files, zip files, and readme. * effect_size: Detect t-tests and F-tests
+with missing effect sizes * exact_p: List any p-values reported with
+insufficient precision (e.g., p &lt; .05 or p = n.s.) * marginal: List
+all sentences that describe an effect as ‘marginally significant’. *
+nonsig_p: This module checks for imprecisely reported p values. If p
+&gt; .05 is detected, it warns for misinterpretations. * statcheck:
+Check consistency of p-values and test statistics</p>
 <p>*** REFERENCE **<em> </em> miscitation: Check for frequently miscited
 papers. This module is just a proof of concept – the miscite database is
-not yet populated with real examples. * ref_consistency: Check if all
+not yet populated with real examples. * pubpeer: This module checks
+references and warns for citations that have comments on pubpeer
+(excluding Statcheck comments). * ref_consistency: Check if all
 references are cited and all citations are referenced * reference_check:
-This module checks references. It warns for missing DOI’s, citations in
-the RetractionWatch database, citations that have comments on pubpeer
-(excluding Statcheck comments), and citations of original studies for
-which replication studies exist in the Replication Database.</p>
+This module checks references. It warns for missing DOI’s and other
+mismatches with CrossRef. * replications: This module checks references
+and warns for citations of original studies for which replication
+studies exist in the Replication Database. * retractionwatch: This
+module checks references and warns for citations in the RetractionWatch
+Database.</p>
 <p>Use <code>module_help("module_name")</code> for help with a specific
 module</p>
 </div>
@@ -196,9 +203,9 @@ be inserted into a report. The display is usually handled by the
 function.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mo</span><span class="op">$</span><span class="va">report</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; [1] "We found 1 imprecise *p* value out of 3 detected. Reporting *p* values imprecisely (e.g., *p* &lt; .05) reduces transparency, reproducibility, and re-use (e.g., in *p* value meta-analyses). Best practice is to report exact p-values with three decimal places (e.g., *p* = .032) unless *p* values are smaller than 0.001, in which case you can use *p* &lt; .001."                                                                                                                                                                                                                                                    </span></span>
-<span><span class="co">#&gt; [2] "\n```{r}\n#| echo: false\n\n# table data\ntable &lt;- structure(list(\"P-Value\" = \"p &gt; .05\", Sentence = \"There was no effect of experience on the reduction in errors when using the tool (p &gt; .05), as the correlation was non-significant.\"), row.names = c(NA, \n-1L), class = c(\"tbl_df\", \"tbl\", \"data.frame\"))\n\n# table options\ncd &lt;- list(list(targets = 0, width = \"10%\"), list(targets = 1, width = \"90%\"))\noptions &lt;- list(dom = \"t\", ordering = FALSE, columnDefs = cd )\n\n# display table\nDT::datatable(table, options, selection = \"none\", rownames = FALSE, escape = FALSE)\n```\n"</span></span>
-<span><span class="co">#&gt; [3] "::: {.callout-tip title=\"Learn More\" collapse=\"true\"}\n\nThe APA manual states: Report exact *p* values (e.g., *p* = .031) to two or three decimal places. However, report *p* values less than .001 as *p* &lt; .001. However, 2 decimals is too imprecise for many use-cases (e.g., a *p* value meta-analysis), so report *p* values with three digits.\n\nAmerican Psychological Association (2020). _Publication manual of the American Psychological Association_, 7 edition. American Psychological Association.\n\n:::\n"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "We found 1 imprecise *p* value out of 3 detected. Reporting *p* values imprecisely (e.g., *p* &lt; .05) reduces transparency, reproducibility, and re-use (e.g., in *p* value meta-analyses). Best practice is to report exact p-values with three decimal places (e.g., *p* = .032) unless *p* values are smaller than 0.001, in which case you can use *p* &lt; .001."                                                                                                                                                                                                                                                                                                                         </span></span>
+<span><span class="co">#&gt; [2] "\n```{r}\n#| echo: false\n\n\n# table data ------------------------------------\ntable &lt;- structure(list(\"P-Value\" = \"p &gt; .05\", Sentence = \"There was no effect of experience on the reduction in errors when using the tool (p &gt; .05), as the correlation was non-significant.\"), row.names = c(NA, \n-1L), class = c(\"tbl_df\", \"tbl\", \"data.frame\"))\n\n# table setup -----------------------------------\ncd &lt;- list(list(targets = 0, width = \"10%\"), list(targets = 1, width = \"90%\"))\noptions &lt;- list(dom = \"t\", ordering = FALSE, pageLength = 2, columnDefs = cd)\nDT::datatable(table, options, selection = \"none\", rownames = FALSE, escape = FALSE)\n```\n"</span></span>
+<span><span class="co">#&gt; [3] "::: {.callout-tip title=\"Learn More\" collapse=\"true\"}\n\nThe APA manual states: Report exact *p* values (e.g., *p* = .031) to two or three decimal places. However, report *p* values less than .001 as *p* &lt; .001. However, 2 decimals is too imprecise for many use-cases (e.g., a *p* value meta-analysis), so report *p* values with three digits.\n\nAmerican Psychological Association (2020). &lt;em&gt;Publication manual of the American Psychological Association&lt;/em&gt;, 7 edition. American Psychological Association.\n\n:::\n"</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="paper">Paper<a class="anchor" aria-label="anchor" href="#paper"></a>
