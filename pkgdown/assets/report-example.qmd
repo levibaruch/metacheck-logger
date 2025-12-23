@@ -3,7 +3,7 @@ title: MetaCheck Report
 subtitle: "To Err is Human: An Empirical Investigation"
 metacheck:
   version: "0.0.0.9063"
-  report-created: "2025-12-22"
+  report-created: "2025-12-23"
 format:
   html:
     theme: 
@@ -39,12 +39,12 @@ execute:
   main h2, main h3 { margin-left: -20px; }
   main h3 { font-size: 125%; }
   main h4 { font-size: 110%; }
-  .na::before     { content: '⚪️ '; }
-  .fail::before   { content: '⚫️ '; }
-  .info::before   { content: '🔵 '; }
-  .red::before    { content: '🔴 '; }
-  .yellow::before { content: '🟡 '; }
-  .green::before  { content: '🟢 '; }
+  .na::before     { content: '⚪ '; } /* ⚪ */
+  .fail::before   { content: '☠️ '; } /* ⚫️ */
+  .info::before   { content: 'ℹ️ '; } /* 🔵 */
+  .red::before    { content: '⚠️ '; } /* 🔴 */
+  .yellow::before { content: '️🔍 '; } /* 🟡 */
+  .green::before  { content: '✅ '; } /* 🟢 */
   section::before { content: '' !important; }
   th { background-color: #555; color: white; }
   table.dataTable, .dataTables_scrollBody { margin: 0.5em 0; }
@@ -335,14 +335,6 @@ DT::datatable(table, options, selection = "none", rownames = FALSE, escape = FAL
 Power analyses need to contain the following information to be interpretable: the statistical test, sample size, critical alpha criterion, power level, effect size, and an effect size metric. For example:
 
 > An a priori power analysis for an independent samples t-test, conducted using the pwr.t.test function from pwr (Champely, 2020) with Cohen's d = 0.5 and a critical alpha of p = 0.05, determined that 64 participants are required in each group for 80% power.
-
-::: {.callout-note title="How It Works" collapse="true"}
-
-Find power analyses and return their components.
-
-This module was developed by Daniel Lakens, Cristian Mesquida and Lisa DeBruine
-
-:::
 
 ## Results Modules
 
@@ -863,4 +855,7 @@ For more information, see [PubPeer](https://www.pubpeer.com/static/about).
 This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
+
+
+
 
