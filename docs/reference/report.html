@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9063</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9064</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@
 <span>    <span class="st">"stat_p_nonsig"</span>, <span class="st">"stat_effect_size"</span>, <span class="st">"marginal"</span>, <span class="st">"ref_doi_check"</span>, <span class="st">"ref_replication"</span>,</span>
 <span>    <span class="st">"ref_retraction"</span>, <span class="st">"ref_pubpeer"</span><span class="op">)</span>,</span>
 <span>  output_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">paper</span><span class="op">$</span><span class="va">name</span>, <span class="st">"_report."</span>, <span class="va">output_format</span><span class="op">)</span>,</span>
-<span>  output_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"qmd"</span>, <span class="st">"html"</span>, <span class="st">"pdf"</span><span class="op">)</span>,</span>
+<span>  output_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"html"</span>, <span class="st">"qmd"</span><span class="op">)</span>,</span>
 <span>  args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -98,24 +98,25 @@
 <span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="demoxml.html">demoxml</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.html">read</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">report</span><span class="op">(</span><span class="va">paper</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Starting OSF retrieval for 3 URLs...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving info from 48ncu...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving info from 5tbm9...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving info from 629bx...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ...Main retrieval complete</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Starting retrieval of children...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving children for 629bx...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving files for 629bx...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ...OSF retrieval complete!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Starting OSF retrieval for 3 URLs...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving info from 48ncu...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving info from 5tbm9...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving info from 629bx...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ...Main retrieval complete</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Starting retrieval of children...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving children for 629bx...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * Retrieving files for 629bx...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ...OSF retrieval complete!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">You have 499999 of 500000 requests left (reset in 172ms) and 299721 of 300000 tokens left (reset in 55ms).</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Starting OSF retrieval for 3 URLs...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving info from 48ncu...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving info from 5tbm9...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving info from 629bx...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">...Main retrieval complete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Starting retrieval of children...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving children for 629bx...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving files for 629bx...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">...OSF retrieval complete!</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Starting OSF retrieval for 3 URLs...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving info from 48ncu...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving info from 5tbm9...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving info from 629bx...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">...Main retrieval complete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Starting retrieval of children...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving children for 629bx...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">* Retrieving files for 629bx...</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">...OSF retrieval complete!</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

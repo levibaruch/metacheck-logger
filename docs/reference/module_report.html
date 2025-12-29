@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9063</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9064</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_report</span><span class="op">(</span><span class="va">module_output</span>, header <span class="op">=</span> <span class="fl">3</span>, maxrows <span class="op">=</span> <span class="cn">Inf</span>, trunc_cell <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_report</span><span class="op">(</span><span class="va">module_output</span>, header <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,14 +60,6 @@
 
 <dt id="arg-header">header<a class="anchor" aria-label="anchor" href="#arg-header"></a></dt>
 <dd><p>header level (default 2)</p></dd>
-
-
-<dt id="arg-maxrows">maxrows<a class="anchor" aria-label="anchor" href="#arg-maxrows"></a></dt>
-<dd><p>the maximum number of table rows to print</p></dd>
-
-
-<dt id="arg-trunc-cell">trunc_cell<a class="anchor" aria-label="anchor" href="#arg-trunc-cell"></a></dt>
-<dd><p>truncate any cell to this number of characters</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -106,6 +98,15 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> The APA manual states: Report exact *p* values (e.g., *p* = .031) to two or three decimal places. However, report *p* values less than .001 as *p* &lt; .001. However, 2 decimals is too imprecise for many use-cases (e.g., a *p* value meta-analysis), so report *p* values with three digits.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> American Psychological Association (2020). &lt;em&gt;Publication manual of the American Psychological Association&lt;/em&gt;, 7 edition. American Psychological Association.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> :::</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ::: {.callout-note title="How It Works" collapse="true"}</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List any p-values reported with insufficient precision (e.g., p &lt; .05 or p = n.s.)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> This module was developed by Lisa DeBruine</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> :::</span>
 </code></pre></div>
