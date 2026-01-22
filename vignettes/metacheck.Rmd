@@ -242,19 +242,11 @@ marginal[, c("text", "expanded")]
 
 ## Large Language Models
 
-You can query the extracted text of papers with LLMs using [groq](https://console.groq.com/docs/).
-
-<a href="https://groq.com" target="_blank" rel="noopener noreferrer">
-  <img
-    src="https://groq.com/wp-content/uploads/2024/03/PBG-mark1-color.svg"
-    alt="Powered by Groq for fast inference."
-  />
-</a>
+You can query the extracted text of papers with LLMs using any models supported by [ellmer](https://ellmer.tidyverse.org/).
 
 ### Setup
 
-
-You will need to get your own API key from <https://console.groq.com/keys>. To avoid having to type it out, add it to the .Renviron file in the following format (you can use `usethis::edit_r_environ()` to access the .Renviron file).
+You will need to get your own API key from your preferred provider (e.g. <https://console.groq.com/keys>). To avoid having to type it out, add it to the .Renviron file in the following format (you can use `usethis::edit_r_environ()` to access the .Renviron file).
 
 ``` bash
 GROQ_GPT_KEY="sk-proj-abcdefghijklmnopqrs0123456789ABCDEFGHIJKLMNOPQRS"
@@ -273,14 +265,24 @@ modlist <- llm_model_list()
 knitr::kable(modlist)
 ```
 
+When you start metacheck for the first time, it will check for relevant API keys in your Renviron and automatically set the model to use. You can get or set this with `llm_model()`. 
+
+```{r}
+#| eval: false
+llm_model() # get current model
+llm_model("openai") # set to ellmer's default openai model
+llm_model("openai/gpt-4.1") # set to specific openai model
+```
+
 
 ### LLM Queries
 
-You can query the extracted text of papers with LLMs using [groq](https://console.groq.com/docs/). See `?llm` for details of how to get and set up your API key, choose an LLM, and adjust settings. 
+You can query the extracted text of papers with LLMs. See `?llm` for details of how to get and set up your API key, choose an LLM, and adjust settings. 
 
 Use `search_text()` first to narrow down the text into what you want to query. Below, we limited search to the first ten papers' method sections, and returned sentences that contains the word "power" and at least one number. Then we asked an LLM to determine if this is an a priori power analysis, and if so, to return some relevant values in a JSON-structured format.
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
 power <- psychsci[1:10] |>
   # sentences containing the word power
   search_text("power", section = "method") |>
@@ -288,7 +290,7 @@ power <- psychsci[1:10] |>
   search_text("[0-9]") 
 
 # ask a specific question with specific response format
-query <- 'Does this sentence report an a priori power analysis? If so, return the test, sample size, critical alpha criterion, power level, effect size and effect size metric plus any other relevant parameters, in JSON format like:
+system_prompt <- 'Does this sentence report an a priori power analysis? If so, return the test, sample size, critical alpha criterion, power level, effect size and effect size metric plus any other relevant parameters, in JSON format like:
 
 {
   "apriori": true, 
@@ -304,11 +306,12 @@ If not, return {"apriori": false}
 
 Answer only in valid JSON format, starting with { and ending with }.'
 
-llm_power <- llm(power, query, seed = 8675309)
+llm_power <- llm(power, system_prompt)
 ```
 
 
-```{r, echo = FALSE}
+```{r}
+#| echo: false
 # dput(llm_power)
 llm_power <- structure(list(text = c("Sample size was calculated with an a priori power analysis, using the effect sizes reported by Küpper et al. (2014), who used identical procedures, materials, and dependent measures.", 
 "We determined that a minimum sample size of 7 per group would be necessary for 95% power to detect an effect.", 
@@ -327,21 +330,16 @@ llm_power <- structure(list(text = c("Sample size was calculated with an a prior
 1, 2, 13, 3, 2, 5, 5, 5), s = c(2L, 3L, 3L, 3L, 3L, 8L, 3L, 7L, 
 8L), id = c("0956797615569889", "0956797615569889", "0956797615583071", 
 "0956797615583071", "0956797615583071", "0956797615588467", "0956797615588467", 
-"0956797615588467", "0956797615588467"), answer = c("{\n  \"apriori\": true\n}", 
-"{\n  \"apriori\": true, \n  \"test\": null, \n  \"sample\": 7, \n  \"alpha\": null, \n  \"power\": 0.95, \n  \"es\": null, \n  \"es_metric\": null\n}", 
-"{\"apriori\": false}", "{\n  \"apriori\": true, \n  \"test\": \"two-sample t-test\", \n  \"sample\": 26, \n  \"alpha\": 0.05, \n  \"power\": 0.8\n}", 
-"{\n  \"apriori\": true, \n  \"test\": \"t-test\", \n  \"sample\": 18, \n  \"alpha\": 0.05, \n  \"power\": 0.8\n}", 
-"{\n  \"apriori\": true, \n  \"test\": null, \n  \"sample\": 13500, \n  \"alpha\": 0.05, \n  \"power\": 0.98, \n  \"es\": 0.07, \n  \"es_metric\": null\n}", 
-"{\n  \"apriori\": true, \n  \"test\": \"unknown\", \n  \"sample\": 24, \n  \"alpha\": 0.002, \n  \"power\": 0.8, \n  \"es\": \"unknown\", \n  \"es_metric\": \"unknown\"\n}", 
-"{\"apriori\": true}", "{\n  \"apriori\": true, \n  \"test\": null, \n  \"sample\": 72, \n  \"alpha\": 0.05, \n  \"power\": 0.8, \n  \"es\": null, \n  \"es_metric\": null\n}"
-), time = c(0.054125226, 0.221003837, 0.065295072, 0.191989067, 
-0.184921361, 0.248274644, 0.345732381, 0.046376265, 0.232392039
-), tokens = c(225L, 259L, 224L, 254L, 255L, 272L, 302L, 221L, 
-269L)), row.names = c(NA, -9L), class = c("metacheck_llm", "data.frame"
-), llm = list(messages = list(list(role = "system", content = "Does this sentence report an a priori power analysis? If so, return the test, sample size, critical alpha criterion, power level, effect size and effect size metric plus any other relevant parameters, in JSON format like:\n{\n  \"apriori\": true, \n  \"test\": \"paired samples t-test\", \n  \"sample\": 20, \n  \"alpha\": 0.05, \n  \"power\": 0.8, \n  \"es\": 0.4, \n  \"es_metric\": \"cohen's D\"\n}\nIf not, return {\"apriori\": false}\nAnswer only in valid JSON format, starting with { and ending with }."), 
-    list(role = "user", content = "")), model = "llama-3.3-70b-versatile", 
-    temperature = 0.5, max_completion_tokens = 1024L, top_p = 0.95, 
-    seed = 8675309, stream = FALSE, stop = NULL))
+"0956797615588467", "0956797615588467"), answer = structure(c("{\"apriori\": true, \"test\": null, \"sample\": null, \"alpha\": null, \"power\": null, \"es\": null, \"es_metric\": null, \"notes\": \"A priori power analysis reported, but specific parameters (test, sample size, alpha, power level, effect size, effect size metric) are not provided in the sentence.\"}", 
+"{\"apriori\": true, \"test\": null, \"sample\": 7, \"alpha\": null, \"power\": 0.95, \"es\": null, \"es_metric\": null, \"notes\": \"A priori power analysis is indicated with sample size and power, but test type, alpha, and effect size are not specified in the sentence.\"}", 
+"{\"apriori\": false}", "{\"apriori\": true, \"test\": null, \"sample\": 26, \"alpha\": 0.05, \"power\": 0.8, \"es\": null, \"es_metric\": null, \"notes\": \"A priori power analysis is reported with sample size, alpha, and power, but test type and effect size are not specified in the sentence.\"}", 
+"{\"apriori\": true, \"test\": null, \"sample\": 18, \"alpha\": 0.05, \"power\": 0.8, \"es\": null, \"es_metric\": null, \"notes\": \"A priori power analysis is reported with sample size, alpha, and power, but the test type and effect size are not specified in the sentence.\"}", 
+"{\"apriori\": false}", "{\"apriori\": true, \"test\": \"contrasts of fMRI activity\", \"sample\": 24, \"alpha\": 0.002, \"power\": 0.8, \"es\": null, \"es_metric\": null, \"notes\": \"A priori power analysis is reported with sample size, power, and alpha. The test is contrasts of fMRI activity, but the specific effect size/metric is not provided in the sentence.\"}", 
+"{\"apriori\": true, \"test\": null, \"sample\": null, \"alpha\": null, \"power\": null, \"es\": null, \"es_metric\": null, \"notes\": \"A priori power analysis reported, but no specific parameters (test type, sample size, alpha, power, effect size, effect size metric) are provided in the sentence.\"}", 
+"{\"apriori\": true, \"test\": null, \"sample\": 72, \"alpha\": 0.05, \"power\": 0.8, \"es\": null, \"es_metric\": null, \"notes\": \"A priori power analysis reported using effect size from previous study, with sample size, power, and alpha, but test type and specific effect size/metric are not given.\"}"
+), class = "ellmer_output")), class = c("metacheck_llm", "data.frame"
+), row.names = c(NA, -9L), llm = list(system_prompt = "Does this sentence report an a priori power analysis? If so, return the test, sample size, critical alpha criterion, power level, effect size and effect size metric plus any other relevant parameters, in JSON format like:\n{\n  \"apriori\": true, \n  \"test\": \"paired samples t-test\", \n  \"sample\": 20, \n  \"alpha\": 0.05, \n  \"power\": 0.8, \n  \"es\": 0.4, \n  \"es_metric\": \"cohen's D\"\n}\nIf not, return {\"apriori\": false}\nAnswer only in valid JSON format, starting with { and ending with }.", 
+    model = "openai/gpt-4.1"))
 
 ```
 
@@ -362,17 +360,17 @@ knitr::kable(llm_response)
 
 ### Rate Limiting
 
-Remember, the `llm()` function makes a separate query for each row in a data frame from `search_text()`. Free GROQ accounts are rate limited, so we set the default limits to 30 queries, but you can change this:
+The `llm()` function makes a separate query [^parallel] for each row in a data frame from `search_text()`. To prevent accidentally making way too many calls because of errors in your code, we set the default limits to 30 queries at a time, but you can change this:
 
 ```{r}
 llm_max_calls(30)
 ```
 
-If you hit your rate limit, the `llm()` function will add a short delay between calls, so don't worry if you notice the query speed slowing down after the first 30 calls. 
+[^parallel]: Using the parallel functions in ellmer can be more efficient, but currently doesn't do a good job of associating structured  output to the input text when input may have 0+ outputs.
 
 ## OSF Functions
 
-metacheck provides several function to help you assess resources archived on the Open Science Framework.
+Metacheck provides several function to help you assess resources archived on the Open Science Framework.
 
 ### OSF Links and IDs
 

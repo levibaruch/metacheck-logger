@@ -1,9 +1,10 @@
 ---
 title: MetaCheck Report
 subtitle: "To Err is Human: An Empirical Investigation"
+author: "Daniel Lakens & Lisa DeBruine"
 metacheck:
-  version: "0.0.0.9065"
-  report-created: "2026-01-05"
+  version: "0.0.0.9066"
+  report-created: "2026-01-22"
 format:
   html:
     theme: 
@@ -12,39 +13,39 @@ format:
     respect-user-color-scheme: true
     toc: true
     toc-title: >
-      <ul>
-        <li class="green">no problems detected;</li>  
-        <li class="yellow">something to check;</li> 
-        <li class="red">possible problems detected;</li>  
-        <li class="info">informational only;</li>  
-        <li class="na">not applicable;</li>  
-        <li class="fail">check failed</li>
+      <ul class="emoji-key">
+        <li class="green">✅️ no problems detected;</li>  
+        <li class="yellow">🔍 something to check;</li> 
+        <li class="red">⚠️ possible problems detected;</li>  
+        <li class="info">ℹ️ informational only;</li>  
+        <li class="na">⚪️ not applicable;</li>  
+        <li class="fail">☠️ check failed</li>
       <ul>
       <hr/>
       **Table of Contents**
     toc-location: right
     toc-expand: 3
     page-layout: full
-    title-block-banner: "#327118"
+    title-block-banner: "#15342A"    #"#327118"
     title-block-banner-color: "white"
     link-external-newwindow: true
     embed-resources: true
     format-links: false
+    smooth-scroll: true
 execute: 
   echo: false
   error: true
 ---
 
 <style>
+  #TOC * { border-left: none; }
+  #TOC > ul { border-left: 1px solid #15342A; }
+  #TOC > ul > li > ul > li { text-indent: -1.2em; margin-left: 1.2em; }
   main h2, main h3 { margin-left: -20px; }
+  main h2 { font-size: 150%; font-face: italics; }
   main h3 { font-size: 125%; }
   main h4 { font-size: 110%; }
-  .na::before     { content: '⚪ '; } /* ⚪ */
-  .fail::before   { content: '☠️ '; } /* ⚫️ */
-  .info::before   { content: 'ℹ️ '; } /* 🔵 */
-  .red::before    { content: '⚠️ '; } /* 🔴 */
-  .yellow::before { content: '️🔍 '; } /* 🟡 */
-  .green::before  { content: '✅ '; } /* 🟢 */
+  .emoji-key li { margin-bottom: 0.5em; }
   section::before { content: '' !important; }
   th { background-color: #555; color: white; }
   table.dataTable, .dataTables_scrollBody { margin: 0.5em 0; }
@@ -56,6 +57,8 @@ execute:
   .quarto-dark table.dataTable { border: 1px solid #555; }
   table strong { color: red; }
   .quarto-dark table strong { color: yellow; }
+  summary { color: #333; }
+  .quarto-dark summary { color: #CCC; }
 </style>
 
 ::: {#info}
@@ -79,62 +82,38 @@ Metacheck is under continuous development. Issues can be submitted [on Github](h
 
 ## Summary
 
-- [Open Practices Check](#open-practices-check){.green}: Shared data and code detected.  
-- [COI Check](#coi-check){.red}: No conflict of interest statement was detected.  
-- [Funding Check](#funding-check){.red}: No funding statement was detected.  
-- [Preregistration Check](#preregistration-check){.info}: We found 2 preregistrations.  
-- [Randomization and Causal Claims](#randomization-and-causal-claims){.green}: 
+- ⚠️ [COI Check](#coi-check){.red}: No conflict of interest statement was detected.  
+- ⚠️ [Funding Check](#funding-check){.red}: No funding statement was detected.  
+- ✅️ [Open Practices Check](#open-practices-check){.green}: Shared data and code detected.  
+- ⚠️ [Power Analysis Check](#power-analysis-check){.red}: We detected 1 potential power analysis.  
+- ✅️ [Randomization and Causal Claims](#randomization-and-causal-claims){.green}: 
     -  We identified 1 sentence describing randomization.
     -  No causal claims were observed in the title.
     -  No causal claims were observed in the abstract.  
-- [Power Analysis Check](#power-analysis-check){.red}: We detected 1 potential power analysis.  
-- [Exact P-Values](#exact-p-values){.red}: We found 1 imprecise *p* value out of 3 detected.  
-- [Non-Significant P Value Check](#non-significant-p-value-check){.yellow}: We found 2 non-significant p values that should be checked for appropriate interpretation.  
-- [Marginal Significance](#marginal-significance){.red}: You described 2 effects with terms related to 'marginally significant'.  
-- [Effect Sizes in t-tests and F-tests](#effect-sizes-in-t-tests-and-f-tests){.red}: We found 1 t-test and/or F-test where effect sizes are not reported.  
-- [StatCheck](#statcheck){.red}: 1 possible error in t-tests or F-tests  
-- [Code Check](#code-check){.yellow}: 
+- ℹ️ [Preregistration Check](#preregistration-check){.info}: We found 2 preregistrations.  
+- ⚠️ [Exact P-Values](#exact-p-values){.red}: We found 1 imprecise *p* value out of 3 detected.  
+- ⚠️ [Marginal Significance](#marginal-significance){.red}: You described 2 effects with terms related to 'marginally significant'.  
+- ⚠️ [Effect Sizes in t-tests and F-tests](#effect-sizes-in-t-tests-and-f-tests){.red}: We found 1 t-test and/or F-test where effect sizes are not reported.  
+- ⚠️ [StatCheck](#statcheck){.red}: 1 possible error in t-tests or F-tests  
+- 🔍 [Non-Significant P Value Check](#non-significant-p-value-check){.yellow}: We found 2 non-significant p values that should be checked for appropriate interpretation.  
+- 🔍 [Code Check](#code-check){.yellow}: 
     -  We found 4 R, SAS, SPSS, or Stata code files in the 6 searched repositories.
     -  Some files loaded in the code were missing in the repository.
     -  Hardcoded file paths were found.
     -  Libraries/imports were loaded in multiple places.
     -  Some code files had no comments.
     -  We found 0 README files and 3 sources without READMEs: osf.io/cxjg4, https://github.com/Lakens/to_err_is_human, https://researchbox.org/4377.  
-- [DOI Check](#doi-check){.yellow}: We checked 1 reference in CrossRef and found 1 missing DOI.   
-- [Reference Accuracy](#reference-accuracy){.yellow}: We checked 3 references with DOIs in CrossRef and found  matches for 2.  
-- [Replication Check](#replication-check){.info}: You cited 1 article in the FReD replication database.  
-- [RetractionWatch](#retractionwatch){.info}: You cited 1 article in the RetractionWatch database.  
-- [Check PubPeer Comments](#check-pubpeer-comments){.info}: You cited 1 reference with comments in PubPeer.  
+- 🔍 [DOI Check](#doi-check){.yellow}: We checked 1 reference in CrossRef and found 1 missing DOI.   
+- 🔍 [Reference Accuracy](#reference-accuracy){.yellow}: We checked 3 references with DOIs in CrossRef and found  matches for 2.  
+- ℹ️ [Replication Check](#replication-check){.info}: You cited 1 article in the FReD replication database.  
+- ℹ️ [RetractionWatch](#retractionwatch){.info}: You cited 1 article in the RetractionWatch database.  
+- ℹ️ [Check PubPeer Comments](#check-pubpeer-comments){.info}: You cited 1 reference with comments in PubPeer.  
 
 
 
 ## General Modules
 
-### Open Practices Check {.green}
-
-Data was openly shared for this article, based on the following text:
-
-> Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>.
-
-Code was openly shared for this article, based on the following text:
-
-> Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>.
-
-::: {.callout-note title="How It Works" collapse="true"}
-
-This module incorporates ODDPub into metacheck. ODDPub is a text mining algorithm that detects which publications disseminated Open Data or Open Code together with the publication.
-
-The Open Practices Check runs Open Data Detection in Publications (ODDPub). ODDPub searches for text expressions that indicate that an article shared Open Data or Open Code together with the publication. More information on the package can be found at <https://github.com/quest-bih/oddpub>. The module only returns whether open data and code is found (the original package offers more fine-grained results). The tool was validated in the biomedical literature, see <https://osf.io/yv5rx/>.
-
-ODDPub was developed by Nico Riedel, Vladislav Nachev, Miriam Kip, and Evgeny Bobrov at the QUEST Center for Transforming Biomedical Research, Berlin Institute of Health. <https://doi.org/10.5334/dsj-2020-042>
-
-It might miss open data and code declarations when the words used in the manuscript are not in the pattern that ODDPub searches for, or when the repositories are not in the ODDpub code (e.g., ResearchBox).
-
-This module was developed by Daniel Lakens
-
-:::
-
-### COI Check {.red}
+### ⚠️ COI Check {#coi-check .red}
 
 No conflict of interest statement was detected. Consider adding one.
 
@@ -152,7 +131,7 @@ This module was developed by Daniel Lakens
 
 :::
 
-### Funding Check {.red}
+### ⚠️ Funding Check {#funding-check .red}
 
 No funding statement was detected. Consider adding one.
 
@@ -170,9 +149,172 @@ This module was developed by Daniel Lakens
 
 :::
 
+### ✅️ Open Practices Check {#open-practices-check .green}
+
+Shared data and code detected.
+
+<details><summary>View detailed feedback</summary><div>
+
+Data was openly shared for this article, based on the following text:
+
+> Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>.
+
+Code was openly shared for this article, based on the following text:
+
+> Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>.
+
+</div></details>
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module incorporates ODDPub into metacheck. ODDPub is a text mining algorithm that detects which publications disseminated Open Data or Open Code together with the publication.
+
+The Open Practices Check runs Open Data Detection in Publications (ODDPub). ODDPub searches for text expressions that indicate that an article shared Open Data or Open Code together with the publication. More information on the package can be found at <https://github.com/quest-bih/oddpub>. The module only returns whether open data and code is found (the original package offers more fine-grained results). The tool was validated in the biomedical literature, see <https://osf.io/yv5rx/>.
+
+ODDPub was developed by Nico Riedel, Vladislav Nachev, Miriam Kip, and Evgeny Bobrov at the QUEST Center for Transforming Biomedical Research, Berlin Institute of Health. <https://doi.org/10.5334/dsj-2020-042>
+
+It might miss open data and code declarations when the words used in the manuscript are not in the pattern that ODDPub searches for, or when the repositories are not in the ODDpub code (e.g., ResearchBox).
+
+This module was developed by Daniel Lakens
+
+:::
+
 ## Method Modules
 
-### Preregistration Check {.info}
+### ⚠️ Power Analysis Check {#power-analysis-check .red}
+
+We detected 1 potential power analysis.
+
+<details><summary>View detailed feedback</summary><div>
+
+Some essential information could not be detected: alpha_level, software
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list(power_type = "sensitivity", statistical_test = "unpaired t-test", 
+    sample_size = 100L, alpha_level = NA, power = 0.8, effect_size = 0.5, 
+    effect_size_metric = "Cohen's d", software = NA), row.names = c(NA, 
+-1L), class = c("tbl_df", "tbl", "data.frame"))
+
+# display table -----------------------------------
+metacheck::report_table(table, "auto", 5, FALSE)
+```
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list(text = "In this study we examine whether automated checks reduce the amount of errors that researchers make in scientific manuscripts. This study was preregistered at <https://osf.io/48ncu> and on AsPredicted at <https://aspredicted.org/by8i8v.pdf>. We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist. Scientists had the opportunity to make changes to their manuscript based on the feedback of the tool. We subsequently coded all manuscripts for mistakes, and counted the total number of mistakes. We also measured the expertise of researchers (in years) to explore whether the automated tool would be more useful, the less research experience researchers had. We also asked researchers to rate how useful they found the checklist or app on a scale from 1 (not at all) to 7 (extremely useful). Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>. Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>. We conducted a <strong>sensitivity</strong> <strong>power</strong> analysis to determine that a Cohen's d of 0.50 is the smallest effect size that we could detect with 50 participants in each group and 80% <strong>power</strong>. On average researchers in the experimental (app) condition made fewer mistakes (M = 9.12) than researchers in the control (checklist) condition (M = 10.9), t(97.7) = 2.9, p = 0.005, d = 0.59."), row.names = c(NA, 
+-1L), class = c("tbl_df", "tbl", "data.frame"))
+
+# display table -----------------------------------
+metacheck::report_table(table, "auto", 1, FALSE)
+```
+
+::: {.callout-tip title="Learn More" collapse="true"}
+
+Power analyses need to contain the following information to be interpretable: the type of power analysis, the statistical test, the software used, sample size, critical alpha criterion, power level, effect size, and an effect size metric. In addition, it is recommended to make sure the power analysis is reproducible (by sharing the code, or a screenshot, of the power analysis), and to provide good arguments for why the study was designed to detect an effect of this size.
+
+For an a-priori power analysis, where the sample size is determined, reporting all information would look like:
+
+> An a priori power analysis for an independent samples t-test, conducted using the pwr.t.test function from pwr (Champely, 2020), indicated that for a Cohen's d = 0.5, an alpha level of 0.05, and a desired power level of 80% required at least 64 participants in each group.
+
+For a sensitivity power analysis, this sentence would look like:
+
+> A sensitivity power analysis for an independent samples t-test, conducted using the pwr.t.test function from pwr (Champely, 2020), indicated that with 64 participants in each group, and an alpha level of 0.05, a desired power level of 80% was reached for an effect size of d = 0.5.
+
+:::
+
+</div></details>
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module uses a large language module (LLM) to extract information reported in power analyses, including the statistical test, sample size, alpha level, desired level of power,and magnitude and type of effect size.
+
+If you have not set llm_use(TRUE) and supplied a groq API, the module will return paragraphs that potentially contain power analyses, based on a regular expression search.
+
+The Power Analysis Check module uses regular expressions to identify sentences that contain a statistical power analysis. Without the use of an LMM, the module uses regular expressions to classify the power analysis as a-priori, sensitivity or post-hoc. With the use of an LMM, it checks if the power analysis is reported with all required information.
+
+The regular expressions can miss power analyses, or fail to classify them correctly. The type of power analysis is often difficult to classify, which can easily be solved by explicitly specifying the type of power analysis as 'a-priori', 'sensitivity', or 'post-hoc'. Note that 'post-hoc' or 'observed' power is rarely useful. The LMM can fail to identify information in the paper, and will not have access to information in paragraphs in the paper other than those that contain the word 'power'. This package was validated by the Metacheck team on articles in Psychological Science.
+
+This module was developed by Lisa DeBruine, Daniel Lakens and Cristian Mesquida
+
+:::
+
+### ✅️ Randomization and Causal Claims {#randomization-and-causal-claims .green}
+
+-  We identified 1 sentence describing randomization.
+-  No causal claims were observed in the title.
+-  No causal claims were observed in the abstract.
+
+<details><summary>View detailed feedback</summary><div>
+
+Journal Article Reporting Standards require details about randomization procedures, or how possible bias due to non-randomization is mitigated. This information is often not reported. Furthermore, researchers sometimes make causal claims that are not warranted, for example because there was no random assignment to conditions. This module checks how (non)randomization is reported, and checks for causal claims in the title and abstract. Researchers are asked to double check whether this information is reported completely and correctly.
+
+#### Randomization
+
+We identified 1 sentence describing randomization.
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list("We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist."), names = "", class = "data.frame", row.names = c(NA, 
+-1L))
+
+# display table -----------------------------------
+metacheck::report_table(table, "auto", 2, FALSE)
+```
+
+If this was a study that contained random assignment to conditions, the journal article reporting standards (JARS) ask that you describe the following:
+
+1. Random assignment method: Procedure used to generate the random assignment sequence, including details of any restriction (e.g., blocking, stratification)
+
+2. Random assignment concealment: Whether sequence was concealed until interventions were assigned
+
+3. Random assignment implementation: Who generated the assignment sequence, who enrolled participants, who assigned participants to groups
+
+#### Causal Claims
+
+No causal claims were observed in the title.
+
+No causal claims were observed in the abstract.
+
+::: {.callout-tip title="Learn More" collapse="true"}
+
+For advice on how to make causal claims, and when not to, see:
+
+Antonakis J, Bendahan S, Jacquart P, Lalive R (2010). &ldquo;On making causal claims: A review and recommendations.&rdquo; <em>The Leadership Quarterly</em>, <b>21</b>(6), 1086&ndash;1120. <a href="https://doi.org/10.1016/j.leaqua.2010.10.010">doi:10.1016/j.leaqua.2010.10.010</a>.
+
+Grosz M, Rohrer J, Thoemmes F (2020). &ldquo;The Taboo Against Explicit Causal Inference in Nonexperimental Psychology.&rdquo; <em>Perspectives on Psychological Science</em>, <b>15</b>(5), 1243&ndash;1255. <a href="https://doi.org/10.1177/1745691620921521">doi:10.1177/1745691620921521</a>.
+
+For the APA journal articles reporting standards, see <https://apastyle.apa.org/jars>
+
+:::
+
+</div></details>
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+Aims to identify the presence of random assignment, and lists sentences that make causal claims in title or abstract.
+
+The Randomization and Causal Claims Check first uses regular expressions to check whether the manuscript contains a statement about randomization to conditions. Subsequently, it sends the title and abstract to a [machine learning classifier developed by Rasoul Norouzi](https://github.com/rasoulnorouzi/causal_relation_miner) that runs on [HuggingFace](https://huggingface.co/spaces/lakens/causal_sentences). Causal statements are identified. Researchers are recommended to double check if causal statements are warranted, especially if no sentences describing randomization were detected.
+
+The regular expressions can miss statements about randomization, or incorrectly assume there is a sentence describing randomization. The module can’t evaluate if the causal statements that are identified are warranted or not, and it only reminds users to double-check.
+
+If you want to improve the detection of sentences describing randomization, or otherwise improve the module, reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens
+
+:::
+
+### ℹ️ Preregistration Check {#preregistration-check .info}
+
+We found 2 preregistrations.
+
+<details><summary>View detailed feedback</summary><div>
 
 We found 2 preregistrations.
 
@@ -270,6 +412,8 @@ Lakens, Daniël (2024). &ldquo;When and How to Deviate From a Preregistration.&r
 
 :::
 
+</div></details>
+
 ::: {.callout-note title="How It Works" collapse="true"}
 
 Retrieve information from preregistrations in a standardised way,
@@ -285,128 +429,15 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
-### Randomization and Causal Claims {.green}
-
-Journal Article Reporting Standards require details about randomization procedures, or how possible bias due to non-randomization is mitigated. This information is often not reported. Furthermore, researchers sometimes make causal claims that are not warranted, for example because there was no random assignment to conditions. This module checks how (non)randomization is reported, and checks for causal claims in the title and abstract. Researchers are asked to double check whether this information is reported completely and correctly.
-
-#### Randomization
-
-We identified 1 sentence describing randomization.
-
-```{r}
-#| echo: false
-
-# table data --------------------------------------
-table <- structure(list("We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist."), names = "", class = "data.frame", row.names = c(NA, 
--1L))
-
-# display table -----------------------------------
-metacheck::report_table(table, "auto", 2, FALSE)
-```
-
-If this was a study that contained random assignment to conditions, the journal article reporting standards (JARS) ask that you describe the following:
-
-1. Random assignment method: Procedure used to generate the random assignment sequence, including details of any restriction (e.g., blocking, stratification)
-
-2. Random assignment concealment: Whether sequence was concealed until interventions were assigned
-
-3. Random assignment implementation: Who generated the assignment sequence, who enrolled participants, who assigned participants to groups
-
-#### Causal Claims
-
-No causal claims were observed in the title.
-
-No causal claims were observed in the abstract.
-
-::: {.callout-tip title="Learn More" collapse="true"}
-
-For advice on how to make causal claims, and when not to, see:
-
-Antonakis J, Bendahan S, Jacquart P, Lalive R (2010). &ldquo;On making causal claims: A review and recommendations.&rdquo; <em>The Leadership Quarterly</em>, <b>21</b>(6), 1086&ndash;1120. <a href="https://doi.org/10.1016/j.leaqua.2010.10.010">doi:10.1016/j.leaqua.2010.10.010</a>.
-
-Grosz M, Rohrer J, Thoemmes F (2020). &ldquo;The Taboo Against Explicit Causal Inference in Nonexperimental Psychology.&rdquo; <em>Perspectives on Psychological Science</em>, <b>15</b>(5), 1243&ndash;1255. <a href="https://doi.org/10.1177/1745691620921521">doi:10.1177/1745691620921521</a>.
-
-For the APA journal articles reporting standards, see <https://apastyle.apa.org/jars>
-
-:::
-
-::: {.callout-note title="How It Works" collapse="true"}
-
-Aims to identify the presence of random assignment, and lists sentences that make causal claims in title or abstract.
-
-The Randomization and Causal Claims Check first uses regular expressions to check whether the manuscript contains a statement about randomization to conditions. Subsequently, it sends the title and abstract to a [machine learning classifier developed by Rasoul Norouzi](https://github.com/rasoulnorouzi/causal_relation_miner) that runs on [HuggingFace](https://huggingface.co/spaces/lakens/causal_sentences). Causal statements are identified. Researchers are recommended to double check if causal statements are warranted, especially if no sentences describing randomization were detected.
-
-The regular expressions can miss statements about randomization, or incorrectly assume there is a sentence describing randomization. The module can’t evaluate if the causal statements that are identified are warranted or not, and it only reminds users to double-check.
-
-If you want to improve the detection of sentences describing randomization, or otherwise improve the module, reach out to the Metacheck development team.
-
-This module was developed by Daniel Lakens
-
-:::
-
-### Power Analysis Check {.red}
-
-We detected 1 potential power analysis.
-
-Some essential information could not be detected: alpha_level, software
-
-```{r}
-#| echo: false
-
-# table data --------------------------------------
-table <- structure(list(power_type = "sensitivity", statistical_test = "unpaired t-test", 
-    sample_size = 100L, alpha_level = NA, power = 0.8, effect_size = 0.5, 
-    effect_size_metric = "Cohen's d", software = NA), row.names = c(NA, 
--1L), class = c("tbl_df", "tbl", "data.frame"))
-
-# display table -----------------------------------
-metacheck::report_table(table, "auto", 5, FALSE)
-```
-
-```{r}
-#| echo: false
-
-# table data --------------------------------------
-table <- structure(list(text = "In this study we examine whether automated checks reduce the amount of errors that researchers make in scientific manuscripts. This study was preregistered at <https://osf.io/48ncu> and on AsPredicted at <https://aspredicted.org/by8i8v.pdf>. We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist. Scientists had the opportunity to make changes to their manuscript based on the feedback of the tool. We subsequently coded all manuscripts for mistakes, and counted the total number of mistakes. We also measured the expertise of researchers (in years) to explore whether the automated tool would be more useful, the less research experience researchers had. We also asked researchers to rate how useful they found the checklist or app on a scale from 1 (not at all) to 7 (extremely useful). Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>. Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>. We conducted a <strong>sensitivity</strong> <strong>power</strong> analysis to determine that a Cohen's d of 0.50 is the smallest effect size that we could detect with 50 participants in each group and 80% <strong>power</strong>. On average researchers in the experimental (app) condition made fewer mistakes (M = 9.12) than researchers in the control (checklist) condition (M = 10.9), t(97.7) = 2.9, p = 0.005, d = 0.59."), row.names = c(NA, 
--1L), class = c("tbl_df", "tbl", "data.frame"))
-
-# display table -----------------------------------
-metacheck::report_table(table, "auto", 1, FALSE)
-```
-
-::: {.callout-tip title="Learn More" collapse="true"}
-
-Power analyses need to contain the following information to be interpretable: the type of power analysis, the statistical test, the software used, sample size, critical alpha criterion, power level, effect size, and an effect size metric. In addition, it is recommended to make sure the power analysis is reproducible (by sharing the code, or a screenshot, of the power analysis), and to provide good arguments for why the study was designed to detect an effect of this size.
-
-For an a-priori power analysis, where the sample size is determined, reporting all information would look like:
-
-> An a priori power analysis for an independent samples t-test, conducted using the pwr.t.test function from pwr (Champely, 2020), indicated that for a Cohen's d = 0.5, an alpha level of 0.05, and a desired power level of 80% required at least 64 participants in each group.
-
-For a sensitivity power analysis, this sentence would look like:
-
-> A sensitivity power analysis for an independent samples t-test, conducted using the pwr.t.test function from pwr (Champely, 2020), indicated that with 64 participants in each group, and an alpha level of 0.05, a desired power level of 80% was reached for an effect size of d = 0.5.
-
-:::
-
-::: {.callout-note title="How It Works" collapse="true"}
-
-This module uses a large language module (LLM) to extract information reported in power analyses, including the statistical test, sample size, alpha level, desired level of power,and magnitude and type of effect size.
-
-If you have not set llm_use(TRUE) and supplied a groq API, the module will return paragraphs that potentially contain power analyses, based on a regular expression search.
-
-The Power Analysis Check module uses regular expressions to identify sentences that contain a statistical power analysis. Without the use of an LMM, the module uses regular expressions to classify the power analysis as a-priori, sensitivity or post-hoc. With the use of an LMM, it checks if the power analysis is reported with all required information.
-
-The regular expressions can miss power analyses, or fail to classify them correctly. The type of power analysis is often difficult to classify, which can easily be solved by explicitly specifying the type of power analysis as 'a-priori', 'sensitivity', or 'post-hoc'. Note that 'post-hoc' or 'observed' power is rarely useful. The LMM can fail to identify information in the paper, and will not have access to information in paragraphs in the paper other than those that contain the word 'power'. This package was validated by the Metacheck team on articles in Psychological Science.
-
-This module was developed by Lisa DeBruine, Daniel Lakens and Cristian Mesquida
-
-:::
-
 ## Results Modules
 
-### Exact P-Values {.red}
+### ⚠️ Exact P-Values {#exact-p-values .red}
 
-We found 1 imprecise *p* value out of 3 detected. Reporting *p* values imprecisely (e.g., *p* < .05) reduces transparency, reproducibility, and re-use (e.g., in *p* value meta-analyses). Best practice is to report exact p-values with three decimal places (e.g., *p* = .032) unless *p* values are smaller than 0.001, in which case you can use *p* < .001.
+We found 1 imprecise *p* value out of 3 detected.
+
+<details><summary>View detailed feedback</summary><div>
+
+Reporting *p* values imprecisely (e.g., *p* < .05) reduces transparency, reproducibility, and re-use (e.g., in *p* value meta-analyses). Best practice is to report exact p-values with three decimal places (e.g., *p* = .032) unless *p* values are smaller than 0.001, in which case you can use *p* < .001.
 
 ```{r}
 #| echo: false
@@ -427,6 +458,8 @@ American Psychological Association (2020). <em>Publication manual of the America
 
 :::
 
+</div></details>
+
 ::: {.callout-note title="How It Works" collapse="true"}
 
 List any p-values reported with insufficient precision (e.g., p < .05 or p = n.s.)
@@ -439,54 +472,11 @@ This module was developed by Lisa DeBruine
 
 :::
 
-### Non-Significant P Value Check {.yellow}
+### ⚠️ Marginal Significance {#marginal-significance .red}
 
-We found 2 non-significant p values that should be checked for appropriate interpretation.
+You described 2 effects with terms related to 'marginally significant'.
 
-Meta-scientific research has shown nonsignificant p values are commonly misinterpreted. It is incorrect to infer that there is 'no effect', 'no difference', or that groups are 'the same' after p > 0.05.
-
-It is possible that there is a true non-zero effect, but that the study did not detect it. Make sure your inference acknowledges that it is possible that there is a non-zero effect. It is correct to include the effect is 'not significantly' different, although this just restates that p > 0.05.
-
-Metacheck does not yet analyze automatically whether sentences which include non-significant p-values are correct, but we recommend manually checking the sentences below for possible misinterpreted non-significant p values.
-
-```{r}
-#| echo: false
-
-# table data --------------------------------------
-table <- structure(list(Text = c("p = 0.152", "p > .05"), Sentence = c("On average researchers in the experimental condition found the app marginally significantly more useful (M = 5.06) than researchers in the control condition found the checklist (M = 4.5), t(97.2) = -1.96, p = 0.152.", 
-"There was no effect of experience on the reduction in errors when using the tool (p > .05), as the correlation was non-significant."
-)), row.names = c(NA, -2L), class = c("tbl_df", "tbl", "data.frame"
-))
-
-# display table -----------------------------------
-metacheck::report_table(table, c(0.1, 0.9), 2, FALSE)
-```
-
-::: {.callout-tip title="Learn More" collapse="true"}
-
-For metascientific articles demonstrating the rate of misinterpretations of non-significant results is high, see:
-
-Aczel B, Palfi B, Szollosi A, Kovacs M, Szaszi B, Szecsi P, Zrubka M, Gronau Q, van den Bergh D, Wagenmakers E (2018). &ldquo;Quantifying Support for the Null Hypothesis in Psychology: An Empirical Investigation.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>(3), 357&ndash;366. <a href="https://doi.org/10.1177/2515245918773742">doi:10.1177/2515245918773742</a>.
-
-Murphy S, Merz R, Reimann L, Fernández A (2025). &ldquo;Nonsignificance misinterpreted as an effect’s absence in psychology: Prevalence and temporal analyses.&rdquo; <em>Royal Society Open Science</em>, <b>12</b>(3), 242167. <a href="https://doi.org/10.1098/rsos.242167">doi:10.1098/rsos.242167</a>.
-
-For educational material on preventing the misinterpretation of p values, see [Improving Your Statistical Inferences](https://lakens.github.io/statistical_inferences/01-pvalue.html#sec-misconception1).
-
-:::
-
-::: {.callout-note title="How It Works" collapse="true"}
-
-This module checks for imprecisely reported p values. If p > .05 is detected, it warns for misinterpretations.
-
-The nonsignificant p-value check searches for regular expressions that match a predefined pattern. The module identifies all p-values in a manuscript and selects those that are not reported to be smaller than or equal to 0.05. It returns all sentences containing non-significant p-values.
-
-In the future, the Metacheck team aims to incorporate a machine learning classifier to only return sentences likely to contain misinterpretations. If you want to help to improve the module, reach out to the Metacheck development team.
-
-This module was developed by Daniel Lakens
-
-:::
-
-### Marginal Significance {.red}
+<details><summary>View detailed feedback</summary><div>
 
 You described effects with terms related to 'marginally significant'. If *p* values above 0.05 are interpreted as an effect, you inflate the alpha level, and increase the Type 1 error rate. If a *p* value is higher than the prespecified alpha level, it should be interpreted as a non-significant result.
 
@@ -513,6 +503,8 @@ For the list of terms used to identifify marginally significant results, see thi
 
 :::
 
+</div></details>
+
 ::: {.callout-note title="How It Works" collapse="true"}
 
 List all sentences that describe an effect as 'marginally significant'.
@@ -525,11 +517,13 @@ This module was developed by Daniel Lakens
 
 :::
 
-### Effect Sizes in t-tests and F-tests {.red}
+### ⚠️ Effect Sizes in t-tests and F-tests {#effect-sizes-in-t-tests-and-f-tests .red}
 
-We found 1 t-test and/or F-test where effect sizes are not reported. We recommend checking the sentences below, and add any missing effect sizes.
+We found 1 t-test and/or F-test where effect sizes are not reported.
 
-The following sentences are missing effect sizes
+<details><summary>View detailed feedback</summary><div>
+
+We recommend checking the sentences below, and add any missing effect sizes.
 
 ```{r}
 #| echo: false
@@ -573,6 +567,8 @@ metacheck::report_table(table, "auto", 2, FALSE)
 
 :::
 
+</div></details>
+
 ::: {.callout-note title="How It Works" collapse="true"}
 
 The Effect Size module checks for effect sizes in t-tests and F-tests.
@@ -585,7 +581,11 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
-### StatCheck {.red}
+### ⚠️ StatCheck {#statcheck .red}
+
+1 possible error in t-tests or F-tests
+
+<details><summary>View detailed feedback</summary><div>
 
 We detected possible errors in test statistics. Note that as the accuracy of statcheck has only been validated for *t*-tests and *F*-tests. As Metacheck only uses validated modules, we only provide statcheck results for *t* tests and *F*-tests.
 
@@ -611,6 +611,8 @@ Nuijten M, Wicherts J (2023). &ldquo;The effectiveness of implementing statcheck
 
 :::
 
+</div></details>
+
 ::: {.callout-note title="How It Works" collapse="true"}
 
 Check consistency of p-values and test statistics
@@ -625,7 +627,67 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
-### Code Check {.yellow}
+### 🔍 Non-Significant P Value Check {#non-significant-p-value-check .yellow}
+
+We found 2 non-significant p values that should be checked for appropriate interpretation.
+
+<details><summary>View detailed feedback</summary><div>
+
+Meta-scientific research has shown nonsignificant p values are commonly misinterpreted. It is incorrect to infer that there is 'no effect', 'no difference', or that groups are 'the same' after p > 0.05.
+
+It is possible that there is a true non-zero effect, but that the study did not detect it. Make sure your inference acknowledges that it is possible that there is a non-zero effect. It is correct to include the effect is 'not significantly' different, although this just restates that p > 0.05.
+
+Metacheck does not yet analyze automatically whether sentences which include non-significant p-values are correct, but we recommend manually checking the sentences below for possible misinterpreted non-significant p values.
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list(Text = c("p = 0.152", "p > .05"), Sentence = c("On average researchers in the experimental condition found the app marginally significantly more useful (M = 5.06) than researchers in the control condition found the checklist (M = 4.5), t(97.2) = -1.96, p = 0.152.", 
+"There was no effect of experience on the reduction in errors when using the tool (p > .05), as the correlation was non-significant."
+)), row.names = c(NA, -2L), class = c("tbl_df", "tbl", "data.frame"
+))
+
+# display table -----------------------------------
+metacheck::report_table(table, c(0.1, 0.9), 2, FALSE)
+```
+
+::: {.callout-tip title="Learn More" collapse="true"}
+
+For metascientific articles demonstrating the rate of misinterpretations of non-significant results is high, see:
+
+Aczel B, Palfi B, Szollosi A, Kovacs M, Szaszi B, Szecsi P, Zrubka M, Gronau Q, van den Bergh D, Wagenmakers E (2018). &ldquo;Quantifying Support for the Null Hypothesis in Psychology: An Empirical Investigation.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>(3), 357&ndash;366. <a href="https://doi.org/10.1177/2515245918773742">doi:10.1177/2515245918773742</a>.
+
+Murphy S, Merz R, Reimann L, Fernández A (2025). &ldquo;Nonsignificance misinterpreted as an effect’s absence in psychology: Prevalence and temporal analyses.&rdquo; <em>Royal Society Open Science</em>, <b>12</b>(3), 242167. <a href="https://doi.org/10.1098/rsos.242167">doi:10.1098/rsos.242167</a>.
+
+For educational material on preventing the misinterpretation of p values, see [Improving Your Statistical Inferences](https://lakens.github.io/statistical_inferences/01-pvalue.html#sec-misconception1).
+
+:::
+
+</div></details>
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module checks for imprecisely reported p values. If p > .05 is detected, it warns for misinterpretations.
+
+The nonsignificant p-value check searches for regular expressions that match a predefined pattern. The module identifies all p-values in a manuscript and selects those that are not reported to be smaller than or equal to 0.05. It returns all sentences containing non-significant p-values.
+
+In the future, the Metacheck team aims to incorporate a machine learning classifier to only return sentences likely to contain misinterpretations. If you want to help to improve the module, reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens
+
+:::
+
+### 🔍 Code Check {#code-check .yellow}
+
+-  We found 4 R, SAS, SPSS, or Stata code files in the 6 searched repositories.
+-  Some files loaded in the code were missing in the repository.
+-  Hardcoded file paths were found.
+-  Libraries/imports were loaded in multiple places.
+-  Some code files had no comments.
+-  We found 0 README files and 3 sources without READMEs: osf.io/cxjg4, https://github.com/Lakens/to_err_is_human, https://researchbox.org/4377.
+
+<details><summary>View detailed feedback</summary><div>
 
 Below, we describe some best coding practices and give the results of automatic evaluation of these practices in the code files below. This check may miss things or produce false positives if your scripts are less typical.
 
@@ -700,16 +762,15 @@ metacheck::report_table(table, "auto", 5, FALSE)
 
 #### Code Comments
 
-Best programming practice is to add comments to code, to explain what the code does (to yourself in the future, or peers who want to re-use your code). The following 1 files had no comments:
+Best programming practice is to add comments to code, to explain what the code does (to yourself in the future, or peers who want to re-use your code).
 
 ```{r}
 #| echo: false
 
 # table data --------------------------------------
 table <- structure(list("Code File name" = c("bad.R", "bad.Rmd", "analysis.R", 
-"Code/Study 1.r"), Language = c("R", "R", "R", "R"), "Percentage of lines that are comments" = c(0.0526315789473684, 
-0.0222222222222222, 0, 0.111111111111111)), row.names = c(NA, 
-4L), class = "data.frame")
+"Code/Study 1.r"), Language = c("R", "R", "R", "R"), "Percentage of lines that are comments" = c("5%", 
+"2%", "0%", "11%")), row.names = c(NA, 4L), class = "data.frame")
 
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 5, FALSE)
@@ -720,6 +781,8 @@ metacheck::report_table(table, "auto", 5, FALSE)
 We found 0 README files and 3 sources without READMEs: osf.io/cxjg4, https://github.com/Lakens/to_err_is_human, https://researchbox.org/4377. 
 
 README files are a way to document the contents and structure of a folder, helping users locate the information they need. You can use a README to document changes to a repository, and explain how files are named. Please consider adding a README to each repository.
+
+</div></details>
 
 ::: {.callout-note title="How It Works" collapse="true"}
 
@@ -737,9 +800,11 @@ This module was developed by Daniel Lakens
 
 ## Reference Modules
 
-### DOI Check {.yellow}
+### 🔍 DOI Check {#doi-check .yellow}
 
 We checked 1 reference in CrossRef and found 1 missing DOI. 
+
+<details><summary>View detailed feedback</summary><div>
 
 Double check any references listed in the tables below. The match score gives an indication of how good the match was. Many books do not have a DOI or are not listed in CrossRef. Garbled references are usually a result of poor parsing of the paper by grobid; we are working on more accurate alternatives.
 
@@ -748,11 +813,13 @@ Double check any references listed in the tables below. The match score gives an
 
 # table data --------------------------------------
 table <- structure(list("Found DOI" = "<a href='https://doi.org/10.1177/2515245918770963' target='_blank'>doi.org/10.1177/2515245918770963</a>", 
-    "Match Score" = 69, "Original Reference" = "Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."), row.names = 1L, class = "data.frame")
+    "Match Score" = 70, "Original Reference" = "Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."), row.names = 1L, class = "data.frame")
 
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 2, FALSE)
 ```
+
+</div></details>
 
 ::: {.callout-note title="How It Works" collapse="true"}
 
@@ -766,9 +833,11 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
-### Reference Accuracy {.yellow}
+### 🔍 Reference Accuracy {#reference-accuracy .yellow}
 
 We checked 3 references with DOIs in CrossRef and found  matches for 2.
+
+<details><summary>View detailed feedback</summary><div>
 
 Double check any references listed in the tables below. This tool has a high false positive rate.
 
@@ -794,6 +863,8 @@ table <- structure(list("Original Title" = "Evil Genius? How Dishonesty Can Lead
 metacheck::report_table(table, 5, 2, FALSE)
 ```
 
+</div></details>
+
 ::: {.callout-note title="How It Works" collapse="true"}
 
 This module checks references for mismatches with CrossRef.
@@ -808,7 +879,11 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
-### Replication Check {.info}
+### ℹ️ Replication Check {#replication-check .info}
+
+You cited 1 article in the FReD replication database.
+
+<details><summary>View detailed feedback</summary><div>
 
 We checked 4 references with DOIs. You cited 1 article in the FReD replication database.
 
@@ -824,6 +899,8 @@ table <- structure(list(Reference = "Gangestad SW, Thornhill R (1998). &ldquo;Me
 # display table -----------------------------------
 metacheck::report_table(table, c(0.5, 0.5), 2, FALSE)
 ```
+
+</div></details>
 
 ::: {.callout-note title="How It Works" collapse="true"}
 
@@ -841,7 +918,11 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
-### RetractionWatch {.info}
+### ℹ️ RetractionWatch {#retractionwatch .info}
+
+You cited 1 article in the RetractionWatch database.
+
+<details><summary>View detailed feedback</summary><div>
 
 We checked 4 references with DOIs. You cited 1 article in the RetractionWatch database.
 
@@ -857,6 +938,8 @@ table <- structure(list(Reference = "Gino F, Wiltermuth SS (2014). &ldquo;Evil G
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 2, FALSE)
 ```
+
+</div></details>
 
 ::: {.callout-note title="How It Works" collapse="true"}
 
@@ -874,7 +957,11 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 :::
 
-### Check PubPeer Comments {.info}
+### ℹ️ Check PubPeer Comments {#check-pubpeer-comments .info}
+
+You cited 1 reference with comments in PubPeer.
+
+<details><summary>View detailed feedback</summary><div>
 
 We checked 4 references with DOIs. You cited 1 reference with comments in PubPeer.
 
@@ -890,6 +977,8 @@ table <- structure(list(Reference = "Gino F, Wiltermuth SS (2014). &ldquo;Evil G
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 2, FALSE)
 ```
+
+</div></details>
 
 ::: {.callout-note title="How It Works" collapse="true"}
 

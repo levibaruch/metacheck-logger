@@ -131,24 +131,24 @@ methres <- search_text(paper, regex_sample,
 
 This gives us `r nrow(methres)` paragraphs to deal with. We can then send them to an LLM, and ask which paragraph is most closely related to the text in the preregistration. 
 
-metacheck has a custom function to send text and a query to Groq.
+Metacheck has a custom function to send text and a system prompt to an LLM.
 
 ```{r}
 #| results: 'asis'
-query_template <- "The following text is part of a scientific article. It describes a performed study. Part of this text should correspond to what researchers planned to do. Before data collection, the researchers stated they would:
+system_prompt_template <- "The following text is part of a scientific article. It describes a performed study. Part of this text should correspond to what researchers planned to do. Before data collection, the researchers stated they would:
 
 %s
 
 Your task is to retrieve the sentence(s) in the article that correspond to this plan, and evaluate based on the text in the manuscript whether researchers followed their plan with respect to the sample size. Start your answer with a 'The authors deviated from their preregistration' if there is any deviation."
 
 # insert prereg text into template
-query <- sprintf(query_template, prereg_sample_size)
+system_prompt <- sprintf(system_prompt_template, prereg_sample_size)
 
 # combine all relevant paragraphs
 text <- paste(methres$text, collapse = "\n\n")
 
-# run query
-llm_response <- llm(text, query)
+# run system_prompt
+llm_response <- llm(text, system_prompt)
 
 llm_response$answer |> cat("> ", x = _)
 ```
@@ -182,8 +182,8 @@ methres <- search_text(paper, regex_sample,
   search_text(regex_numbers, return = "paragraph")
 
 text <- paste(methres$text, collapse = "\n\n")
-query <- sprintf(query_template, prereg_sample_size)
-llm_response <- llm(text, query, model = "llama-3.3-70b-versatile")
+system_prompt <- sprintf(system_prompt_template, prereg_sample_size)
+llm_response <- llm(text, system_prompt)
 
 llm_response$answer |> cat("> ", x = _)
 ```
@@ -232,7 +232,7 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
   # check LLM only if requested
   llm_answer <- "LLM not run"
   if (use_llm) {
-    query_template <- "The following text is part of a scientific article. It describes a performed study. Part of this text should correspond to what researchers planned to do. Before data collection, the researchers stated they would:
+    system_prompt_template <- "The following text is part of a scientific article. It describes a performed study. Part of this text should correspond to what researchers planned to do. Before data collection, the researchers stated they would:
   
   %s
   
@@ -246,11 +246,11 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
       search_text(regex_numbers, return = "paragraph")
     
     text <- paste(methres$text, collapse = "\n\n")
-    query <- sprintf(query_template, prereg_sample_size)
+    system_prompt <- sprintf(system_prompt_template, prereg_sample_size)
     
     # fails gracefully if is API key not available
     llm_answer <- tryCatch({
-      llm_response <- llm(text, query, model = "llama-3.3-70b-versatile")
+      llm_response <- llm(text, system_prompt)
       llm_response$answer
     }, error = \(e) { return(NULL) })
   }

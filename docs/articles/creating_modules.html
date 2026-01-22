@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9065</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9066</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -614,7 +614,7 @@ table), bibtex text, or plain text.</p>
 <p>[1] “Gino F, Wiltermuth SS (2014). “Evil Genius? How Dishonesty Can
 Lead to Greater Creativity.” <em>Psychological Science</em>,
 <b>25</b>(4), 973-981.
-<a href="%5C%22https://doi.org/10.1177/0956797614520714%5C%22" class="external-link">doi:10.1177/0956797614520714</a>.”</p>
+<a href='\"https://doi.org/10.1177/0956797614520714\"' class="external-link">doi:10.1177/0956797614520714</a>.”</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bibentry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/bibentry.html" class="external-link">bibentry</a></span><span class="op">(</span></span>
 <span>    bibtype <span class="op">=</span> <span class="st">"Article"</span>,</span>
@@ -635,14 +635,14 @@ Lead to Greater Creativity.” <em>Psychological Science</em>,
 falsifiability, and rigor by making hypothesis tests machine-readable.”
 <em>Advances in Methods and Practices in Psychological Science</em>,
 <b>4</b>(2), 2515245920970949.
-<a href="%5C%22https://doi.org/10.1177/2515245920970949%5C%22" class="external-link">doi:10.1177/2515245920970949</a>.”</p>
+<a href='\"https://doi.org/10.1177/2515245920970949\"' class="external-link">doi:10.1177/2515245920970949</a>.”</p>
 <p>You can get a bibentry citation for any package with code.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"metacheck"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/format_ref.html">format_ref</a></span><span class="op">(</span><span class="va">bib</span><span class="op">)</span></span></code></pre></div>
 <p>[1] “DeBruine L, Lakens D (2025). <em>metacheck: Check Research
-Outputs for Best Practices</em>. R package version 0.0.0.9065,
-<a href="%5C%22https://github.com/scienceverse/metacheck%5C%22" class="external-link">https://github.com/scienceverse/metacheck</a>.”</p>
+Outputs for Best Practices</em>. R package version 0.0.0.9066,
+<a href='\"https://github.com/scienceverse/metacheck\"' class="external-link">https://github.com/scienceverse/metacheck</a>.”</p>
 <p>The function can also handle references in bibtex format.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bibtex</span> <span class="op">&lt;-</span> <span class="st">"@Article{,</span></span>
@@ -660,7 +660,7 @@ Outputs for Best Practices</em>. R package version 0.0.0.9065,
 falsifiability, and rigor by making hypothesis tests machine-readable.”
 <em>Advances in Methods and Practices in Psychological Science</em>,
 <b>4</b>(2), 2515245920970949.
-<a href="%5C%22https://doi.org/10.1177/2515245920970949%5C%22" class="external-link">doi:10.1177/2515245920970949</a>.”</p>
+<a href='\"https://doi.org/10.1177/2515245920970949\"' class="external-link">doi:10.1177/2515245920970949</a>.”</p>
 <p>If you just add plain text that isn’t a bibentry or in bibtex format,
 you will usually just get the text back.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
@@ -700,7 +700,7 @@ return other objects for your own purposes.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
