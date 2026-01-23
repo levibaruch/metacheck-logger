@@ -260,9 +260,9 @@ usethis::edit_r_environ()
 You can get or set the default LLM model with `llm_model()` and access a list of the current available models using `llm_model_list()`. 
 
 ```{r, echo = FALSE}
-modlist <- llm_model_list()
+modlist <- llm_model_list("groq")
 
-knitr::kable(modlist)
+knitr::kable(modlist[1:5,])
 ```
 
 When you start metacheck for the first time, it will check for relevant API keys in your Renviron and automatically set the model to use. You can get or set this with `llm_model()`. 
