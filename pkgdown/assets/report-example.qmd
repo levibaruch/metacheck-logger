@@ -4,7 +4,7 @@ subtitle: "To Err is Human: An Empirical Investigation"
 author: "Daniel Lakens & Lisa DeBruine"
 metacheck:
   version: "0.0.0.9066"
-  report-created: "2026-01-22"
+  report-created: "2026-01-25"
 format:
   html:
     theme: 
@@ -14,9 +14,9 @@ format:
     toc: true
     toc-title: >
       <ul class="emoji-key">
-        <li class="green">✅️ no problems detected;</li>  
+        <li class="red">⚠️ possible problems detected;</li> 
         <li class="yellow">🔍 something to check;</li> 
-        <li class="red">⚠️ possible problems detected;</li>  
+        <li class="green">✅️ no problems detected;</li>  
         <li class="info">ℹ️ informational only;</li>  
         <li class="na">⚪️ not applicable;</li>  
         <li class="fail">☠️ check failed</li>
@@ -85,7 +85,7 @@ Metacheck is under continuous development. Issues can be submitted [on Github](h
 - ⚠️ [COI Check](#coi-check){.red}: No conflict of interest statement was detected.  
 - ⚠️ [Funding Check](#funding-check){.red}: No funding statement was detected.  
 - ✅️ [Open Practices Check](#open-practices-check){.green}: Shared data and code detected.  
-- ⚠️ [Power Analysis Check](#power-analysis-check){.red}: We detected 1 potential power analysis.  
+- ⚠️ [Power Analysis Check](#power-analysis-check){.red}: We detected 2 potential power analyses.  
 - ✅️ [Randomization and Causal Claims](#randomization-and-causal-claims){.green}: 
     -  We identified 1 sentence describing randomization.
     -  No causal claims were observed in the title.
@@ -104,10 +104,11 @@ Metacheck is under continuous development. Issues can be submitted [on Github](h
     -  Some code files had no comments.
     -  We found 0 README files and 3 sources without READMEs: osf.io/cxjg4, https://github.com/Lakens/to_err_is_human, https://researchbox.org/4377.  
 - 🔍 [DOI Check](#doi-check){.yellow}: We checked 1 reference in CrossRef and found 1 missing DOI.   
-- 🔍 [Reference Accuracy](#reference-accuracy){.yellow}: We checked 3 references with DOIs in CrossRef and found  matches for 2.  
+- 🔍 [Reference Accuracy](#reference-accuracy){.yellow}: We checked 4 references with DOIs in CrossRef and found  matches for 3.  
 - ℹ️ [Replication Check](#replication-check){.info}: You cited 1 article in the FReD replication database.  
 - ℹ️ [RetractionWatch](#retractionwatch){.info}: You cited 1 article in the RetractionWatch database.  
 - ℹ️ [Check PubPeer Comments](#check-pubpeer-comments){.info}: You cited 1 reference with comments in PubPeer.  
+- ℹ️ [Summarise References](#summarise-references){.info}: Summary information provided for 4 references  
 
 
 
@@ -183,30 +184,34 @@ This module was developed by Daniel Lakens
 
 ### ⚠️ Power Analysis Check {#power-analysis-check .red}
 
-We detected 1 potential power analysis.
+We detected 2 potential power analyses.
 
 <details><summary>View detailed feedback</summary><div>
 
-Some essential information could not be detected: alpha_level, software
+Some essential information could not be detected: sample_size, power, software
 
 ```{r}
 #| echo: false
 
 # table data --------------------------------------
-table <- structure(list(power_type = "sensitivity", statistical_test = "unpaired t-test", 
-    sample_size = 100L, alpha_level = NA, power = 0.8, effect_size = 0.5, 
-    effect_size_metric = "Cohen's d", software = NA), row.names = c(NA, 
--1L), class = c("tbl_df", "tbl", "data.frame"))
+table <- structure(list(power_id = 1:2, power_type = c("sensitivity", 
+"posthoc"), statistical_test = c("t-test", "t-test"), sample_size = c(50L, 
+NA), alpha_level = c(0.05, 0.05), power = c(0.8, NA), effect_size = c(0.5, 
+0.59), effect_size_metric = c("Cohen's d", "Cohen's d"), software = c("other", 
+NA)), row.names = c(NA, -2L), class = c("tbl_df", "tbl", "data.frame"
+))
 
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 5, FALSE)
 ```
 
+You reported a power analysis that has been classified as 'post-hoc'. Calculating observed power is [almost never useful](https://lakens.github.io/statistical_inferences/08-samplesizejustification.html#sec-posthocpower). If you actually performed a sensitivity power analysis, label it as such explicitly.
+
 ```{r}
 #| echo: false
 
 # table data --------------------------------------
-table <- structure(list(text = "In this study we examine whether automated checks reduce the amount of errors that researchers make in scientific manuscripts. This study was preregistered at <https://osf.io/48ncu> and on AsPredicted at <https://aspredicted.org/by8i8v.pdf>. We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist. Scientists had the opportunity to make changes to their manuscript based on the feedback of the tool. We subsequently coded all manuscripts for mistakes, and counted the total number of mistakes. We also measured the expertise of researchers (in years) to explore whether the automated tool would be more useful, the less research experience researchers had. We also asked researchers to rate how useful they found the checklist or app on a scale from 1 (not at all) to 7 (extremely useful). Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>. Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>. We conducted a <strong>sensitivity</strong> <strong>power</strong> analysis to determine that a Cohen's d of 0.50 is the smallest effect size that we could detect with 50 participants in each group and 80% <strong>power</strong>. On average researchers in the experimental (app) condition made fewer mistakes (M = 9.12) than researchers in the control (checklist) condition (M = 10.9), t(97.7) = 2.9, p = 0.005, d = 0.59."), row.names = c(NA, 
+table <- structure(list(power_id = "1;2", text = "In this study we examine whether automated checks reduce the amount of errors that researchers make in scientific manuscripts. This study was preregistered at <https://osf.io/48ncu> and on AsPredicted at <https://aspredicted.org/by8i8v.pdf>. We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist. Scientists had the opportunity to make changes to their manuscript based on the feedback of the tool. We subsequently coded all manuscripts for mistakes, and counted the total number of mistakes. We also measured the expertise of researchers (in years) to explore whether the automated tool would be more useful, the less research experience researchers had. We also asked researchers to rate how useful they found the checklist or app on a scale from 1 (not at all) to 7 (extremely useful). Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>. Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>. We conducted a <strong>sensitivity</strong> <strong>power</strong> analysis to determine that a Cohen's d of 0.50 is the smallest effect size that we could detect with 50 participants in each group and 80% <strong>power</strong>. On average researchers in the experimental (app) condition made fewer mistakes (M = 9.12) than researchers in the control (checklist) condition (M = 10.9), t(97.7) = 2.9, p = 0.005, d = 0.59."), row.names = c(NA, 
 -1L), class = c("tbl_df", "tbl", "data.frame"))
 
 # display table -----------------------------------
@@ -402,7 +407,7 @@ metacheck::report_table(table, "auto", 5, FALSE)
 
 ::: {.callout-tip title="Learn More" collapse="true"}
 
-For metascientific articles demonstrating the rate of deviationsfrom preregistrations, see:
+For metascientific articles demonstrating the rate of deviations from preregistrations, see:
 
 van den Akker O, Bakker M, van Assen M, Pennington C, Verweij L, Elsherif M, Claesen A, Gaillard S, Yeung S, Frankenberger J, Krautter K, Cockcroft J, Kreuer K, Evans T, Heppel F, Schoch S, Korbmacher M, Yamada Y, Albayrak-Aydemir N, Wicherts J (2024). &ldquo;The potential of preregistration in psychology: Assessing preregistration producibility and preregistration-study consistency.&rdquo; <em>Psychological Methods</em>. <a href="https://doi.org/10.1037/met0000687">doi:10.1037/met0000687</a>.
 
@@ -813,7 +818,7 @@ Double check any references listed in the tables below. The match score gives an
 
 # table data --------------------------------------
 table <- structure(list("Found DOI" = "<a href='https://doi.org/10.1177/2515245918770963' target='_blank'>doi.org/10.1177/2515245918770963</a>", 
-    "Match Score" = 70, "Original Reference" = "Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."), row.names = 1L, class = "data.frame")
+    "Match Score" = 69, "Original Reference" = "Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."), row.names = 1L, class = "data.frame")
 
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 2, FALSE)
@@ -835,7 +840,7 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 ### 🔍 Reference Accuracy {#reference-accuracy .yellow}
 
-We checked 3 references with DOIs in CrossRef and found  matches for 2.
+We checked 4 references with DOIs in CrossRef and found  matches for 3.
 
 <details><summary>View detailed feedback</summary><div>
 
@@ -857,7 +862,18 @@ metacheck::report_table(table, 5, 2, FALSE)
 # table data --------------------------------------
 table <- structure(list("Original Title" = "Evil Genius? How Dishonesty Can Lead to Greater Creativity", 
     "CrossRef Title" = "Retracted: Evil Genius? How Dishonesty Can Lead to Greater Creativity", 
-    Reference = "Gino F, Wiltermuth SS (2014). &ldquo;Evil Genius? How Dishonesty Can Lead to Greater Creativity.&rdquo; <em>Psychological Science</em>, <b>25</b>(4), 973-981. <a href=\"https://doi.org/10.1177/0956797614520714\">doi:10.1177/0956797614520714</a>."), class = "data.frame", row.names = 2L)
+    Reference = "Gino F, Wiltermuth SS (2014). &ldquo;Evil Genius? How Dishonesty Can Lead to Greater Creativity.&rdquo; <em>Psychological Science</em>, <b>25</b>(4), 973-981. <a href=\"https://doi.org/10.1177/0956797614520714\">doi:10.1177/0956797614520714</a>."), row.names = 2L, class = "data.frame")
+
+# display table -----------------------------------
+metacheck::report_table(table, 5, 2, FALSE)
+```
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list("Original Authors" = "D Lakens", "CrossRef Authors" = "D Lakens, A Scheel, P Isager", 
+    Reference = "Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."), class = "data.frame", row.names = 4L)
 
 # display table -----------------------------------
 metacheck::report_table(table, 5, 2, FALSE)
@@ -869,9 +885,9 @@ metacheck::report_table(table, 5, 2, FALSE)
 
 This module checks references for mismatches with CrossRef.
 
-It only looks up the DOIs originally present in your paper (not those found by ref_doi_check) and returns the bibliographic information.
+It looks up the DOIs originally present in your paper (not those found by ref_doi_check) and returns the bibliographic information.
 
-We then check that the title from your reference section is the same as the retrieved title (ignoring differences in capitalisation) and that all author last names in your reference section are also in the retrieved author list (we do not check first names or order yet).
+We then check that the title from your reference section is the same as the retrieved title (ignoring differences in capitalisation) and that all author last names in your reference section are also in the retrieved author list (we do not check first names or order yet). This check is done for all references with crossref entries, including those found by ref_doi_check, if it was previously run.
 
 Mismatches may be because of problems with our parsing of references from your PDF (we're working on improving this), incorrect formatting in CrossRef, or minor differences in punctuation.
 
@@ -991,6 +1007,48 @@ The module requires that the reference has a DOI. If you run the doi_check modul
 For more information, see [PubPeer](https://www.pubpeer.com/static/about).
 
 This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
+
+### ℹ️ Summarise References {#summarise-references .info}
+
+Summary information provided for 4 references
+
+<details><summary>View detailed feedback</summary><div>
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list(ref = c("Gangestad SW, Thornhill R (1998). &ldquo;Menstrual cycle variation in women's preferences for the scent of symmetrical men.&rdquo; <em>Proceedings Biological Sciences</em>, <b>22</b>, 927-933. <a href=\"https://doi.org/10.1098/rspb.1998.0380\">doi:10.1098/rspb.1998.0380</a>.", 
+"Gino F, Wiltermuth SS (2014). &ldquo;Evil Genius? How Dishonesty Can Lead to Greater Creativity.&rdquo; <em>Psychological Science</em>, <b>25</b>(4), 973-981. <a href=\"https://doi.org/10.1177/0956797614520714\">doi:10.1177/0956797614520714</a>.", 
+"Smith F (2021). &ldquo;Human error is a symptom of a poor design.&rdquo; <em>Journal of Journals</em>, <b>0</b>(0), 0. <a href=\"https://doi.org/10.0000/0123456789\">doi:10.0000/0123456789</a>.", 
+"Lakens D (2018). &ldquo;Equivalence testing for psychological research.&rdquo; <em>Advances in Methods and Practices in Psychological Science</em>, <b>1</b>, 259-270."
+), crossref_DOI = c("10.1098/rspb.1998.0380", "10.1177/0956797614520714", 
+"10.0000/0123456789", "10.1177/2515245918770963"), crossref_doi_found = c(NA, 
+NA, NA, TRUE), crossref_ref_not_found = c(FALSE, FALSE, TRUE, 
+FALSE), crossref_title_mismatch = c(FALSE, TRUE, FALSE, FALSE
+), crossref_author_mismatch = c(FALSE, FALSE, FALSE, TRUE), pubpeer_total_comments = c(NA, 
+3, NA, NA), pubpeer_url = c(NA, "https://pubpeer.com/publications/3FA648ECECB88454C91804F09E2E56", 
+NA, NA), pubpeer_users = c(NA, "Statcheck , Aioliops Novaeguineae, Hoya Camphorifolia", 
+NA, NA), replication_ref = c("Jones, B. C., Hahn, A. C., Fisher, C. I., Wang, H., Kandrik, M., Han, C., Fasolt, V., Morrison, D., Lee, A. J., Holzleitner, I. J., O’Shea, K. J., Roberts, S. C., Little, A. C., & DeBruine, L. M. (2018). No Compelling Evidence that Preferences for Facial Masculinity Track Changes in Women’s Hormonal Status. Psychological Science, 29(6), 996-1005. https://doi.org/10.1177/0956797618760197", 
+NA, NA, NA), replication_doi = c("10.1177/0956797618760197", 
+NA, NA, NA), retractionwatch = c(NA, "Retraction", NA, NA)), class = "data.frame", row.names = c(NA, 
+-4L))
+
+# display table -----------------------------------
+metacheck::report_table(table, "auto", 10, FALSE)
+```
+
+</div></details>
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+Summarise information about each reference in a paper.
+
+This module summarises previously-run reference section modules: ref_doi_check, ref_accuracy, ref_pubpeer, ref_replication, and ref_retractiuon.
+
+This module was developed by Lisa DeBruine
 
 :::
 
