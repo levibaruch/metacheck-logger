@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9066</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9067</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,16 @@
       <small>Source: <a href="https://github.com/scienceverse/metacheck/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9067" id="metacheck-0009067">metacheck 0.0.0.9067<a class="anchor" aria-label="anchor" href="#metacheck-0009067"></a></h2>
+<ul><li>
+<code>reports()</code> now takes a paperlist and makes a report from each</li>
+<li>New <code><a href="../reference/report_module_run.html">report_module_run()</a></code> and <code><a href="../reference/report_qmd.html">report_qmd()</a></code> break down the <code><a href="../reference/report.html">report()</a></code> function to allow separation of module output lists and creation of QMD report from them (might be changed to internal functions).</li>
+<li>Ability to select returned columns in <code><a href="../reference/crossref_query.html">crossref_query()</a></code>
+</li>
+<li>Module “ref_accuracy” now returns info for references with missing DOIs that were found by ref_doi_check</li>
+<li>Module “code_check” split into “repo_check” and “code_check”</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9066" id="metacheck-0009066">metacheck 0.0.0.9066<a class="anchor" aria-label="anchor" href="#metacheck-0009066"></a></h2>
 <ul><li>
