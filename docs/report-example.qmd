@@ -3,8 +3,8 @@ title: MetaCheck Report
 subtitle: "To Err is Human: An Empirical Investigation"
 author: "Daniel Lakens & Lisa DeBruine"
 metacheck:
-  version: "0.0.0.9066"
-  report-created: "2026-01-25"
+  version: "0.0.0.9067"
+  report-created: "2026-01-27"
 format:
   html:
     theme: 
@@ -85,7 +85,7 @@ Metacheck is under continuous development. Issues can be submitted [on Github](h
 - ⚠️ [COI Check](#coi-check){.red}: No conflict of interest statement was detected.  
 - ⚠️ [Funding Check](#funding-check){.red}: No funding statement was detected.  
 - ✅️ [Open Practices Check](#open-practices-check){.green}: Shared data and code detected.  
-- ⚠️ [Power Analysis Check](#power-analysis-check){.red}: We detected 2 potential power analyses.  
+- ⚠️ [Power Analysis Check](#power-analysis-check){.red}: We detected 1 potential power analysis.  
 - ✅️ [Randomization and Causal Claims](#randomization-and-causal-claims){.green}: 
     -  We identified 1 sentence describing randomization.
     -  No causal claims were observed in the title.
@@ -96,13 +96,16 @@ Metacheck is under continuous development. Issues can be submitted [on Github](h
 - ⚠️ [Effect Sizes in t-tests and F-tests](#effect-sizes-in-t-tests-and-f-tests){.red}: We found 1 t-test and/or F-test where effect sizes are not reported.  
 - ⚠️ [StatCheck](#statcheck){.red}: 1 possible error in t-tests or F-tests  
 - 🔍 [Non-Significant P Value Check](#non-significant-p-value-check){.yellow}: We found 2 non-significant p values that should be checked for appropriate interpretation.  
+- 🔍 [Repository Check](#repository-check){.yellow}: 
+    -  We found 7 files in 3 repositories.
+    -  We found 0 README files and 3 repositories without READMEs.
+    -  We found 1 archive file.  
 - 🔍 [Code Check](#code-check){.yellow}: 
-    -  We found 4 R, SAS, SPSS, or Stata code files in the 6 searched repositories.
-    -  Some files loaded in the code were missing in the repository.
-    -  Hardcoded file paths were found.
-    -  Libraries/imports were loaded in multiple places.
-    -  Some code files had no comments.
-    -  We found 0 README files and 3 sources without READMEs: osf.io/cxjg4, https://github.com/Lakens/to_err_is_human, https://researchbox.org/4377.  
+    -  We found 4 R, SAS, SPSS, or Stata code files.
+    -  1 code file had no comments.
+    -  1 file loaded in the code was missing in the repository.
+    -  Absolute file paths were found.
+    -  Libraries/imports were loaded in multiple places.  
 - 🔍 [DOI Check](#doi-check){.yellow}: We checked 1 reference in CrossRef and found 1 missing DOI.   
 - 🔍 [Reference Accuracy](#reference-accuracy){.yellow}: We checked 4 references with DOIs in CrossRef and found  matches for 3.  
 - ℹ️ [Replication Check](#replication-check){.info}: You cited 1 article in the FReD replication database.  
@@ -184,34 +187,30 @@ This module was developed by Daniel Lakens
 
 ### ⚠️ Power Analysis Check {#power-analysis-check .red}
 
-We detected 2 potential power analyses.
+We detected 1 potential power analysis.
 
 <details><summary>View detailed feedback</summary><div>
 
-Some essential information could not be detected: sample_size, power, software
+Some essential information could not be detected: alpha_level, software
 
 ```{r}
 #| echo: false
 
 # table data --------------------------------------
-table <- structure(list(power_id = 1:2, power_type = c("sensitivity", 
-"posthoc"), statistical_test = c("t-test", "t-test"), sample_size = c(50L, 
-NA), alpha_level = c(0.05, 0.05), power = c(0.8, NA), effect_size = c(0.5, 
-0.59), effect_size_metric = c("Cohen's d", "Cohen's d"), software = c("other", 
-NA)), row.names = c(NA, -2L), class = c("tbl_df", "tbl", "data.frame"
-))
+table <- structure(list(power_type = "sensitivity", statistical_test = "unpaired t-test", 
+    sample_size = 100L, alpha_level = NA, power = 0.8, effect_size = 0.5, 
+    effect_size_metric = "Cohen's d", software = NA), row.names = c(NA, 
+-1L), class = c("tbl_df", "tbl", "data.frame"))
 
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 5, FALSE)
 ```
 
-You reported a power analysis that has been classified as 'post-hoc'. Calculating observed power is [almost never useful](https://lakens.github.io/statistical_inferences/08-samplesizejustification.html#sec-posthocpower). If you actually performed a sensitivity power analysis, label it as such explicitly.
-
 ```{r}
 #| echo: false
 
 # table data --------------------------------------
-table <- structure(list(power_id = "1;2", text = "In this study we examine whether automated checks reduce the amount of errors that researchers make in scientific manuscripts. This study was preregistered at <https://osf.io/48ncu> and on AsPredicted at <https://aspredicted.org/by8i8v.pdf>. We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist. Scientists had the opportunity to make changes to their manuscript based on the feedback of the tool. We subsequently coded all manuscripts for mistakes, and counted the total number of mistakes. We also measured the expertise of researchers (in years) to explore whether the automated tool would be more useful, the less research experience researchers had. We also asked researchers to rate how useful they found the checklist or app on a scale from 1 (not at all) to 7 (extremely useful). Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>. Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>. We conducted a <strong>sensitivity</strong> <strong>power</strong> analysis to determine that a Cohen's d of 0.50 is the smallest effect size that we could detect with 50 participants in each group and 80% <strong>power</strong>. On average researchers in the experimental (app) condition made fewer mistakes (M = 9.12) than researchers in the control (checklist) condition (M = 10.9), t(97.7) = 2.9, p = 0.005, d = 0.59."), row.names = c(NA, 
+table <- structure(list(text = "In this study we examine whether automated checks reduce the amount of errors that researchers make in scientific manuscripts. This study was preregistered at <https://osf.io/48ncu> and on AsPredicted at <https://aspredicted.org/by8i8v.pdf>. We randomly assigned 50 scientists to a condition where their manuscript was automatically checked for errors, and 50 scientists to a control condition with a checklist. Scientists had the opportunity to make changes to their manuscript based on the feedback of the tool. We subsequently coded all manuscripts for mistakes, and counted the total number of mistakes. We also measured the expertise of researchers (in years) to explore whether the automated tool would be more useful, the less research experience researchers had. We also asked researchers to rate how useful they found the checklist or app on a scale from 1 (not at all) to 7 (extremely useful). Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>. Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>. We conducted a <strong>sensitivity</strong> <strong>power</strong> analysis to determine that a Cohen's d of 0.50 is the smallest effect size that we could detect with 50 participants in each group and 80% <strong>power</strong>. On average researchers in the experimental (app) condition made fewer mistakes (M = 9.12) than researchers in the control (checklist) condition (M = 10.9), t(97.7) = 2.9, p = 0.005, d = 0.59."), row.names = c(NA, 
 -1L), class = c("tbl_df", "tbl", "data.frame"))
 
 # display table -----------------------------------
@@ -683,14 +682,77 @@ This module was developed by Daniel Lakens
 
 :::
 
+### 🔍 Repository Check {#repository-check .yellow}
+
+-  We found 7 files in 3 repositories.
+-  We found 0 README files and 3 repositories without READMEs.
+-  We found 1 archive file.
+
+<details><summary>View detailed feedback</summary><div>
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list(Repository = c("<a href='osf.io/629bx' target='_blank'>osf.io/629bx</a>", 
+"<a href='https://github.com/Lakens/to_err_is_human' target='_blank'>github.com/Lakens/to_err_is_human</a>", 
+"<a href='https://researchbox.org/4377' target='_blank'>researchbox.org/4377</a>"
+), Platform = c("osf", "github", "researchbox"), "All Files" = c(4L, 
+2L, 1L), "Data Files" = c(1L, 1L, 0L), "Code Files" = c(2L, 1L, 
+1L), READMEs = c(0L, 0L, 0L), Archives = c(1L, 0L, 0L)), row.names = c(NA, 
+-3L), class = c("tbl_df", "tbl", "data.frame"))
+
+# display table -----------------------------------
+metacheck::report_table(table, "auto", 10, FALSE)
+```
+
+```{r}
+#| echo: false
+
+# table data --------------------------------------
+table <- structure(list(Repository = c("osf.io/629bx", "osf.io/629bx", 
+"osf.io/629bx", "osf.io/629bx", "https://github.com/Lakens/to_err_is_human", 
+"https://github.com/Lakens/to_err_is_human", "https://researchbox.org/4377"
+), File = c("<a href='https://osf.io/download/6935bc117049c887a125cb25/' target='_blank'>bad.R</a>", 
+"<a href='https://osf.io/download/6935c4679ca0f02ea72a1a31/' target='_blank'>example2.csv</a>", 
+"<a href='https://osf.io/download/uq347/' target='_blank'>bad.Rmd</a>", 
+"<a href='https://osf.io/download/6976438ff9da155d0565c720/' target='_blank'>Archive.zip</a>", 
+"<a href='https://raw.githubusercontent.com/Lakens/to_err_is_human/main/analysis.R' target='_blank'>analysis.R</a>", 
+"<a href='https://raw.githubusercontent.com/Lakens/to_err_is_human/main/file2.csv' target='_blank'>file2.csv</a>", 
+"<a href='https://researchbox.org/4377' target='_blank'>Code/Study 1.r</a>"
+), Size = c("172 B", "5 B", "413 B", "6.4 kB", "306 B", "794 B", 
+"183 B"), Type = c("code", "data", "code", "archive", "code", 
+"data", "code")), row.names = c(NA, 7L), class = "data.frame")
+
+# display table -----------------------------------
+metacheck::report_table(table, "auto", 10, FALSE)
+```
+
+README files are a way to document the contents and structure of a folder, helping users locate the information they need. You can use a README to document changes to a repository, and explain how files are named. Please consider adding a README to each repository.
+
+The following files are archives: Archive.zip. We did not examine their content. Consider uploading these individually to improve discoverability and re-use.
+
+</div></details>
+
+::: {.callout-note title="How It Works" collapse="true"}
+
+This module retrieves information from repositories.
+
+The Repository Check module lists files on the OSF, GitHub, and ResearchBox based on links in the manuscript.
+
+If you want to extend the package to be able to download files from additional data repositories reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
+:::
+
 ### 🔍 Code Check {#code-check .yellow}
 
--  We found 4 R, SAS, SPSS, or Stata code files in the 6 searched repositories.
--  Some files loaded in the code were missing in the repository.
--  Hardcoded file paths were found.
+-  We found 4 R, SAS, SPSS, or Stata code files.
+-  1 code file had no comments.
+-  1 file loaded in the code was missing in the repository.
+-  Absolute file paths were found.
 -  Libraries/imports were loaded in multiple places.
--  Some code files had no comments.
--  We found 0 README files and 3 sources without READMEs: osf.io/cxjg4, https://github.com/Lakens/to_err_is_human, https://researchbox.org/4377.
 
 <details><summary>View detailed feedback</summary><div>
 
@@ -700,47 +762,46 @@ Below, we describe some best coding practices and give the results of automatic 
 #| echo: false
 
 # table data --------------------------------------
-table <- structure(list("Code File Name" = c("bad.R", "bad.Rmd", "analysis.R", 
-"Code/Study 1.r", "Codebook/Study 1 - csv - dataset 1.csv___CODEBOOK.csv", 
-"Codebook/Study 1.csv___CODEBOOK.csv", "Data/Study 1 - csv - dataset 1.csv", 
-"Data/Study 1.csv", "Materials/Study 1 - test txt file.txt", 
-"Table of Contents Box #4377.csv"), Download = c("<a href='https://osf.io/download/6935bc117049c887a125cb25/'>download</a>", 
-"<a href='https://osf.io/download/uq347/'>download</a>", "<a href='https://raw.githubusercontent.com/Lakens/to_err_is_human/main/analysis.R'>download</a>", 
-"<a href='https://researchbox.org/4377'>download</a>", "<a href='https://researchbox.org/4377'>download</a>", 
-"<a href='https://researchbox.org/4377'>download</a>", "<a href='https://researchbox.org/4377'>download</a>", 
-"<a href='https://researchbox.org/4377'>download</a>", "<a href='https://researchbox.org/4377'>download</a>", 
-"<a href='https://researchbox.org/4377'>download</a>")), row.names = c(1L, 
-3L, 4L, 6L, 7L, 8L, 9L, 10L, 11L, 12L), class = "data.frame")
+table <- structure(list("File Name" = c("<a href='https://osf.io/download/6935bc117049c887a125cb25/' target='_blank'>bad.R</a>", 
+"<a href='https://osf.io/download/uq347/' target='_blank'>bad.Rmd</a>", 
+"<a href='https://raw.githubusercontent.com/Lakens/to_err_is_human/main/analysis.R' target='_blank'>analysis.R</a>", 
+"<a href='https://researchbox.org/4377' target='_blank'>Code/Study 1.r</a>"
+), "% Comments" = c("7%", "26%", "0%", "17%"), "Missing Files" = c(0L, 
+0L, 0L, 1L), "Absolute Paths" = c(1L, 2L, 1L, 1L), "Code Between Libraries" = c(12L, 
+13L, 10L, NA)), row.names = c(NA, 4L), class = "data.frame")
 
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 5, FALSE)
 ```
+
+#### Code Comments
+
+Best programming practice is to add comments to code, to explain what the code does (to yourself in the future, or peers who want to re-use your code).
 
 #### Missing Files
 
-The scripts load files, but 1 scripts loaded files that could not be automatically identified in the repository. Check if the following files are made available, so that others can reproduce your code, or that the files are missing:
+The scripts load files, but 1 script loaded 1 file that could not be automatically identified in the repository. Check if the following files are made available, so that others can reproduce your code, or that the files are missing:
 
 ```{r}
 #| echo: false
 
 # table data --------------------------------------
-table <- structure(list("Code File name" = "Code/Study 1.r", Language = "R", 
-    "Files loaded in code but missing in repository" = "file.csv"), row.names = 4L, class = "data.frame")
+table <- structure(list("File name" = "Code/Study 1.r", "Missing Files" = "file.csv"), row.names = 4L, class = "data.frame")
 
 # display table -----------------------------------
 metacheck::report_table(table, "auto", 5, FALSE)
 ```
 
-#### Hardcoded Paths
+#### Absolute Paths
 
-Best programming practice is to use relative file paths instead of hardcoded file paths (e.g., C://Lakens/files) as these folder names do not exist on other computers. The following hardcoded file paths were found in 4 code file(s).
+Best programming practice is to use relative file paths instead of absolute file paths (e.g., C://Lakens/files) as these folder names do not exist on other computers. The following absolute file paths were found in 4 code files:
 
 ```{r}
 #| echo: false
 
 # table data --------------------------------------
-table <- structure(list("Code File name" = c("bad.R", "bad.Rmd", "analysis.R", 
-"Code/Study 1.r"), Language = c("R", "R", "R", "R"), "Absolute paths found" = c("data <- read_csv(\"C://Lakens/files/example.csv\")", 
+table <- structure(list("File name" = c("bad.R", "bad.Rmd", "analysis.R", 
+"Code/Study 1.r"), "Absolute paths found" = c("data <- read_csv(\"C://Lakens/files/example.csv\")", 
 "data <- read_csv(\"C://Lakens/files/example.csv\"), data2 <- read_csv(\"C://Lakens/files/example2.csv\")", 
 "data_1 <- read.csv(\"C:/path/to/a/file.csv\")", "abs_path_pc <- read.csv(\"C:/lisa/file.csv\")"
 )), row.names = c(NA, 4L), class = "data.frame")
@@ -751,53 +812,19 @@ metacheck::report_table(table, "auto", 5, FALSE)
 
 #### Libraries / Imports
 
-Best programming practice is to load all required libraries/imports in one block near the top of the code. In 3 code files, libraries/imports were at multiple places (i.e., with more than 3 lines in between). This was true in the following files, where libraries/imports were loaded on the following lines:
-
-```{r}
-#| echo: false
-
-# table data --------------------------------------
-table <- structure(list("Code File name" = c("bad.R", "bad.Rmd", "analysis.R"
-), Language = c("R", "R", "R"), "Lines at which libraries/imports are loaded" = c("1, 13", 
-"6, 25", "1, 11")), row.names = c(NA, 3L), class = "data.frame")
-
-# display table -----------------------------------
-metacheck::report_table(table, "auto", 5, FALSE)
-```
-
-#### Code Comments
-
-Best programming practice is to add comments to code, to explain what the code does (to yourself in the future, or peers who want to re-use your code).
-
-```{r}
-#| echo: false
-
-# table data --------------------------------------
-table <- structure(list("Code File name" = c("bad.R", "bad.Rmd", "analysis.R", 
-"Code/Study 1.r"), Language = c("R", "R", "R", "R"), "Percentage of lines that are comments" = c("5%", 
-"2%", "0%", "11%")), row.names = c(NA, 4L), class = "data.frame")
-
-# display table -----------------------------------
-metacheck::report_table(table, "auto", 5, FALSE)
-```
-
-#### README
-
-We found 0 README files and 3 sources without READMEs: osf.io/cxjg4, https://github.com/Lakens/to_err_is_human, https://researchbox.org/4377. 
-
-README files are a way to document the contents and structure of a folder, helping users locate the information they need. You can use a README to document changes to a repository, and explain how files are named. Please consider adding a README to each repository.
+Best programming practice is to load all required libraries/imports in one block near the top of the code. In 3 code files, libraries/imports were at multiple places (i.e., with more than 3 non-comment lines in between).
 
 </div></details>
 
 ::: {.callout-note title="How It Works" collapse="true"}
 
-This module retrieves information from repositories (OSF and GitHub) about code files (R, SAS, SPSS, Stata), zip files, and readme.
+This module retrieves information from repositories checked by repo_check about code files (R, SAS, SPSS, Stata).
 
-The Code Check module lists files on the OSF and GitHub based on links in the manuscript, and retrieves R, Rmd, Qmd, SAS, SPSS, and Stata files. The module then uses regular expressions to check the code. The regular expression search will detect the number of comments, the lines at which libraries/imports are loaded, attempts to detect absolute paths to files, and lists files that are loaded, and checks if these files are in the repository. It will also check for a readme file in the repository, and will warn it can’t examine the contents of zip files. The module will return suggestions to improve the code if there are no comments, if libraries/imports are loaded in lines further than 4 lines apart, if files that are loaded are not in the repository, and if hardcoded file paths are found.
+The Code Check module checks R, Rmd, Qmd, SAS, SPSS, and Stata files, using regular expressions to check the code. The regular expression search will detect the number of comments, the lines at which libraries/imports are loaded, attempts to detect absolute paths to files, and lists files that are loaded, and checks if these files are in the repository. The module will return suggestions to improve the code if there are no comments, if libraries/imports are loaded in lines further than 4 lines apart, if files that are loaded are not in the repository, and if absolute file paths are found.
 
 The regular expressions can miss information in code files, or falsely detect parts of the code as a fixed file path. Libraries/imports might be loaded in one block, even if there are more than 3 intermittent lines. The package was validated internally on papers published in Psychological Science. There might be valid reasons why some loaded files can’t be shared, but the module can’t evaluate these reasons, and always gives a warning.
 
-If you want to extend the package to be able to download files from additional data repositories, or perform additional checks on code files, or make the checks work on other types of code files, reach out to the Metacheck development team.
+If you want to extend the package to perform additional checks on code files, or make the checks work on other types of code files, reach out to the Metacheck development team.
 
 This module was developed by Daniel Lakens
 
