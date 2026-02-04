@@ -49,7 +49,6 @@ safe_run(
 
 ```
 
-
 ```{r}
 safe_run(
   label = "paper not found",
@@ -60,7 +59,7 @@ safe_run(
   log_path = "logs/error/papers/missing_file.log"
 )
 ```
-.
+
 I hope this helps!
 
 
