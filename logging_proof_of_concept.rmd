@@ -39,7 +39,7 @@ Now, lets see what happens when it breaks, like a non existent module:
 ```{r}
 safe_run(
   label = "not defined",
-  func = run_module,           # the function object
+  func = module_run,           # the function object
   args = list(
     paper = paper,             # first argument
     module = "non_existent_module"  # second argument
@@ -55,27 +55,12 @@ safe_run(
   label = "paper not found",
   func = read,
   args = list(
-    "this/file/does/not/exist.xml"
+    filename = "this/file/does/not/exist.xml"
   ),
   log_path = "logs/error/papers/missing_file.log"
 )
 ```
-
-```{r}
-safe_run(
-  label = "paper is NULL",
-  func = module_run,
-  args = list(
-    paper = NULL,
-    module = "all_p_values",
-    log_errors = TRUE
-  ),
-  log_path = "logs/error/papers/null_paper.log"
-)
-
-```
-
-
+.
 I hope this helps!
 
 
